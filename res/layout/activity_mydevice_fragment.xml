@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="2,2" >
+	
+    
+    <RelativeLayout
+        android:id="@+id/my_device" 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/dao_hang_lan"
+        >
+        <TextView
+            android:id="@+id/menu" 
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/menu"
+            />
+        
+        <ImageView 
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/app_name"
+            />
+        
+        <TextView
+            android:id="@+id/add_device" 
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+			android:background="@drawable/add_dev"
+            />
+    </RelativeLayout>
+    <ImageView 
+        android:id="@+id/main_image"
+        android:layout_below="@id/my_device"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        
+        />
+    <RelativeLayout
+        android:id="@+id/new_dev_rela" 
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/main_image"
+        android:gravity="center"
+        android:background="#ECECEC"
+        android:visibility="gone"
+        >
+
+        <ImageView 
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/tongzhi"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            />
+        
+        <RelativeLayout 
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            >
+            
+            <com.hrsst.smarthome.widget.MarqueeTextView
+                android:id="@+id/new_dev_num_tv" 
+				android:layout_width="200dp"
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:ellipsize="marquee"
+				android:marqueeRepeatLimit="marquee_forever"
+				android:textSize="14sp"
+				android:textColor="#00a5e0"> 
+            </com.hrsst.smarthome.widget.MarqueeTextView>
+
+		</RelativeLayout>
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#b2a1a0a0"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/contentContainer"
+        android:layout_below="@id/new_dev_rela"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:background="@color/shou_ye_bg"
+        />
+
+</RelativeLayout>

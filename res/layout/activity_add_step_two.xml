@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:id="@+id/back_tv" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="#000000"
+        android:text="后退"
+        />
+    
+    <EditText
+        android:id="@+id/send_et" 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="发送内容"
+        />
+	<TextView
+	    android:id="@+id/receive_tv" 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/send_et"
+	    android:text="接收内容"
+	    />
+    
+    <Button 
+        android:id="@+id/start_send1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送1"
+        />
+    <Button 
+        android:id="@+id/start_send2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送2"
+        />
+    <Button 
+        android:id="@+id/start_send3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送3"
+        />
+    <Button 
+        android:id="@+id/start_send4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送4"
+        />
+    <Button 
+        android:id="@+id/end_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="断开"
+        />
+</LinearLayout>

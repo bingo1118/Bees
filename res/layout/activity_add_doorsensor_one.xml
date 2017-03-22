@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <ImageView 
+        android:id="@+id/step_one_image"
+        android:layout_width="match_parent"
+        android:layout_height="570dp"
+        />
+    
+    <TextView 
+        android:id="@+id/add_dev_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="18sp"
+        android:lines="5"
+        android:layout_marginBottom="150dp"/>
+
+    <TextView 
+        android:id="@+id/doorsensor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:textColor="@color/wifi_change_color"
+        android:layout_marginRight="40dp"
+        android:textSize="16sp"
+        android:text="@string/device_name"
+        />
+    <ListView
+        android:id="@+id/doorsensor_list" 
+        android:layout_above="@+id/add_doorsensor_action_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#000000"
+        android:visibility="gone"
+        ></ListView>
+    <Button 
+        android:id="@+id/add_doorsensor_action_one"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/next"
+        />
+</RelativeLayout>

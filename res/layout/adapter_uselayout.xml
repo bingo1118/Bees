@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    >
+
+    <RelativeLayout
+        android:id="@+id/device_list_rela"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/chazuo_on" >
+		<ImageView
+		    android:id="@+id/defence_image" 
+		    android:layout_width="60dp"
+		    android:layout_height="50dp"
+		    android:layout_alignParentRight="true"
+		    android:background="@drawable/defence_image_selector"
+		    />
+        
+        <TextView
+            android:id="@+id/mTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_centerHorizontal="true"
+            android:text="ggggg"
+            android:textColor="#000000" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="103dp"
+            >
+            <TextView
+                android:id="@+id/open_or_close_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:text="开"
+                android:textSize="13sp"
+                android:textColor="#000000"/>
+
+            <ImageView
+                android:id="@+id/mImageView"
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75dp"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/zhuangtai_on" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

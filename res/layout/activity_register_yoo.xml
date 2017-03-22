@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    >
+    
+    <ImageView 
+        android:id="@+id/binder_camera_user_image"
+        android:layout_width="match_parent"
+        android:layout_height="570dp"
+        android:background="@drawable/binder_youxiang"
+        />
+    
+    <RelativeLayout 
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/edit_view"
+        >
+        <EditText
+            android:id="@+id/register_yoo_tv" 
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:inputType="textEmailAddress"
+            android:hint="请输入邮箱"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+    
+    <Button 
+        android:id="@+id/register_yoo_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bangding"
+        />
+
+</RelativeLayout>

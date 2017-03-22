@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#ffffff"
+        >
+        <RelativeLayout
+            android:id="@+id/system_rela" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+	        <TextView 
+	            android:id="@+id/msg_content"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="xxxxxx"
+	            android:textColor="#000000"
+	            android:textSize="16sp"
+	            android:gravity="center"
+	            android:layout_marginTop="20dp"
+	            android:layout_marginLeft="5dp"
+	            />
+	        <TextView 
+	            android:layout_width="150dp"
+	            android:layout_height="wrap_content"
+	            android:text="向你共享了一个设备"
+	            android:layout_marginTop="20dp"
+	            android:textColor="#000000"
+	            android:textSize="16sp"
+	            android:layout_toRightOf="@id/msg_content"
+	            />
+	        <TextView 
+	            android:id="@+id/system_time_tv"
+	            android:layout_below="@id/msg_content"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="8dp"
+	            android:layout_centerHorizontal="true"
+	            android:text="2016-05-11 15:15:15"
+            />
+        </RelativeLayout>
+        
+         <Button
+             android:id="@+id/msg_agree" 
+             android:layout_width="60dp"
+             android:layout_height="40dp"
+             android:textSize="15sp"
+             android:layout_marginRight="15dp"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:background="@drawable/agree_selector"
+             />
+         <TextView
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#a4a4a4"
+			android:layout_alignParentBottom="true"
+			/>
+    </RelativeLayout>
+
+</RelativeLayout>

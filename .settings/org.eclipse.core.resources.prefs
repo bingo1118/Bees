@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//src/com/hrsst/smarthome/adapter/PullToRefreshGridViewAdapter.java=UTF-8
+encoding//src/com/hrsst/smarthome/demo=UTF-8
+encoding//src/com/hrsst/smarthome/fragment/RecordListFragment.java=UTF-8
+encoding//src/com/hrsst/smarthome/global/AppConfig.java=UTF-8
+encoding//src/com/hrsst/smarthome/mygridview/lib/internal/LoadingLayout.java=UTF-8
+encoding//src/com/hrsst/smarthome/net/SocketUDP.java=UTF-8
+encoding//src/com/hrsst/smarthome/net/SocketUDPClient.java=UTF-8
+encoding//src/com/hrsst/smarthome/util/BitmapCache.java=UTF-8
+encoding//src/com/hrsst/smarthome/util/DensityUtil.java=UTF-8
+encoding//src/com/hrsst/smarthome/util/FileUtils.java=UTF-8
+encoding//src/com/hrsst/smarthome/util/MD5.java=UTF-8
+encoding//src/com/hrsst/smarthome/wheelutil/StrericWheelAdapter.java=UTF-8
+encoding//src/com/hrsst/smarthome/wheelutil/WheelView.java=UTF-8

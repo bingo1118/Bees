@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    >
+    <RelativeLayout
+        android:id="@+id/my_device" 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/dao_hang_lan"
+        >
+        <TextView
+            android:id="@+id/menu_pe"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/menu"
+            android:textColor="#000000"
+            />
+        
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/app_name" />
+        
+        <TextView
+            android:id="@+id/user_id" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textColor="#000000"
+            android:visibility="gone"
+            android:text="账号"
+            />
+    </RelativeLayout>
+    <TextView 
+        android:id="@+id/tv_image"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#a4a4a4"
+        android:layout_below="@id/my_device"
+        />
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_image"
+        >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            >
+	        <ImageView 
+	            android:id="@+id/per_imageView"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+
+	            android:scaleType="fitStart"
+                
+	            />
+        </ScrollView>
+    </RelativeLayout>
+
+</RelativeLayout>

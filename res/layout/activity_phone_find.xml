@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/phone_find_layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/dao_hang_lan"
+        >
+
+        <TextView
+            android:id="@+id/phone_find_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="手机找回"
+            android:textSize="22sp"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+    </RelativeLayout>
+	
+    <RelativeLayout 
+        android:id="@+id/phone_find_layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/phone_find_layout_title"
+        android:gravity="center_horizontal"
+        android:background="#ffffff"
+        >
+        <RelativeLayout
+            android:id="@+id/phone_find_et_rela" 
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/edit_view"
+            >
+            <EditText 
+	            android:id="@+id/phone_find_et"
+	            android:layout_width="230dp"
+	            android:layout_height="40dp"
+	            android:singleLine="true"
+	            android:phoneNumber="true"
+	            android:background="@null"
+	            android:layout_centerInParent="true"
+	            android:hint="@string/phone_number"
+            />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/find_pwd_et_rela" 
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_view"
+            android:layout_below="@id/phone_find_et_rela"
+            >
+	        <EditText 
+	            android:id="@+id/find_pwd_et"
+	            android:layout_width="230dp"
+	            android:layout_height="40dp"
+	            android:singleLine="true"
+	            android:password="true"
+	            android:layout_centerInParent="true"
+	            android:background="@null"
+	            android:hint="输入新的密码"
+	            />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/find_rewrite_pwd_et_rela" 
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_view"
+            android:layout_below="@id/find_pwd_et_rela"
+            >
+	        <EditText 
+	            android:id="@+id/find_rewrite_pwd_et"
+	            android:layout_width="230dp"
+	             android:singleLine="true"
+	            android:layout_height="40dp"
+	            android:password="true"
+	            android:background="@null"
+	            android:layout_centerInParent="true"
+	            android:hint="再次输入新的密码"
+	            />
+        </RelativeLayout>
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:id="@+id/phone_find_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/phone_find_btn"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="115dp"
+        >
+        <RelativeLayout
+            android:id="@+id/find_code_et_rela" 
+            android:background="@drawable/edit_view"
+            android:layout_width="130dp"
+	         android:layout_height="40dp"
+            >
+            <EditText 
+		         android:id="@+id/find_code_et"
+		         android:layout_width="110dp"
+		         android:layout_height="40dp"
+	             android:singleLine="true"
+	             android:numeric="integer"
+	             android:background="@null"
+	             android:layout_centerInParent="true"
+		         android:hint="@string/code"
+        	/>
+        </RelativeLayout>
+        
+        <Button 
+            android:id="@+id/find_get_code_btn"
+            android:layout_width="115dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/find_code_et_rela"
+            android:text="@string/register_code"
+            android:background="@drawable/login_button"
+            />
+    </RelativeLayout>
+	
+    <Button 
+     android:id="@+id/phone_find_btn"
+     android:layout_width="250dp"
+     android:layout_height="40dp"
+     android:background="@drawable/login_button"
+     android:layout_alignParentBottom="true"
+     android:layout_centerInParent="true"
+     android:layout_marginBottom="100dp"
+     android:text="找回"
+    />
+
+</RelativeLayout>

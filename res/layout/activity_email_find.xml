@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/email_find_layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/dao_hang_lan"
+        >
+
+        <TextView
+            android:id="@+id/email_find_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="邮箱找回"
+            android:textSize="22sp"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+    </RelativeLayout>
+	
+    <RelativeLayout 
+        android:id="@+id/email_find_layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/email_find_layout_title"
+        android:gravity="center_horizontal"
+        android:background="#ffffff"
+        >
+        
+        <RelativeLayout
+            android:id="@+id/email_find_et_rela" 
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/edit_view"
+            >
+            <EditText 
+	            android:id="@+id/email_find_et"
+	            android:layout_width="230dp"
+	            android:layout_height="40dp"
+	            android:singleLine="true"
+	            android:hint="@string/email_number"
+	            android:background="@null"
+	            android:layout_centerInParent="true"
+            />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/email_find_pwd_et_rela" 
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_view"
+            android:layout_below="@id/email_find_et_rela"
+            >
+	        <EditText 
+	            android:id="@+id/email_find_pwd_et"
+	            android:layout_width="230dp"
+	            android:layout_height="40dp"
+	            android:singleLine="true"
+	            android:password="true"
+	            android:layout_centerInParent="true"
+	            android:background="@null"
+	            android:hint="输入新的密码"
+	            />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/email_find_rewrite_pwd_et_rela" 
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_view"
+            android:layout_below="@id/email_find_pwd_et_rela"
+            >
+	        <EditText 
+	            android:id="@+id/email_find_rewrite_pwd_et"
+	            android:layout_width="230dp"
+	             android:singleLine="true"
+	            android:layout_height="40dp"
+	            android:background="@null"
+	            android:password="true"
+	            android:layout_centerInParent="true"
+	            android:hint="再次输入新的密码"
+	            />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <Button 
+     android:id="@+id/email_find_btn"
+     android:layout_width="250dp"
+     android:layout_height="40dp"
+     android:background="@drawable/login_button"
+     android:layout_alignParentBottom="true"
+     android:layout_centerInParent="true"
+     android:layout_marginBottom="100dp"
+     android:text="找回"
+    />
+    
+</RelativeLayout>

@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/modify_dialog"
+    >
+    <RelativeLayout 
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        >
+        <TextView
+            android:id="@+id/wifi_tv_shuom" 
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="请选择新设备："
+            android:textColor="#000000"
+            android:layout_marginBottom="5dp"
+            android:layout_centerHorizontal="true"
+            />
+        <ImageView
+            android:id="@+id/wifi_image_line" 
+	        android:layout_width="match_parent"
+	        android:src="@drawable/list_item_line"
+	       	android:layout_height="wrap_content"
+	       	android:scaleType="center"
+	       	android:layout_below="@id/wifi_tv_shuom"
+        />
+        
+        <ListView
+            android:id="@+id/wifi_dev_list" 
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/wifi_image_line"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:divider="#000000"
+            />
+     </RelativeLayout>
+      
+</LinearLayout>

@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	
+    <ImageView 
+        android:id="@+id/yg_3_image"
+        android:layout_width="match_parent"
+        android:layout_height="570dp"
+        />
+ 
+    <Button 
+        android:id="@+id/add_fk_action_three"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/next"
+        />
+</RelativeLayout>

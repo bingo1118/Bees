@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout 
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <LinearLayout
+        android:id="@+id/l2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+        <com.hrsst.smarthome.view.CustomViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" 
+            android:layout_weight="1" >
+        </com.hrsst.smarthome.view.CustomViewPager>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/black"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/video"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="@string/my_device_name"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/picture"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="@string/experience_name"
+                android:textSize="20sp"/>
+
+            <RadioButton
+                android:id="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="@string/personer_name"
+                android:textSize="20sp" />
+            
+            <RadioButton
+                android:id="@+id/messages"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="@string/messages_name"
+                android:textSize="20sp" />
+        </RadioGroup>
+    </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

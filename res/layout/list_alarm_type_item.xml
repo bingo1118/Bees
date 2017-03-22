@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bearLin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <RelativeLayout
+        android:id="@+id/alarm_type_rela"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:gravity="center"
+	    android:background="@drawable/selector_list_item"
+	    >
+		<RadioButton 
+		    android:id="@+id/alarm_type_radio"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="10dp"
+		    />
+		<TextView 
+		    android:id="@+id/alarm_type_tv"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:textColor="#000000"
+		    android:gravity="center"
+		    android:layout_toRightOf="@id/alarm_type_radio"
+		    android:layout_toLeftOf="@+id/alarm_status"
+		    android:layout_centerInParent="true"
+		    android:text="fff"
+		    />
+		<ImageView
+            android:layout_width="5dp"
+            android:layout_height="47dp"
+            android:background="@drawable/btn_line"
+            android:layout_toRightOf="@id/alarm_type_tv"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
