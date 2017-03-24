@@ -132,7 +132,7 @@ public class PushDemoReceiver extends BroadcastReceiver {
 
 		@Override
 		public void onReceive(Context arg0, Intent arg1) {
-			// TODO Auto-generated method stub
+			//收到广播，是否用户拥有摄像机。。
 			if(arg1.getAction().equals("Constants.Action.unIfUserOwnCamera")){
 				byte[] datas = arg1.getExtras().getByteArray("datasByte");
 				UnPackageFromServer mUnPackageFromServer = UnPackServer.unIfUserOwnCamera(datas);

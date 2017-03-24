@@ -24,6 +24,10 @@ import com.hrsst.smarthome.pojo.Messages;
 import com.hrsst.smarthome.pojo.UnPackageFromServer;
 import com.hrsst.smarthome.util.SharedPreferencesManager;
 import com.hrsst.smarthome.volley.JsonArrayPostRequest;
+import com.lib.pullToRefresh.PullToRefreshBase;
+import com.lib.pullToRefresh.PullToRefreshBase.Mode;
+import com.lib.pullToRefresh.PullToRefreshBase.OnPullEventListener;
+import com.lib.pullToRefresh.PullToRefreshBase.State;
 import com.lib.pullToRefresh.PullToRefreshListView;
 
 import android.app.AlertDialog;
@@ -38,6 +42,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.TextView;
@@ -53,6 +59,7 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 	private TextView clear_alarm_message;
 	private SocketUDP mSocketUDP;
 	private String userNumStr;
+	private ProgressBar progressBar;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,6 +112,7 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 
 	private void init() {
 		// TODO Auto-generated method stub
+		progressBar=(ProgressBar)view.findViewById(R.id.progressBar1);
 		clear_alarm_message = (TextView) view.findViewById(R.id.clear_alarm_message);
 		clear_alarm_message.setOnClickListener(this);
 		menu_me = (TextView) view.findViewById(R.id.menu_me);
@@ -112,6 +120,16 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 		pullToRefreshListView = (PullToRefreshListView) view.findViewById(R.id.pullToRefreshListView);
 		userNumStr = SharedPreferencesManager.getInstance().getData(mContext, Constants.UserInfo.USER_NUMBER);
 		getMessages(userNumStr,-1);
+		pullToRefreshListView.setOnPullEventListener(new OnPullEventListener<ListView>() {
+
+			@Override
+			public void onPullEvent(PullToRefreshBase<ListView> refreshView,
+					State state, Mode direction) {
+					getMessages(userNumStr,-1);
+				
+			}
+		});//下拉刷新@@
+		//长按监听。。
 		pullToRefreshListView.getRefreshableView().setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
@@ -198,6 +216,7 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 	}
 	
 	private void getMessages(String userNum,int id){
+		progressBar.setVisibility(View.VISIBLE);
 		RequestQueue mQueue = Volley.newRequestQueue(mContext);
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("id", id+"");
@@ -231,16 +250,20 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 						mMessageAdapter = new MessageAdapter(mContext,li);
 						pullToRefreshListView.setAdapter(mMessageAdapter);
 						pullToRefreshListView.onRefreshComplete();
+						progressBar.setVisibility(View.GONE);
 					}
 				}, 
 				new ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
 						// TODO Auto-generated method stub
+						progressBar.setVisibility(View.GONE);
+						Toast.makeText(mContext, "获取数据失败", Toast.LENGTH_SHORT).show();
 					}
 				}, 
 				map);
 		mQueue.add(mJsonRequest);
+		
 	}
 	
 	@Override
