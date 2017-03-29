@@ -112,7 +112,7 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 
 	private void init() {
 		// TODO Auto-generated method stub
-		progressBar=(ProgressBar)view.findViewById(R.id.progressBar1);
+		progressBar=(ProgressBar)view.findViewById(R.id.progressBar);
 		clear_alarm_message = (TextView) view.findViewById(R.id.clear_alarm_message);
 		clear_alarm_message.setOnClickListener(this);
 		menu_me = (TextView) view.findViewById(R.id.menu_me);

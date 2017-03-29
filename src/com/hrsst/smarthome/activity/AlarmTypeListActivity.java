@@ -54,7 +54,7 @@ public class AlarmTypeListActivity extends Activity{
 	private List<AlarmType> li;
 	private AlertDialog dialog,modifyDialog;
 	private SocketUDP mSocketUDPClient;
-	private ProgressBar ProgressBar;//@@
+	private ProgressBar progressBar;//@@
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +172,7 @@ public class AlarmTypeListActivity extends Activity{
 			break;
 		}
 		
-		ProgressBar=(ProgressBar)findViewById(R.id.progressBar);//@@
+		progressBar=(ProgressBar)findViewById(R.id.progressBar);//@@
 		
 		alarm_type_list = (ListView) findViewById(R.id.alarm_type_list);
 		getDevice(mac,type,"");
@@ -219,6 +219,7 @@ public class AlarmTypeListActivity extends Activity{
 	 * @param alarmMac
 	 */
 	private void getDevice(String mac,final int type,String alarmMac){
+		progressBar.setVisibility(View.VISIBLE);//@@
 		RequestQueue mQueue = Volley.newRequestQueue(mContext);
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("type", type+"");//433设备设备类型..
@@ -248,12 +249,17 @@ public class AlarmTypeListActivity extends Activity{
 						}
 						mDevTypeAdapter = new DevTypeAdapter(li, mContext, type);
 						alarm_type_list.setAdapter(mDevTypeAdapter);
+						progressBar.setVisibility(View.GONE);//@@
+						if(li.size()==0){
+							Toast.makeText(mContext, "无数据", Toast.LENGTH_SHORT).show();
+						}//@@
 					}
 				}, 
 				new ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						// TODO Auto-generated method stub
+						Toast.makeText(mContext, "获取列表出错", Toast.LENGTH_SHORT).show();
+						progressBar.setVisibility(View.GONE);//@@
 					}
 				}, 
 				map);
