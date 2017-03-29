@@ -104,7 +104,9 @@ public class AlarmActivity extends Activity {
 			watch_video_image.setVisibility(View.GONE);
 		}	
 	}
-
+	/**
+	 * ±¨¾¯¶¯»­Æô¶¯¡£¡£
+	 */
 	private void alarmInit() {
 		final AnimationDrawable anim = (AnimationDrawable) alarm_fk_img
 				.getBackground();

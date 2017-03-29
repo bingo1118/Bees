@@ -7,8 +7,10 @@ public class Constants {
 	public static final String SERVER_URL = "http://119.29.155.148/SmartHome";
 	public static final String TEST_SERVER_URL = "http://192.168.56.1:8080/SmartHome";
 	public static final String USER_IFEXIT_URL = SERVER_URL+"/ifExitUserRegister.action";
-	public static final String ADDENVIRONMENTDEVICE = SERVER_URL+"/servlet/AddEnvironmentDevice";//添加环境探测器url@@
-	public static final String HTTPGETDEV = SERVER_URL+"/smartHome/servlet/GetDeviceStateAction?userNum=";//获取设备信息url@@
+	public static final String ADDENVIRONMENTDEVICE = SERVER_URL+"/servlet/AddEnvironmentDevice";//添加环境探测器@@
+	public static final String HTTPGETDEV = SERVER_URL+"/smartHome/servlet/GetDeviceStateAction?userNum=";//获取设备信息@@
+	public static final String GETHISTORYINFO= SERVER_URL+"/servlet/GetHistoryInfomation";//获取环境探测器历史数据@@
+	
 	public static final String UPDATE_USER_PWD_URL = SERVER_URL+"/updateUserPwd.action";
 	public static final String USER_LOGIN_URL = SERVER_URL+"/loginUser.action";
 	public static final String USER_REGISTER_URL = SERVER_URL+"/saveUserRegister.action";
@@ -161,7 +163,7 @@ public class Constants {
 	}
 	
 	public static class SeverInfo{
-		private static final String SEVER_IP="119.29.155.148";
+		private static final String SEVER_IP="119.29.224.28";//119.29.155.148
 		public static final int PORT=51020;
 		public static InetAddress SERVER=null;
 		static{

@@ -141,7 +141,7 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 			}
 			
 		}
-		if(list.size()>0&&position<list.size()){
+		if(list.size()>0&&position<list.size()&&type!=3){
 //			UserDevice mUserDevice =list.get(position);
 			//添加摄像头启用
 //			int type = mUserDevice.getDevType();
@@ -196,6 +196,58 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 				break;
 			}
 			
+			//布防按钮。。
+			holder.defence_image.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					UserDevice mUserDevice = list.get(position);
+					int type = mUserDevice.getDevType();
+					int defence = mUserDevice.getDefence();
+					switch (type) {
+					case 1:
+						if(defence==0){
+							defence=1;
+						}else{
+							defence=0;
+						}
+						Intent i = new Intent();
+						i.putExtra("defencePos", position);
+						i.putExtra("defenceType", defence);
+						i.putExtra("devMac", list.get(position).getDevMac());
+						i.setAction("DEFENCE_ACTION");
+						mContext.sendBroadcast(i);
+						break;
+					case 2:
+						System.out.println("defence="+defence);
+						if(defence==0){
+							P2PHandler.getInstance().setRemoteDefence(
+									mUserDevice.getDevMac().trim(),
+									mUserDevice.getCameraPwd().trim(),
+									Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_ON);
+							defence=1;
+							cameraId = mUserDevice.getDevMac().trim();
+							cameraPwd = mUserDevice.getCameraPwd().trim();
+							holder.defence_image.setBackgroundResource(R.drawable.defence_on);
+						}else{
+							P2PHandler.getInstance().setRemoteDefence(
+									mUserDevice.getDevMac().trim(),
+									mUserDevice.getCameraPwd().trim(),
+									Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_OFF);
+							defence=0;
+							cameraId = mUserDevice.getDevMac().trim();
+							cameraPwd = mUserDevice.getCameraPwd().trim();
+							holder.defence_image.setBackgroundResource(R.drawable.defence_off);
+						}
+						break;
+					default:
+						break;
+					}
+					
+				}
+			});
+			
 			
 		}
 		if(position==list.size()){
@@ -205,57 +257,7 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 			holder.text.setVisibility(View.GONE);
 			holder.open_or_close_tv.setVisibility(View.GONE);
 		}
-		//布防按钮。。
-		holder.defence_image.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				UserDevice mUserDevice = list.get(position);
-				int type = mUserDevice.getDevType();
-				int defence = mUserDevice.getDefence();
-				switch (type) {
-				case 1:
-					if(defence==0){
-						defence=1;
-					}else{
-						defence=0;
-					}
-					Intent i = new Intent();
-					i.putExtra("defencePos", position);
-					i.putExtra("defenceType", defence);
-					i.putExtra("devMac", list.get(position).getDevMac());
-					i.setAction("DEFENCE_ACTION");
-					mContext.sendBroadcast(i);
-					break;
-				case 2:
-					System.out.println("defence="+defence);
-					if(defence==0){
-						P2PHandler.getInstance().setRemoteDefence(
-								mUserDevice.getDevMac().trim(),
-								mUserDevice.getCameraPwd().trim(),
-								Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_ON);
-						defence=1;
-						cameraId = mUserDevice.getDevMac().trim();
-						cameraPwd = mUserDevice.getCameraPwd().trim();
-						holder.defence_image.setBackgroundResource(R.drawable.defence_on);
-					}else{
-						P2PHandler.getInstance().setRemoteDefence(
-								mUserDevice.getDevMac().trim(),
-								mUserDevice.getCameraPwd().trim(),
-								Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_OFF);
-						defence=0;
-						cameraId = mUserDevice.getDevMac().trim();
-						cameraPwd = mUserDevice.getCameraPwd().trim();
-						holder.defence_image.setBackgroundResource(R.drawable.defence_off);
-					}
-					break;
-				default:
-					break;
-				}
-				
-			}
-		});
+
 		return convertView;
 	}
 	

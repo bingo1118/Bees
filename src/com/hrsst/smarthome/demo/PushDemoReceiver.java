@@ -62,7 +62,7 @@ public class PushDemoReceiver extends BroadcastReceiver {
                     		mSocketUDPClient.sendMsg(orderSend);
                     	}
                     }
-                    if(type==2){
+                    if(type==2){//共享设备。。
                     	byte[] receive = new byte[payload.length-1];
                     	for(int i = 0;i<receive.length;i++){
                     		receive[i] = payload[i+1];

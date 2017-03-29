@@ -40,6 +40,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,7 @@ public class AlarmTypeListActivity extends Activity{
 	private List<AlarmType> li;
 	private AlertDialog dialog,modifyDialog;
 	private SocketUDP mSocketUDPClient;
+	private ProgressBar ProgressBar;//@@
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -169,6 +171,8 @@ public class AlarmTypeListActivity extends Activity{
 		default:
 			break;
 		}
+		
+		ProgressBar=(ProgressBar)findViewById(R.id.progressBar);//@@
 		
 		alarm_type_list = (ListView) findViewById(R.id.alarm_type_list);
 		getDevice(mac,type,"");

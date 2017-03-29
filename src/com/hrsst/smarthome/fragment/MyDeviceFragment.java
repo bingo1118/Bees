@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
@@ -46,6 +47,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request.Method;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.hrsst.smarthome.AirDevInfoActivity;
 import com.hrsst.smarthome.R;
 import com.hrsst.smarthome.activity.AddDeviceStepActivity;
@@ -54,6 +62,7 @@ import com.hrsst.smarthome.activity.DeviceInfoActivity;
 import com.hrsst.smarthome.activity.IntroducedNextOneActivity;
 import com.hrsst.smarthome.adapter.ChoiceWifiAdapter;
 import com.hrsst.smarthome.adapter.PullToRefreshGridViewAdapter;
+import com.hrsst.smarthome.adapter.SystemMsgAdapter;
 import com.hrsst.smarthome.global.Constants;
 import com.hrsst.smarthome.mygridview.lib.PullToRefreshBase.OnRefreshListener;
 import com.hrsst.smarthome.mygridview.lib.PullToRefreshGridView;
@@ -63,11 +72,13 @@ import com.hrsst.smarthome.order.UnPackServer;
 import com.hrsst.smarthome.pojo.Contact;
 import com.hrsst.smarthome.pojo.DeviceStates;
 import com.hrsst.smarthome.pojo.EnvironmentInfo;
+import com.hrsst.smarthome.pojo.ShareMessages;
 import com.hrsst.smarthome.pojo.UnPackageFromServer;
 import com.hrsst.smarthome.pojo.UserDevice;
 import com.hrsst.smarthome.thread.MainThread;
 import com.hrsst.smarthome.util.BitmapCache;
 import com.hrsst.smarthome.util.SharedPreferencesManager;
+import com.hrsst.smarthome.volley.JsonArrayPostRequest;
 import com.hrsst.smarthome.widget.MarqueeTextView;
 import com.p2p.core.P2PHandler;
 
@@ -352,56 +363,77 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 		}
 	};
 	
-	private void getUserDev(){
-		byte[] orderSend =SendServerOrder.GetUserDev(userNum);
-		mSocketUDPClient.sendMsg(orderSend);
-	}
-//	Handler handler=new Handler(){
-//		@Override
-//		public void handleMessage(Message msg) {
-//			super.handleMessage(msg);
-//			if(msg.what==0){
-//				mPullToRefreshGridViewAdapter = new PullToRefreshGridViewAdapter(mContext,mUserDeviceList);
-//				mPullToRefreshGridViewAdapter.setGridView(mGridView);
-//				mGridView.setAdapter(mPullToRefreshGridViewAdapter);
-//				mPullToRefreshGridView.onRefreshComplete();
-//				mSmartSocketList = new ArrayList<UserDevice>();//智能插座列表。。
-//				cameraList=new ArrayList<String>();//摄像机mac地址表@@
-//				for(UserDevice u:mUserDeviceList){
-//					if(u.getDevType()==1){
-//						mSmartSocketList.add(u);//添加插座类型。。
-//					}
-//					if(u.getDevType()==2){
-//						cameraList.add(u.getDevMac());
-//					}//@@
-//			    }
-//				
-//				//获取摄像头状态
-//				String[] contactIds = new String[cameraList.size()];//摄像头mac数组
-//				for(int i=0;i<cameraList.size();i++){
-//					contactIds[i] = cameraList.get(i);
-//				}
-//				MainThread.setByte(0,contactIds);//发送获取设备状态命令
-//				MainThread.refreash();
-//				
-//			}
-//			if(msg.what!=0){
-//				mUserDeviceList = new ArrayList<UserDevice>();
-//				mPullToRefreshGridViewAdapter = new PullToRefreshGridViewAdapter(mContext,mUserDeviceList);
-//				mGridView.setAdapter(mPullToRefreshGridViewAdapter);
-//				mPullToRefreshGridView.onRefreshComplete();
-//				Toast.makeText(mContext, "获取设备失败", Toast.LENGTH_SHORT).show();
-//				
-//		}
-//		}
-//	};
-//	private void getUserDev(){//获取设备列表@@
-//		new HttpThreadGetDev(userNum, handler).start();
-////		mPullToRefreshGridViewAdapter = new PullToRefreshGridViewAdapter(mContext,mUserDeviceList);
-////		mPullToRefreshGridViewAdapter.setGridView(mGridView);
-////		mGridView.setAdapter(mPullToRefreshGridViewAdapter);
-////		mPullToRefreshGridView.onRefreshComplete();
+//	private void getUserDev(){
+//		byte[] orderSend =SendServerOrder.GetUserDev(userNum);
+//		mSocketUDPClient.sendMsg(orderSend);
 //	}
+
+	/**
+	 * 获取设备列表（Volley）@@
+	 */
+	private void getUserDev(){//获取设备列表@@
+//		String url=Constants.HTTPGETDEV+userNum;
+//		String url="http://192.168.0.23:8080/smartHome/servlet/GetDeviceStateAction?userNum="+userNum;
+		String url="http://119.29.224.28:51091/smartHome/servlet/GetDeviceStateAction?userNum="+userNum;
+		RequestQueue mQueue = Volley.newRequestQueue(mContext);
+		JsonObjectRequest mJsonRequest = new JsonObjectRequest(Method.GET,
+				url, 
+				null, 
+				new Listener<JSONObject>() {
+					@Override
+					public void onResponse(JSONObject jsonObject) {
+						int errorCode;
+						try {
+							errorCode = jsonObject.getInt("errorCode");
+							if(errorCode==0){
+								JSONArray array=jsonObject.getJSONArray("deviceState");
+								mUserDeviceList=new ArrayList<UserDevice>();
+								for(int i=0;i<array.length();i++){
+									JSONObject jsonObjectdev=array.getJSONObject(i);
+									UserDevice userDevice=new UserDevice();
+									userDevice.setCameraPwd(jsonObjectdev.getString("cameraPwd"));
+									userDevice.setId(i);
+									userDevice.setUserNum(userNum);
+									userDevice.setLightOnOrOutLine(jsonObjectdev.getInt("netState"));
+									userDevice.setSocketStates(jsonObjectdev.getInt("outlet"));
+									userDevice.setDefence(jsonObjectdev.getInt("defence"));
+									userDevice.setDevType(jsonObjectdev.getInt("devType"));
+									userDevice.setDevName(jsonObjectdev.getString("devName"));
+									userDevice.setDevMac(jsonObjectdev.getString("mac"));
+									userDevice.setIsShare(jsonObjectdev.getInt("isShare"));
+									userDevice.setLightStates(jsonObjectdev.getInt("light"));
+									EnvironmentInfo environmentInfo=new EnvironmentInfo();
+									JSONObject envInfo=jsonObjectdev.getJSONObject("environment");
+									environmentInfo.setEnvironmentQuality(envInfo.getInt("c_environmentQuality"));
+									environmentInfo.setHumidity(envInfo.getString("c_humidity"));
+									environmentInfo.setMethanal(envInfo.getString("c_methanal"));
+									environmentInfo.setTemperature(envInfo.getString("c_temperature"));
+									environmentInfo.setPm25(envInfo.getString("c_pm25"));
+									environmentInfo.setCo2(envInfo.getString("c_co2"));
+									userDevice.setEnvironment(environmentInfo);
+									mUserDeviceList.add(userDevice);
+								}
+								refreshGridview();
+							}else{
+								Toast.makeText(getActivity(), "获取设备失败", Toast.LENGTH_SHORT).show();
+							}
+						} catch (JSONException e) {
+							// TODO 自动生成的 catch 块
+							e.printStackTrace();
+							Toast.makeText(getActivity(), "获取设备错误", Toast.LENGTH_SHORT).show();
+						}
+						
+						
+					}
+				}, 
+				new ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Toast.makeText(getActivity(), "获取设备错误", Toast.LENGTH_SHORT).show();
+					}
+				});
+		mQueue.add(mJsonRequest);
+	}
 	
 	private void init(){
 		Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.yetoutu, mContext);
@@ -497,6 +529,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 							Intent monitor = new Intent();
 							monitor.setClass(mContext, AirDevInfoActivity.class);
 							monitor.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							monitor.putExtra("info",itemUserDevice);
 							mContext.startActivity(monitor);
 						
 						break;
@@ -732,107 +765,32 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 		}
 	};
 	
-	
-	
-	
-	
-	//@@
-	class HttpThreadGetDev extends Thread {
-		
-		private String userNum;
-		private Handler handler;
-		
-		String str;
-		public HttpThreadGetDev(String userNum, Handler handler) {
-			super();
-			this.userNum = userNum;
-			this.handler = handler;
-		}
-		
-		@Override
-		public void run() {
-			super.run();
-			try {
-//				String url=Constants.HTTPGETDEV+userNum;
-				String url="http://192.168.0.184:8080/smartHome/servlet/GetDeviceStateAction?userNum=04045919";
-				URL httpUrl=new URL(url);
-				HttpURLConnection connection=(HttpURLConnection)httpUrl.openConnection();
-				connection.setReadTimeout(5000);
-				connection.setRequestMethod("GET");
-				final StringBuffer sb=new StringBuffer();
-				InputStream a=connection.getInputStream();
-				BufferedReader reader=new BufferedReader(new InputStreamReader(a,"gbk"));
-				while((str=reader.readLine())!=null){
-					sb.append(str);
-				}
-				String devinfolist=sb.toString();
-//				String devinfolist="{\"error\":\"获取设备信息成功\",\"errorCode\":0,\"deviceState\":[{\"cameraPwd\":\"\",\"netState\":1,\"outlet\":0,\"environment\":{\"c_environmentQuality\":0,\"c_humidity\":\"\",\"c_temperature\":\"\",\"c_pm25\":\"\",\"c_methanal\":\"\",\"c_co2\":\"\"},\"defence\":0,\"devType\":1,\"devName\":\"智能设备1797\",\"mac\":\"18fe34de06af\",\"isShare\":0,\"light\":0},{\"cameraPwd\":\"\",\"netState\":0,\"outlet\":0,\"environment\":{\"c_environmentQuality\":2,\"c_humidity\":\"0.018\",\"c_temperature\":\"22.6\",\"c_pm25\":\"70\",\"c_methanal\":\"68\",\"c_co2\":\"930\"},\"defence\":1,\"devType\":3,\"devName\":\"zhewei\",\"mac\":\"559b5b14\",\"isShare\":0,\"light\":0}]}";
-				JSONObject jsonObject=new JSONObject(devinfolist);
-				int errorCode=jsonObject.getInt("errorCode");
-				if(errorCode==0){
-					final List<UserDevice> userdevlist=new ArrayList<UserDevice>();
-					JSONArray array=jsonObject.getJSONArray("deviceState");
-					for(int i=0;i<array.length();i++){
-						JSONObject jsonObjectdev=array.getJSONObject(i);
-						UserDevice userDevice=new UserDevice();
-						userDevice.setCameraPwd(jsonObjectdev.getString("cameraPwd"));
-						userDevice.setId(i);
-						userDevice.setUserNum(userNum);
-						userDevice.setLightOnOrOutLine(jsonObjectdev.getInt("netState"));
-						userDevice.setSocketStates(jsonObjectdev.getInt("outlet"));
-						userDevice.setDefence(jsonObjectdev.getInt("defence"));
-						userDevice.setDevType(jsonObjectdev.getInt("devType"));
-						userDevice.setDevName(jsonObjectdev.getString("devName"));
-						userDevice.setDevMac(jsonObjectdev.getString("mac"));
-						userDevice.setIsShare(jsonObjectdev.getInt("isShare"));
-						userDevice.setLightStates(jsonObjectdev.getInt("light"));
-						EnvironmentInfo environmentInfo=new EnvironmentInfo();
-						JSONObject envInfo=jsonObjectdev.getJSONObject("environment");
-						environmentInfo.setEnvironmentQuality(envInfo.getInt("c_environmentQuality"));
-						environmentInfo.setHumidity(envInfo.getString("c_humidity"));
-						environmentInfo.setMethanal(envInfo.getString("c_methanal"));
-						environmentInfo.setTemperature(envInfo.getString("c_temperature"));
-						environmentInfo.setPm25(envInfo.getString("c_pm25"));
-						environmentInfo.setCo2(envInfo.getString("c_co2"));
-						userDevice.setEnvironment(environmentInfo);
-						userdevlist.add(userDevice);
-					}
-					mUserDeviceList=userdevlist;
-//					handler.post(new Runnable() {
-//						
-//						@Override
-//						public void run() {
-//							list=userdevlist;
-//						}
-//					});
-					Message msg=new Message();
-					msg.what=0;
-					handler.sendMessage(msg);
-				}else{
-					Message msg=new Message();
-					msg.what=errorCode;
-					handler.sendMessage(msg);
-				}
-			} 
-			catch (MalformedURLException e) {
-				e.printStackTrace();
-				Message msg=new Message();
-				msg.what=2;
-				handler.sendMessage(msg);
-			} catch (IOException e) {
-				e.printStackTrace();
-				Message msg=new Message();
-				msg.what=3;
-				handler.sendMessage(msg);
-			} 
-			catch (JSONException e) {
-				e.printStackTrace();
-				Message msg=new Message();
-				msg.what=2;
-				handler.sendMessage(msg);
+	/**
+	 * 刷新GridView@@
+	 */
+	private void refreshGridview() {
+		mPullToRefreshGridViewAdapter = new PullToRefreshGridViewAdapter(mContext,mUserDeviceList);
+		mPullToRefreshGridViewAdapter.setGridView(mGridView);
+		mGridView.setAdapter(mPullToRefreshGridViewAdapter);
+		mPullToRefreshGridView.onRefreshComplete();
+		mSmartSocketList = new ArrayList<UserDevice>();//智能插座列表。。
+		cameraList=new ArrayList<String>();//摄像机mac地址表@@
+		for(UserDevice u:mUserDeviceList){
+			if(u.getDevType()==1){
+				mSmartSocketList.add(u);//添加插座类型。。
 			}
+			if(u.getDevType()==2){
+				cameraList.add(u.getDevMac());
+			}//@@
+	    }
+		
+		//获取摄像头状态
+		String[] contactIds = new String[cameraList.size()];//摄像头mac数组
+		for(int i=0;i<cameraList.size();i++){
+			contactIds[i] = cameraList.get(i);
 		}
-
+		MainThread.setByte(0,contactIds);//发送获取设备状态命令
+		MainThread.refreash();
 	}
 
 

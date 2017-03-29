@@ -2,15 +2,41 @@ package com.hrsst.smarthome;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+
+
+
+
+
+
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.hrsst.smarthome.activity.QrCodeActivity;
+import com.hrsst.smarthome.adapter.SystemMsgAdapter;
 import com.hrsst.smarthome.dialog.ConnectionFKDialog;
 import com.hrsst.smarthome.global.Constants;
 import com.hrsst.smarthome.net.HttpThread;
+import com.hrsst.smarthome.pojo.ShareMessages;
 import com.hrsst.smarthome.util.BitmapCache;
 import com.hrsst.smarthome.util.SharedPreferencesManager;
+import com.hrsst.smarthome.volley.JsonArrayPostRequest;
 
 import android.app.Activity;
 import android.content.Context;
@@ -39,38 +65,7 @@ public class AddAirDeviceActivity extends Activity {
 	private Timer mTimer;
 	private ConnectionFKDialog cdialog;
 	private HttpThread mHttpThread;
-	
-	private Handler handler=new Handler(){
-		@Override
-		public void handleMessage(Message msg) {
-			super.handleMessage(msg);
-			switch (msg.what) {
-			case 0:
-				Toast.makeText(mContext, "环境探测器添加成功", Toast.LENGTH_SHORT).show();
-				break;
-			case 1:
-				Toast.makeText(mContext, "提交参数失败", Toast.LENGTH_SHORT).show();
-				break;
-			case 2:
-				Toast.makeText(mContext, "操作失败", Toast.LENGTH_SHORT).show();
-				break;
-			case 3:
-				Toast.makeText(mContext, "服务器未响应", Toast.LENGTH_SHORT).show();
-				break;
-
-			default:
-				
-				break;
-			}
-			if (cdialog.isShowing()) {
-				cdialog.dismiss();
-			}
-			mTimer.cancel();
-			count = 0;
-//			finish();
-		}
-	};
-	
+		
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -110,10 +105,67 @@ public class AddAirDeviceActivity extends Activity {
 //								+"&devName="+air_device_name.getText().toString().trim()
 //								+"&devType="+"3";
 //					String url =Constants.ADDENVIRONMENTDEVICE;
-					String url ="http://192.168.0.184:8080/smartHome/servlet/AddEnvironmentDevice";
-					String data="mac=559b5b14&userNum=04045919&devName=房间1&devType=3";
-					mHttpThread=new HttpThread(url, handler,data);
-					mHttpThread.start();
+//					String url ="http://192.168.0.23:8080/smartHome/servlet/AddEnvironmentDevice";
+					String url ="http://119.29.224.28:51091/smartHome/servlet/AddEnvironmentDevice";
+					
+					RequestQueue mQueue = Volley.newRequestQueue(mContext);
+					StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
+					    new Response.Listener<String>() {
+					        @Override
+					        public void onResponse(String response) {
+					        	JSONObject jsonObject;
+								try {
+									jsonObject = new JSONObject(response);
+									int errorCode=jsonObject.getInt("errorCode");
+									switch (errorCode) {
+									case 0:
+										Toast.makeText(mContext, "环境探测器添加成功", Toast.LENGTH_SHORT).show();
+										break;
+									case 1:
+										Toast.makeText(mContext, "提交参数失败", Toast.LENGTH_SHORT).show();
+										break;
+									case 2:
+										Toast.makeText(mContext, "操作失败", Toast.LENGTH_SHORT).show();
+										break;
+									case 3:
+										Toast.makeText(mContext, "服务器未响应", Toast.LENGTH_SHORT).show();
+										break;
+
+									default:
+										
+										break;
+									}
+									if (cdialog.isShowing()) {
+										cdialog.dismiss();
+									}
+									mTimer.cancel();
+									count = 0;
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}								
+					        }
+					    }, new Response.ErrorListener() {
+					        @Override
+					        public void onErrorResponse(VolleyError error) {
+					           
+					        }
+					    }) {
+					    @Override
+					    protected Map<String, String> getParams() {
+					        //在这里设置需要post的参数
+					              Map<String, String> map = new HashMap<String, String>();  
+					              	map.put("mac", "559b5b14");
+									map.put("userNum", "04045919");
+									map.put("devName", "房间1");
+									map.put("devType", "3");
+//					              	map.put("mac", air_device_mac.getText().toString());
+//									map.put("userNum", userNumStr);
+//									map.put("devName", air_device_name.getText().toString());
+//									map.put("devType", "3");
+					          return map;
+					    }
+					};        
+					mQueue.add(stringRequest);
 				}				
 			}
 		});

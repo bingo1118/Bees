@@ -5,6 +5,13 @@
     android:background="@color/shou_ye_bg"
     >
     
+    <ProgressBar 
+        android:id="@+id/progressBar"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+    
     <RelativeLayout
         android:id="@+id/alarm_type_rela"
         android:layout_width="match_parent"

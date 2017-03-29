@@ -562,5 +562,8 @@
     <string name="controler_dev">万能遥控器</string>
     <string name="title_activity_add_air_device">AddAirDeviceActivity</string>
     <string name="title_activity_air_dev_info">AirDevInfoActivity</string>
+    <string name="air_you">优</string>
+    <string name="null_data">--</string>
+    
 
 </resources>
