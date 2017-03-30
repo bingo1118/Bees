@@ -530,34 +530,40 @@
       </LinearLayout>
         <ImageView 
             android:id="@+id/iv_speak"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="100dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/portrait_speak"
             />
-        <ImageView 
+        <ImageView
+            android:id="@+id/yinliang_im"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignTop="@+id/image_setting_im"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/iv_speak"
+            android:background="@drawable/yinliang_jingyin" />
+
+        <ImageView
             android:id="@+id/image_setting_im"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_toLeftOf="@+id/iv_speak"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="60dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/selector_portrait_disarm"
-            />
-        <ImageView 
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/selector_portrait_disarm" />
+
+        <ImageView
             android:id="@+id/preset_pos_binder_im"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_alignTop="@+id/image_setting_im"
+            android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/iv_speak"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="60dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/preset_pos_binder_selector"/>
+            android:src="@drawable/preset_pos_binder_selector" />
+
     </RelativeLayout>
     </LinearLayout>
     <LinearLayout 

@@ -505,6 +505,10 @@
             android:name=".AirDevInfoActivity"
             android:label="@string/title_activity_air_dev_info" >
         </activity>
+        <activity
+            android:name=".SetVideoBuzzerActivity"
+            android:label="@string/title_activity_set_video_buzzer" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />

@@ -46,7 +46,7 @@ public class PushDemoReceiver extends BroadcastReceiver {
                 payload = bundle.getByteArray("payload");
                 if(payload!=null&&payload.length>8){
                 	int type = payload[0];
-                    if(type==1){
+                    if(type==1){//报警@@
                     	regFilter();
                     	if(payload.length>12){
                     		byte[] mac = new byte[12];

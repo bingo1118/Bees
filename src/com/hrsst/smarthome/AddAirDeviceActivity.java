@@ -99,11 +99,6 @@ public class AddAirDeviceActivity extends Activity {
 					cdialog.setCancelable(false);
 					mTimer = new Timer();
 					setTimerdoAction1(doAction1, mTimer);
-//					String data="mac="
-//								+air_device_mac.getText().toString().trim()
-//								+"&userNum="+userNumStr
-//								+"&devName="+air_device_name.getText().toString().trim()
-//								+"&devType="+"3";
 //					String url =Constants.ADDENVIRONMENTDEVICE;
 //					String url ="http://192.168.0.23:8080/smartHome/servlet/AddEnvironmentDevice";
 					String url ="http://119.29.224.28:51091/smartHome/servlet/AddEnvironmentDevice";
@@ -154,14 +149,14 @@ public class AddAirDeviceActivity extends Activity {
 					    protected Map<String, String> getParams() {
 					        //在这里设置需要post的参数
 					              Map<String, String> map = new HashMap<String, String>();  
-					              	map.put("mac", "559b5b14");
-									map.put("userNum", "04045919");
-									map.put("devName", "房间1");
-									map.put("devType", "3");
-//					              	map.put("mac", air_device_mac.getText().toString());
-//									map.put("userNum", userNumStr);
-//									map.put("devName", air_device_name.getText().toString());
+//					              	map.put("mac", "559b5b14");
+//									map.put("userNum", "04045919");
+//									map.put("devName", "房间1");
 //									map.put("devType", "3");
+					              	map.put("mac", air_device_mac.getText().toString());
+									map.put("userNum", userNumStr);
+									map.put("devName", air_device_name.getText().toString());
+									map.put("devType", "3");
 					          return map;
 					    }
 					};        

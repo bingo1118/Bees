@@ -564,6 +564,6 @@
     <string name="title_activity_air_dev_info">AirDevInfoActivity</string>
     <string name="air_you">优</string>
     <string name="null_data">--</string>
-    
+    <string name="title_activity_set_video_buzzer">SetVideoBuzzerActivity</string>
 
 </resources>

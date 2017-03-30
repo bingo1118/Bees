@@ -1,0 +1,155 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0e0e0"
+    android:orientation="vertical" >
+
+   <RelativeLayout
+        android:id="@+id/modify_header"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/play_back_title">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/touxiang" />
+
+        <TextView
+            android:id="@+id/contact_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="11"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+	<RelativeLayout 
+	    android:id="@+id/defence_rela"
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp"
+	    android:layout_below="@id/modify_header"
+	    android:background="#2ca2cf"
+	    >
+		<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="设置摄像机蜂鸣器"
+		    android:textColor="#ffffff"
+		    android:textSize="16sp"
+		    android:layout_centerInParent="true"
+		    />    
+	</RelativeLayout>
+	
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/defence_rela"
+        android:orientation="vertical">
+	      <RelativeLayout
+                android:id="@+id/change_buzzer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ctl_setting_bar_height"
+                android:layout_marginTop="@dimen/item_group_margin_top"
+                android:background="@drawable/tiao_bg_single" >
+
+                <TextView
+                    android:id="@+id/buzzer_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/inner_margin_left"
+                    android:text="@string/buzzer"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/text_size_normal"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/buzzer_img"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/inner_margin_right"
+                    android:background="@drawable/ic_checkbox_off"
+                    android:contentDescription="@string/imagedes"
+                    android:visibility="gone" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="@dimen/inner_item_progress_width_height"
+                    android:layout_height="@dimen/inner_item_progress_width_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/inner_margin_right"
+                    android:indeterminateDrawable="@anim/progress_white"
+                    android:indeterminateDuration="560000" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/buzzer_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tiao_bg_bottom"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/buzzer_texts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/inner_margin_left"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/buzzer_time"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <RadioGroup
+                    android:id="@+id/radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/radio_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <RadioButton
+                        android:id="@+id/radio_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="2"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <RadioButton
+                        android:id="@+id/radio_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="3"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="@dimen/text_size_normal" />
+                </RadioGroup>
+            </LinearLayout>
+	</LinearLayout>
+	
+	
+	
+	
+	
+
+</RelativeLayout>

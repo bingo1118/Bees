@@ -50,6 +50,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hrsst.smarthome.R;
+import com.hrsst.smarthome.SetVideoBuzzerActivity;
 import com.hrsst.smarthome.global.AppConfig;
 import com.hrsst.smarthome.global.Constants;
 import com.hrsst.smarthome.global.NpcCommon;
@@ -72,8 +73,14 @@ import com.p2p.core.P2PView;
 
 
 public class ApMonitorActivity extends BaseMonitorActivity implements OnClickListener {
+	
+	ImageView yinliang;//@@
+	public static final String PACKAGE_NAME = "com.hrsst.smarthome.global.";
+	public static final String RET_GET_BUZZER = PACKAGE_NAME+"RET_GET_BUZZER";//@@
+	
 	RelativeLayout layout_title,image_im,play_back_im,share_dev_im,sd_card_im,setting_im,preset_pos_im;
 	ImageView iv_full_screen,iv_voice,iv_speak,iv_screenshot,open_door,yuzhiwei_im,preset_pos_binder_im;
+	ImageView yinliang_im;//@@
 	LinearLayout l_control;
 	RelativeLayout rl_control,control_bottom;
 	LinearLayout control_top;
@@ -158,6 +165,10 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 	        win.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 	    mContext=this;
 		mContact=(Contact) getIntent().getSerializableExtra("contact");
+		P2PHandler.getInstance().getNpcSettings(mContact.contactId,
+				mContact.contactPassword);//@@
+		P2PHandler.getInstance().getBindAlarmId(mContact.contactId,
+				mContact.contactPassword);//@@
 		if(mContact.contactType==P2PValue.DeviceType.IPC){
 			setIsLand(false);
 		}else{
@@ -200,8 +211,12 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		vibrator=(Vibrator) mContext.getSystemService(mContext.VIBRATOR_SERVICE);
 	}
 	public void initcComponent(){
+		yinliang=(ImageView)findViewById(R.id.yinliang_im);
 		pView=(P2PView)findViewById(R.id.p2pview);
 		P2PView.type=0;
+		
+		yinliang_im=(ImageView)findViewById(R.id.yinliang_im);
+		yinliang_im.setOnClickListener(this);
 		
 		preset_pos_binder_im = (ImageView) findViewById(R.id.preset_pos_binder_im);
 		baidu1 = (ImageView) findViewById(R.id.baidu1);
@@ -568,6 +583,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		filter.addAction(Constants.P2P.RET_P2PDISPLAY);
 		filter.addAction(Constants.P2P.ACK_GET_REMOTE_DEFENCE);
 		filter.addAction(Constants.P2P.RET_PRESET_MOTORPOS_STATUS);
+		filter.addAction(RET_GET_BUZZER);//@@
 		mContext.registerReceiver(mReceiver, filter);
 		isRegFilter = true;
 	}
@@ -680,6 +696,13 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 					}
 				}
 				
+			}else if (intent.getAction().equals(RET_GET_BUZZER)) {
+				int state = intent.getIntExtra("buzzerState", -1);
+				if(state==1||state==2||state==3){
+					yinliang.setBackground(getResources().getDrawable(R.drawable.yinliang_kai));
+				}else{
+					yinliang.setBackground(getResources().getDrawable(R.drawable.yinliang_jingyin));
+				}//@@
 			}
 		}
 	};
@@ -1007,6 +1030,11 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
+		case R.id.yinliang_im://设置蜂鸣器按钮点击事件@@
+			Intent setBuzzer = new Intent(mContext,SetVideoBuzzerActivity.class);
+			setBuzzer.putExtra("contact", mContact);
+			startActivity(setBuzzer);
+			break;
 		case R.id.preset_pos_binder_im:
 			Intent i14 = new Intent(mContext,BinderPresetPosActivity.class);
 			i14.putExtra("contact", mContact);

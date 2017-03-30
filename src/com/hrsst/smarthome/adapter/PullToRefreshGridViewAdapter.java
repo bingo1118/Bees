@@ -86,6 +86,7 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 				EnvironmentInfo info=mUserDevice.getEnvironment();
 				convertView = LayoutInflater.from(mContext).inflate(R.layout.air_dev, null);
 				convertView.setPadding(50, 15, 0, 10);
+//				convertView.setPadding(10, 15, 0, 10);
 				if(info==null){
 					info=new EnvironmentInfo();
 				}
@@ -126,6 +127,7 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 			}else{
 				convertView = LayoutInflater.from(mContext).inflate(R.layout.adapter_uselayout, null);
 				convertView.setPadding(50, 15, 0, 10);
+//				convertView.setPadding(10, 15, 0, 10);
 				holder = new ViewHolder();
 				holder.image = (ImageView) convertView.findViewById(R.id.mImageView);
 				holder.defence_image = (ImageView) convertView.findViewById(R.id.defence_image);
@@ -257,7 +259,6 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 			holder.text.setVisibility(View.GONE);
 			holder.open_or_close_tv.setVisibility(View.GONE);
 		}
-
 		return convertView;
 	}
 	

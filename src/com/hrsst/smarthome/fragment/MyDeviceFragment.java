@@ -414,7 +414,13 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 									mUserDeviceList.add(userDevice);
 								}
 								refreshGridview();
+							}else if(errorCode==2){
+								mUserDeviceList=new ArrayList<UserDevice>();//@@
+								refreshGridview();//@@
+								Toast.makeText(getActivity(), "您没有任何设备", Toast.LENGTH_SHORT).show();
 							}else{
+								mUserDeviceList=new ArrayList<UserDevice>();//@@
+								refreshGridview();//@@
 								Toast.makeText(getActivity(), "获取设备失败", Toast.LENGTH_SHORT).show();
 							}
 						} catch (JSONException e) {
