@@ -75,7 +75,7 @@ import com.p2p.core.P2PView;
 public class ApMonitorActivity extends BaseMonitorActivity implements OnClickListener {
 	
 	ImageView yinliang;//@@
-	public static final String PACKAGE_NAME = "com.hrsst.smarthome.global.";
+	public static final String PACKAGE_NAME = "com.hrsst.smarthome.global.";//@@
 	public static final String RET_GET_BUZZER = PACKAGE_NAME+"RET_GET_BUZZER";//@@
 	
 	RelativeLayout layout_title,image_im,play_back_im,share_dev_im,sd_card_im,setting_im,preset_pos_im;

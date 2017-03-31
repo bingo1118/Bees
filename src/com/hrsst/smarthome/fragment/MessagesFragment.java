@@ -59,7 +59,7 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 	private TextView clear_alarm_message;
 	private SocketUDP mSocketUDP;
 	private String userNumStr;
-	private ProgressBar progressBar;
+	private ProgressBar progressBar;//@@
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,7 +112,7 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 
 	private void init() {
 		// TODO Auto-generated method stub
-		progressBar=(ProgressBar)view.findViewById(R.id.progressBar);
+		progressBar=(ProgressBar)view.findViewById(R.id.progressBar);//@@
 		clear_alarm_message = (TextView) view.findViewById(R.id.clear_alarm_message);
 		clear_alarm_message.setOnClickListener(this);
 		menu_me = (TextView) view.findViewById(R.id.menu_me);
@@ -216,7 +216,7 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 	}
 	
 	private void getMessages(String userNum,int id){
-		progressBar.setVisibility(View.VISIBLE);
+		progressBar.setVisibility(View.VISIBLE);//@@
 		RequestQueue mQueue = Volley.newRequestQueue(mContext);
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("id", id+"");
@@ -250,7 +250,10 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 						mMessageAdapter = new MessageAdapter(mContext,li);
 						pullToRefreshListView.setAdapter(mMessageAdapter);
 						pullToRefreshListView.onRefreshComplete();
-						progressBar.setVisibility(View.GONE);
+						progressBar.setVisibility(View.GONE);//@@
+						if(li.size()==0){
+							Toast.makeText(mContext, "ÎÞÊý¾Ý", Toast.LENGTH_SHORT).show();//@@
+						}
 					}
 				}, 
 				new ErrorListener() {

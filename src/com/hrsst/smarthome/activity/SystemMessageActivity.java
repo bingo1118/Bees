@@ -207,7 +207,8 @@ public class SystemMessageActivity extends Activity{
 				new ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Toast.makeText(mContext, "获取列表错误", Toast.LENGTH_SHORT).show();
+						progressBar.setVisibility(View.GONE);//@@
+						Toast.makeText(mContext, "获取列表错误", Toast.LENGTH_SHORT).show();//@@
 					}
 				}, 
 				map);

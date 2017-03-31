@@ -106,8 +106,8 @@ public class PushDemoReceiver extends BroadcastReceiver {
 
         contentView.setImageViewResource(R.id.share_icon,
                 R.drawable.notification);
-        contentView.setTextViewText(R.id.share_text, toUserNum+"发来设备共享消息");
-
+//        contentView.setTextViewText(R.id.share_text, toUserNum+"发来设备共享消息");
+        contentView.setTextViewText(R.id.share_text, getfromusername(ss)+"发来设备共享消息");
         //通知消息与Intent关联
         Intent it=new Intent(context,SystemMessageActivity.class);
         it.putExtra("toUserNum", toUserNum);
@@ -122,7 +122,19 @@ public class PushDemoReceiver extends BroadcastReceiver {
         nm.notify(NOTIFICATION_ID, mNotification);
     } 
     
-    private void regFilter() {
+    private String getfromusername(String str) {
+    	String str2="";
+    	if(str != null && !"".equals(str)){
+    	for(int i=0;i<str.length();i++){
+    	if(str.charAt(i)>=48 && str.charAt(i)<=57){
+    	str2+=str.charAt(i);
+    			}
+    		}
+    	}
+		return str2;
+	}
+
+	private void regFilter() {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("Constants.Action.unIfUserOwnCamera");
 		MyApp.app.registerReceiver(mReceiver, filter);
