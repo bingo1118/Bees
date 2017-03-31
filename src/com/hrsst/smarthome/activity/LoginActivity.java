@@ -54,6 +54,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		registerUser = (TextView) findViewById(R.id.tv_new_user);
 		forgetPwd = (TextView) findViewById(R.id.tv_forget_pwd);
 		userID.setText(nameStr);
+		userID.setSelection(nameStr.length());//@@
 		userPwd.setText(pwdStr);
 		loginBtn.setOnClickListener(this);
 		registerUser.setOnClickListener(this);

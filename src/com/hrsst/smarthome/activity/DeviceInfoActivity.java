@@ -376,12 +376,18 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					mUserDevice.setDevName(modifyName);
 					mUserDevice.setDevMac(mac);
 					modifyDialog.dismiss();
-					byte[] orderSend =SendServerOrder.ModifyDev(mUserDevice,(byte)0x02);
-					mSocketUDPClient.sendMsg(orderSend);
+					if(modifyName.length()>15){
+						Toast.makeText(mContext, "输入名称过长，请重新输入", Toast.LENGTH_SHORT).show();//@@
+					}else{
+						byte[] orderSend =SendServerOrder.ModifyDev(mUserDevice,(byte)0x02);
+						mSocketUDPClient.sendMsg(orderSend);
+					}
+					
 				}
 			});
 			modify_named.setFocusable(true);
 			modify_named.setText(devName);
+			modify_named.setSelection(devName.length());//@@
 			break;
 		case R.id.fk_tv_name:// 烟感列表
 			more_control_rela.setVisibility(View.GONE);

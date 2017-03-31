@@ -106,8 +106,8 @@ public class PushDemoReceiver extends BroadcastReceiver {
 
         contentView.setImageViewResource(R.id.share_icon,
                 R.drawable.notification);
-//        contentView.setTextViewText(R.id.share_text, toUserNum+"发来设备共享消息");
-        contentView.setTextViewText(R.id.share_text, getfromusername(ss)+"发来设备共享消息");
+        contentView.setTextViewText(R.id.share_text, toUserNum+"发来设备共享消息");
+//        contentView.setTextViewText(R.id.share_text, getfromusername(ss)+"发来设备共享消息");
         //通知消息与Intent关联
         Intent it=new Intent(context,SystemMessageActivity.class);
         it.putExtra("toUserNum", toUserNum);

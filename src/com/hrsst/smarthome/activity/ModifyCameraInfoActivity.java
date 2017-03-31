@@ -135,6 +135,7 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 		re_new_pwd = (EditText) findViewById(R.id.contactPwdNewB);
 		contactId.setText(contact.contactName);
 		contactName.setText(contact.contactName);
+		contactName.setSelection(contact.contactName.length());//@@
 		mSave=(TextView)findViewById(R.id.save);
 		mSave.setOnClickListener(this);
 	}
