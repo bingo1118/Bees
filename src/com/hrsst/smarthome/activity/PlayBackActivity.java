@@ -286,7 +286,7 @@ public class PlayBackActivity extends BasePlayBackActivity implements
 		currentFileTemp++;
 		if(null!=list&&list.size()>0){
 			if (currentFileTemp >= list.size()) {
-				Toast.makeText(mContext, "无下一个文件", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.no_the_next_file, Toast.LENGTH_SHORT).show();
 				currentFileTemp--;
 			} else {
 				if (this.next(list.get(currentFileTemp))) {
@@ -301,7 +301,7 @@ public class PlayBackActivity extends BasePlayBackActivity implements
 	case R.id.previous_rela:
 		currentFileTemp--;
 		if (currentFileTemp <= -1) {
-			Toast.makeText(mContext, "无上一个文件", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContext, R.string.no_the_previous_file, Toast.LENGTH_SHORT).show();
 			currentFileTemp++;
 		} else {
 			if (currentFileTemp < list.size()
@@ -421,7 +421,7 @@ public class PlayBackActivity extends BasePlayBackActivity implements
 		if ((System.currentTimeMillis() - exitTime) > 2000) {
 			// Toast.makeText(getApplicationContext(),R.string.Press_again_exit,
 			// Toast.LENGTH_SHORT).show();
-			Toast.makeText(mContext, "再按一次退出播放", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContext,R.string.try_again_exit_play, Toast.LENGTH_SHORT).show();
 			exitTime = System.currentTimeMillis();
 		} else {
 			reject();

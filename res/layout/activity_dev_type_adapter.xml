@@ -37,7 +37,7 @@
                 android:id="@+id/dev_type_record_time_name" 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="录入时间:"
+                android:text="@string/record_time"
                 android:layout_toRightOf="@id/dev_type_image"
                 android:layout_marginTop="10dp"
                 />
@@ -62,7 +62,7 @@
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textSize="16sp"
-	                android:text="厨房"
+	                android:text="@string/kitchen"
 	                android:textColor="#000000"
                 />
             </RelativeLayout>
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="独立式烟感探测报警器"
+                android:text="@string/devicelistadapter_smoke_detection_alarm"
                 android:textSize="18sp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="15dp"

@@ -169,7 +169,7 @@ public class SetVideoBuzzerActivity extends Activity implements OnClickListener{
 				if (result == BUZZER_SET.SETTING_SUCCESS) {
 					updateBuzzer(cur_modify_buzzer_state);
 					showBuzzerTime();
-					Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,R.string.modify_success, Toast.LENGTH_SHORT).show();
 				} else {
 					showBuzzerTime();
 //					Toast.makeText(mContext, "操作失败", Toast.LENGTH_SHORT).show();

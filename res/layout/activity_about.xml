@@ -12,7 +12,7 @@
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="关于"
+            android:text="@string/about_s"
             android:textSize="17sp"
             android:textColor="#000000"
             android:layout_centerInParent="true"
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/about_gw_tv"
-                android:text="广州市瀚润信息科技股份有限公司"
+                android:text="广州瀚润信息科技股份有限公司"
                 android:textColor="#9b9b9b"
                 />
         </RelativeLayout>

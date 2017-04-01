@@ -92,7 +92,7 @@ public class AddCameraFourthActivity extends Activity{
 					 String pwd = camera_pwd_et.getText().toString().trim();
 					 P2PHandler.getInstance().setRemoteDefence(contactId,pwd,
 								Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_ON);
-					 Toast.makeText(mContext, "保存成功", Toast.LENGTH_SHORT).show();
+					 Toast.makeText(mContext, R.string.addcamerafourthactivity_save_success, Toast.LENGTH_SHORT).show();
 					 if(null!=dialog_loading){
 						dialog_loading.dismiss();
 						dialog_loading = null;
@@ -104,7 +104,7 @@ public class AddCameraFourthActivity extends Activity{
 						 finish();
 					 }
 				 }else{
-					 Toast.makeText(mContext, "保存失败", Toast.LENGTH_SHORT).show();
+					 Toast.makeText(mContext,R.string.addcamerafourthactivity_save_fail, Toast.LENGTH_SHORT).show();
 					 if(null!=dialog_loading){
 						dialog_loading.dismiss();
 						dialog_loading = null;
@@ -127,9 +127,9 @@ public class AddCameraFourthActivity extends Activity{
 		TextView dialog_info = (TextView) v.findViewById(R.id.relate_dialog_info);
 		TextView relate_confire_delete_tv = (TextView) v.findViewById(R.id.relate_confire_delete_tv);
 		TextView relate_cancle_delete_tv = (TextView) v.findViewById(R.id.relate_cancle_delete_tv);
-		dialog_info.setText("是否需要把该摄像头绑定智能插座?");
-		relate_confire_delete_tv.setText("是");
-		relate_cancle_delete_tv.setText("否");
+		dialog_info.setText(R.string.addcamerafourthactivity_need_camera_unband_socket);
+		relate_confire_delete_tv.setText(R.string.addcamerafourthactivity_yes);
+		relate_cancle_delete_tv.setText(R.string.addcamerafourthactivity_no);
 		cancle_delete.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -175,6 +175,7 @@ public class AddCameraFourthActivity extends Activity{
 		camera_pwd_et = (EditText) findViewById(R.id.camera_pwd_et);
 		camera_name_et = (EditText) findViewById(R.id.camera_name_et);
 		camera_name_et.setText(contactId);
+		camera_name_et.setSelection(contactId.length());//@@
 		
 		add_camera_action_four.setOnClickListener(new OnClickListener() {
 			
@@ -186,7 +187,7 @@ public class AddCameraFourthActivity extends Activity{
 				if(null!=cameraList){
 					boolean containCamera = cameraList.contains(contactId);
 					if(containCamera){
-						Toast.makeText(mContext, "该摄像头已存在", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.addcamerafourthactivity_camera_exist, Toast.LENGTH_SHORT).show();
 						finish();
 					}else{
 						if(null!=cameraPwd&&cameraPwd.length()>0&&null!=cameraName&&cameraName.length()>0){
@@ -200,10 +201,10 @@ public class AddCameraFourthActivity extends Activity{
 							mSocketUDP.sendMsg(orderSend);
 							showDialog();
 						}else if(null==cameraName||cameraName.length()==0){
-							Toast.makeText(mContext, "请输入设备名称", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, R.string.addcamerafourthactivity_input_device_name, Toast.LENGTH_SHORT).show();
 						}else if(null==cameraPwd||cameraPwd.length()==0){
-							Toast.makeText(mContext, "请输入设备"
-									+ "初始密码", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, R.string.addcamerafourthactivity_input_device
+									+ R.string.addcamerafourthactivity_initial_psw, Toast.LENGTH_SHORT).show();
 						}
 					}
 				}else{
@@ -218,10 +219,10 @@ public class AddCameraFourthActivity extends Activity{
 						mSocketUDP.sendMsg(orderSend);
 						showDialog();
 					}else if(null==cameraName||cameraName.length()==0){
-						Toast.makeText(mContext, "请输入设备名称", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.addcamerafourthactivity_input_device_name, Toast.LENGTH_SHORT).show();
 					}else if(null==cameraPwd||cameraPwd.length()==0){
-						Toast.makeText(mContext, "请输入设备"
-								+ "初始密码", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.addcamerafourthactivity_input_device
+								+ R.string.addcamerafourthactivity_initial_psw, Toast.LENGTH_SHORT).show();
 					}
 				}
 			}

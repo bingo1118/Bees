@@ -42,7 +42,7 @@
 	        android:layout_below="@+id/progress_bar"
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="2dp"
-	        android:text="下载完成，点击更新。"
+	        android:text="@string/load_ok"
 		    />
 	</RelativeLayout>
     

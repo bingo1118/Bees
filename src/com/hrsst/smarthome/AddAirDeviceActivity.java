@@ -16,6 +16,8 @@ import java.util.TimerTask;
 
 
 
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +30,8 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.hrsst.smarthome.R.string;
+import com.hrsst.smarthome.activity.MainActivity;
 import com.hrsst.smarthome.activity.QrCodeActivity;
 import com.hrsst.smarthome.adapter.SystemMsgAdapter;
 import com.hrsst.smarthome.dialog.ConnectionFKDialog;
@@ -99,9 +103,9 @@ public class AddAirDeviceActivity extends Activity {
 					cdialog.setCancelable(false);
 					mTimer = new Timer();
 					setTimerdoAction1(doAction1, mTimer);
-//					String url =Constants.ADDENVIRONMENTDEVICE;
+					String url =Constants.ADDENVIRONMENTDEVICE;
 //					String url ="http://192.168.0.23:8080/smartHome/servlet/AddEnvironmentDevice";
-					String url ="http://119.29.224.28:51091/smartHome/servlet/AddEnvironmentDevice";
+//					String url ="http://119.29.224.28:51091/smartHome/servlet/AddEnvironmentDevice";
 					
 					RequestQueue mQueue = Volley.newRequestQueue(mContext);
 					StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
@@ -114,16 +118,16 @@ public class AddAirDeviceActivity extends Activity {
 									int errorCode=jsonObject.getInt("errorCode");
 									switch (errorCode) {
 									case 0:
-										Toast.makeText(mContext, "环境探测器添加成功", Toast.LENGTH_SHORT).show();
+										Toast.makeText(mContext, R.string.add_air_success, Toast.LENGTH_SHORT).show();
 										break;
 									case 1:
-										Toast.makeText(mContext, "提交参数失败", Toast.LENGTH_SHORT).show();
+										Toast.makeText(mContext, R.string.error, Toast.LENGTH_SHORT).show();
 										break;
 									case 2:
-										Toast.makeText(mContext, "操作失败", Toast.LENGTH_SHORT).show();
+										Toast.makeText(mContext, R.string.error, Toast.LENGTH_SHORT).show();
 										break;
 									case 3:
-										Toast.makeText(mContext, "服务器未响应", Toast.LENGTH_SHORT).show();
+										Toast.makeText(mContext,R.string.error, Toast.LENGTH_SHORT).show();
 										break;
 
 									default:
@@ -135,6 +139,7 @@ public class AddAirDeviceActivity extends Activity {
 									}
 									mTimer.cancel();
 									count = 0;
+									startActivity(new Intent(AddAirDeviceActivity.this,MainActivity.class));//@@
 								} catch (JSONException e) {
 									e.printStackTrace();
 								}								
@@ -209,7 +214,7 @@ public class AddAirDeviceActivity extends Activity {
 				count = 0;
 				if (cdialog.isShowing()) {
 					cdialog.dismiss();
-					Toast.makeText(getApplicationContext(), "配置超时", Toast.LENGTH_SHORT).show();//@@
+					Toast.makeText(getApplicationContext(), R.string.configuration_outtime, Toast.LENGTH_SHORT).show();//@@
 				}
 				break;
 			default:

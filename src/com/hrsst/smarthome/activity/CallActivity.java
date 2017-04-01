@@ -103,9 +103,9 @@ public class CallActivity extends BaseCallActivity implements OnClickListener {
 		}
 		if (!Utils.hasDigit(callId)) {
 			if (type == Constants.P2P_TYPE.P2P_TYPE_MONITOR) {
-				Toast.makeText(mContext, "监控ID必须包含数字", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.monitor_have_to_include_number, Toast.LENGTH_SHORT).show();
 			} else {
-				Toast.makeText(mContext, "通话ID必须包含数字", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.call_id_have_to_include_number, Toast.LENGTH_SHORT).show();
 			}
 
 			finish();
@@ -139,7 +139,7 @@ public class CallActivity extends BaseCallActivity implements OnClickListener {
 			switch (msg.what) {
 			case 0:
 				Log.e("dxswifi", "rtsp失败");
-				Toast.makeText(mContext, "连接失败", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.conn_fail, Toast.LENGTH_SHORT).show();
 				reject();
 				break;
 			case 1:
@@ -295,7 +295,7 @@ public class CallActivity extends BaseCallActivity implements OnClickListener {
 						P2PHandler.getInstance().RTSPConnect(NpcCommon.mThreeNum, password, isOutCall, 3, callId, ipFlag, push_mesg, ipAddress,AppConfig.VideoMode, rtspHandler,callId);	
 					}
 				}else if(result ==Constants.P2P_SET.ACK_RESULT.ACK_PWD_ERROR){
-					Toast.makeText(mContext, "密码错误", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,R.string.password_error, Toast.LENGTH_SHORT).show();
                      finish();
 				}else if (result == Constants.P2P_SET.ACK_RESULT.ACK_NET_ERROR) {
 					P2PHandler.getInstance().checkPassword(idOrIp, password);

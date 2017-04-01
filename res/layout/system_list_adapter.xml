@@ -27,7 +27,7 @@
 	        <TextView 
 	            android:layout_width="150dp"
 	            android:layout_height="wrap_content"
-	            android:text="向你共享了一个设备"
+	            android:text="@string/share_device_to_you"
 	            android:layout_marginTop="20dp"
 	            android:textColor="#000000"
 	            android:textSize="16sp"

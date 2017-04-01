@@ -55,16 +55,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.FrameLayout.LayoutParams;
 
+/**
+ * 主界面活动
+ * @author bin
+ *
+ */
 public class MainActivity extends Activity implements OnClickListener{
 	private Context mContext;
 	
 	private int currFrag = 0;
-	private String ifLogin;
+	private String ifLogin;//是否登陆
 	private LinearLayout tab_component;
+	
 	private MyDeviceFragment mMyDeviceFragment;
 	private ExperienceFragment mExperienceFragment;
 	private PersonerFragment mPersonerFragment;
 	private MessagesFragment mMessagesFragment;
+	
 	private String[] fragTags = new String[] { "mMyDeviceFragment", "mExperienceFragment",
 			"mPersonerFragment", "mMessagesFragment"};
 	private TextView tv_contact, tv_message, tv_image, tv_more,mailAdr,user_num,menu_one,menu_two,menu_five,menu_four;
@@ -89,6 +96,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		init();
 		regFilter();
+		
 		if(null!=ifLogin&&ifLogin.length()>0&&ifLogin.equals("yes")){
 			yooLogin = getIntent().getExtras().getString("YooLogin");
 			if (null == mMyDeviceFragment) {
@@ -115,8 +123,11 @@ public class MainActivity extends Activity implements OnClickListener{
 			if (null == mPersonerFragment) {
 				mPersonerFragment = new PersonerFragment();
 			}
-			tab_component.setBackgroundResource(R.drawable.daohang3);
-			replaceFragment(R.id.fragContainer, mPersonerFragment, fragTags[2]);
+//			tab_component.setBackgroundResource(R.drawable.daohang3);
+//			replaceFragment(R.id.fragContainer, mPersonerFragment, fragTags[2]);
+			//国际化修改
+			tab_component.setBackgroundResource(R.drawable.daohang2);
+			replaceFragment(R.id.fragContainer, mPersonerFragment, fragTags[1]);
 		}
 
 	}
@@ -126,6 +137,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		startService(service);
 	}
 	
+	/**
+	 * 注册广播监听器，用于接收广播（从网络客户端对象发出）
+	 */
 	public void regFilter() {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(Constants.Action.MAIN_ACTION);
@@ -175,10 +189,10 @@ public class MainActivity extends Activity implements OnClickListener{
 			if(intent.getAction().equals(Constants.Action.CLOSE_SLIDE_MENU)){
 				drawerLayout.closeDrawer(leftLayout);
 			}
-			
+			//会话已过期
 			if(intent.getAction().equals("SESSION_TIME_OUT")){
 				PushManager.getInstance().stopService(mContext);
-				Toast.makeText(mContext, "会话已过期", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.session_expired, Toast.LENGTH_SHORT).show();
 				Intent i = new Intent(mContext,LoginActivity.class);
 				startActivity(i);
 				finish();
@@ -207,7 +221,7 @@ public class MainActivity extends Activity implements OnClickListener{
 						.findViewById(R.id.minddle_image);
 				RelativeLayout cancel_rela_dialog = (RelativeLayout) view
 						.findViewById(R.id.cancel_rela_dialog);
-				title.setText("更新消息");
+				title.setText(R.string.updata_message);
 				content.setBackgroundColor(getResources().getColor(R.color.update_message)); // 设置背景色
 				content.getBackground().setAlpha(255); // 设置填充透明度 范围：0-255
 				String data = intent.getStringExtra("message");
@@ -215,7 +229,7 @@ public class MainActivity extends Activity implements OnClickListener{
 						null);
 				minddle_image.setVisibility(View.GONE);
 				cancel_rela_dialog.setVisibility(View.GONE);
-				button2.setText("确定");
+				button2.setText(R.string.sure);
 				button2.setTextColor(Color.BLACK);
 				AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 				dialog_update = builder.create();
@@ -233,6 +247,7 @@ public class MainActivity extends Activity implements OnClickListener{
 				});
 			}
 			//Constants.Action.ACTION_UPDATE
+			//版本更新..
 			if(intent.getAction().equals("Constants.Action.ACTION_UPDATE")){
 				if (null != dialog_update && dialog_update.isShowing()) {
 					Log.e("my", "isShowing");
@@ -248,15 +263,15 @@ public class MainActivity extends Activity implements OnClickListener{
 				TextView button2 = (TextView) view
 						.findViewById(R.id.button2_text);
 
-				title.setText("更新");
+				title.setText(R.string.update);
 				content.setBackgroundColor(Color.WHITE); // 设置背景色
 				content.getBackground().setAlpha(100); // 设置填充透明度 范围：0-255
 				String data = intent.getStringExtra("message");
 				final String downloadPath = intent.getStringExtra("url");
 				content.loadDataWithBaseURL(null, data, "text/html", "utf-8",
 						null);
-				button1.setText("立即更新");
-				button2.setText("下次再说");
+				button1.setText(R.string.update_now1);
+				button2.setText(R.string.next_time1);
 				button1.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -336,15 +351,16 @@ public class MainActivity extends Activity implements OnClickListener{
 //				startActivity(intent);
 //			}
 			break;
-		case R.id.tv_image:
-			currFrag = 2;
-			if (null == mPersonerFragment) {
-				mPersonerFragment = new PersonerFragment();
-			}
-			tab_component.setBackgroundResource(R.drawable.daohang3);
-			replaceFragment(R.id.fragContainer, mPersonerFragment, fragTags[2]);
-			
-			break;
+			//东泰盛居国际化修改，删除“发现模块”20170301
+//		case R.id.tv_image:
+//			currFrag = 2;
+//			if (null == mPersonerFragment) {
+//				mPersonerFragment = new PersonerFragment();
+//			}
+//			tab_component.setBackgroundResource(R.drawable.daohang3);
+//			replaceFragment(R.id.fragContainer, mPersonerFragment, fragTags[2]);
+//			
+//			break;
 		case R.id.tv_more:
 			if(null!=ifLogin&&ifLogin.length()>0&&ifLogin.equals("yes")){
 				currFrag = 3;
@@ -397,10 +413,13 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 	}
 	
+	/**
+	 * 初始化界面控件
+	 */
 	private void init(){
 		tv_contact = (TextView) findViewById(R.id.tv_contact);
 		tv_message = (TextView) findViewById(R.id.tv_message);
-		tv_image = (TextView) findViewById(R.id.tv_image);
+//		tv_image = (TextView) findViewById(R.id.tv_image);
 		tv_more = (TextView) findViewById(R.id.tv_more);
 		mailAdr = (TextView) findViewById(R.id.mailAdr);
 		user_num = (TextView) findViewById(R.id.user_num);
@@ -412,7 +431,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		setting_lin = (LinearLayout)findViewById(R.id.setting_lin);
 		tv_contact.setOnClickListener(this);
 		tv_message.setOnClickListener(this);
-		tv_image.setOnClickListener(this);
+//		tv_image.setOnClickListener(this);
 		tv_more.setOnClickListener(this);
 		menu_five.setOnClickListener(this);
 		setting_lin.setOnClickListener(this);
@@ -433,6 +452,12 @@ public class MainActivity extends Activity implements OnClickListener{
 		user_num.setText(userNumStr);
 	}
 	
+	/**
+	 * 切换Fragment..
+	 * @param container
+	 * @param fragment
+	 * @param tag
+	 */
 	public void replaceFragment(int container, Fragment fragment, String tag) {
 		try {
 			FragmentManager manager = getFragmentManager();
@@ -487,7 +512,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	    Timer tExit = null;  
 	    if (isExit == false) {  
 	        isExit = true; // 准备退出  
-	        Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();  
+	        Toast.makeText(this, R.string.try_again_exit_app, Toast.LENGTH_SHORT).show();  
 	        tExit = new Timer();  
 	        tExit.schedule(new TimerTask() {  
 	            @Override  

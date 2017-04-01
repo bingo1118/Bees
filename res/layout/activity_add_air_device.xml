@@ -11,7 +11,7 @@
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="      开启设备后，长按设备上的按钮2-4秒并松开，扫描屏幕上的二维码获取设备MAC号，并填写设备名称，点击下一步即可。"
+        android:text="@string/add_air_dev"
         android:layout_alignParentBottom="true"
         android:textColor="#000"
         android:layout_marginLeft="10dp"
@@ -35,7 +35,7 @@
         android:textColor="@color/wifi_change_color"
         android:textSize="16sp"
         android:lines="1"
-        android:text="设备名称："/>
+        android:text="@string/dev_name"/>
         <EditText 
         android:id="@+id/device_name_edit"
         android:layout_width="0dp"

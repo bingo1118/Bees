@@ -17,7 +17,7 @@
             android:layout_height="30dp"
             android:background="@drawable/more_control_btn"
             android:layout_centerInParent="true"
-            android:text="设置预置位"
+            android:text="@string/set_yuzhiwei"
             android:textColor="#000000"
             />
         <TextView 
@@ -27,7 +27,7 @@
             android:layout_centerInParent="true"
             android:gravity="center_horizontal"
             android:textColor="#000000"
-            android:text="(点击将当前摄像机角度存储预置位)"
+            android:text="@string/click_store_yuzhiwei"
             />
     </RelativeLayout>
     <ImageView 
@@ -48,7 +48,7 @@
             android:layout_height="30dp"
             android:background="@drawable/more_control_btn"
             android:layout_centerInParent="true"
-            android:text="查看预置位"
+            android:text="@string/look_yuzhiwei"
             android:textColor="#000000"
             />
         <TextView 
@@ -58,7 +58,7 @@
             android:layout_centerInParent="true"
             android:gravity="center_horizontal"
             android:textColor="#000000"
-            android:text="(点击摄像机将转到已存储的预置位)"
+            android:text="@string/click_turn_to_yuzhiwei"
             />
      </RelativeLayout>
 

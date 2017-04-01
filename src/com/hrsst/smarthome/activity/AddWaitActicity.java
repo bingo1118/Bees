@@ -98,14 +98,14 @@ public class AddWaitActicity extends Activity{
 				switch (msg.what) {
 				case UDPHelper.HANDLER_MESSAGE_BIND_ERROR:
 					Log.e("my", "HANDLER_MESSAGE_BIND_ERROR");
-					Toast.makeText(mContext, "端口被占用", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,R.string.port_occupied, Toast.LENGTH_SHORT).show();
 					break;
 				case UDPHelper.HANDLER_MESSAGE_RECEIVE_MSG:
 					isReceive = true;
 					Log.e("my", "HANDLER_MESSAGE_RECEIVE_MSG");
 					// NormalDialog successdialog=new NormalDialog(mContext);
 					// successdialog.successDialog();
-					Toast.makeText(mContext, "嘿嘿！设置成功！", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.heihei_set_success, Toast.LENGTH_SHORT).show();
 					mHelper.StopListen();
 					Bundle bundle = msg.getData();
 					
@@ -231,14 +231,14 @@ public class AddWaitActicity extends Activity{
 		public void run() {
 			if (!isReceive) {
 				if (isNeedSendWifi) {
-					Toast.makeText(mContext, "设置Wi-Fi失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.set_wifi_fail, Toast.LENGTH_SHORT).show();
 					Intent it = new Intent();
 					it.setAction(Constants.Action.RADAR_SET_WIFI_FAILED);
 					sendBroadcast(it);
 					// 跳转
 					finish();
 				} else {
-					Toast.makeText(mContext, "设置Wi-Fi失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.set_wifi_fail, Toast.LENGTH_SHORT).show();
 					finish();
 				}
 

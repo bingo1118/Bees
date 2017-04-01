@@ -69,37 +69,37 @@ public class DevTypeAdapter extends BaseAdapter{
 			Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.sclb_yg,mContext);
 			BitmapDrawable bd = new BitmapDrawable(mContext.getResources(), mBitmap);
 			holder.dev_type_iamge_logo.setImageDrawable(bd);
-			holder.dev_type_name.setText("独立式烟感探测报警器");
+			holder.dev_type_name.setText(R.string.devicelistadapter_smoke_detection_alarm);
 			break;
 		case 2:
 			Bitmap mBitmap2 = BitmapCache.getInstance().getBitmap(R.drawable.sclb_mc,mContext);
 			BitmapDrawable bd2 = new BitmapDrawable(mContext.getResources(), mBitmap2);
 			holder.dev_type_iamge_logo.setImageDrawable(bd2);
-			holder.dev_type_name.setText("门磁报警器");
+			holder.dev_type_name.setText(R.string.devicelistadapter_menci);
 			break;
 		case 3:
 			Bitmap mBitmap3 = BitmapCache.getInstance().getBitmap(R.drawable.hw_logo,mContext);
 			BitmapDrawable bd3 = new BitmapDrawable(mContext.getResources(), mBitmap3);
 			holder.dev_type_iamge_logo.setImageDrawable(bd3);
-			holder.dev_type_name.setText("红外探测报警器");
+			holder.dev_type_name.setText(R.string.devicelistadapter_hongwai);
 			break;
 		case 4:
 			Bitmap mBitmap4 = BitmapCache.getInstance().getBitmap(R.drawable.rq_logo,mContext);
 			BitmapDrawable bd4 = new BitmapDrawable(mContext.getResources(), mBitmap4);
 			holder.dev_type_iamge_logo.setImageDrawable(bd4);
-			holder.dev_type_name.setText("可燃气体探测报警器");
+			holder.dev_type_name.setText(R.string.devicelistadapter_ranqi);
 			break;
 		case 5:
 			Bitmap mBitmap5 = BitmapCache.getInstance().getBitmap(R.drawable.sclb_sj_dev,mContext);
 			BitmapDrawable bd5 = new BitmapDrawable(mContext.getResources(), mBitmap5);
 			holder.dev_type_iamge_logo.setImageDrawable(bd5);
-			holder.dev_type_name.setText("水禁");
+			holder.dev_type_name.setText(R.string.shuijin);
 			break;//@@
 		case 6:
 			Bitmap mBitmap6 = BitmapCache.getInstance().getBitmap(R.drawable.sclb_ykq,mContext);
 			BitmapDrawable bd6 = new BitmapDrawable(mContext.getResources(), mBitmap6);
 			holder.dev_type_iamge_logo.setImageDrawable(bd6);
-			holder.dev_type_name.setText("万能遥控器");
+			holder.dev_type_name.setText(R.string.ykq);
 			break;//@@
 		default:
 			break;

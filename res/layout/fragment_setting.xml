@@ -53,7 +53,7 @@
 	            android:id="@+id/num_tv" 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="编号:"
+	            android:text="@string/fragment_setting_id"
 	            android:textSize="15sp"
 	            android:textColor="@color/white"
 	            />
@@ -82,8 +82,7 @@
 	        android:layout_marginTop="20dp"
 	        android:textColor="@color/white"
 	        android:textSize="17sp"
-	        android:text="消息"
-	        />
+	        android:text="@string/fragment_setting_message"/>
 	    <TextView 
 	        android:id="@+id/menu_two"
 	        android:layout_below="@id/menu_one"
@@ -92,9 +91,7 @@
 	        android:layout_height="wrap_content"
 	        android:textColor="@color/white"
 	        android:textSize="17sp"
-	        android:text="版本更新"
-	        
-	        />
+	        android:text="@string/fragment_setting_version_updated"/>
 	    <TextView 
 	        android:id="@+id/menu_three"
 	        android:layout_below="@id/menu_two"
@@ -103,7 +100,7 @@
 	        android:layout_marginTop="20dp"
 	        android:textColor="@color/white"
 	        android:textSize="17sp"
-	        android:text="高级设置"
+	        android:text="@string/fragment_setting_advanced_settings"
 	        android:visibility="gone"
 	        />
 	    <TextView 
@@ -114,7 +111,7 @@
 	        android:layout_marginTop="20dp"
 	        android:textColor="@color/white"
 	        android:textSize="17sp"
-	        android:text="关于"
+	        android:text="@string/fragment_setting_about"
 	        />
 	    <TextView 
 	        android:id="@+id/menu_five"
@@ -124,7 +121,7 @@
 	        android:layout_marginTop="200dp"
 	        android:textColor="@color/white"
 	        android:textSize="17sp"
-	        android:text="注销账号"
+	        android:text="@string/fragment_setting_logout"
 	        />
 	</RelativeLayout>
 	

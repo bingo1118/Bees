@@ -66,9 +66,9 @@ public class AddFireLinkOneActivity extends Activity {
 							AddFireLinkTwoActivity.class);
 					i.putExtra("device", devMac);
 					startActivity(i);
-					finish();
+//					finish();
 				} else {
-					Toast.makeText(mContext, "ÇëÑ¡ÔñÖÇÄÜ²å×ù", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.please_choose_smart_socket, Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

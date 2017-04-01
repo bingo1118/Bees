@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
-                android:text="开"
+                android:text="@string/on"
                 android:textSize="13sp"
                 android:textColor="#000000"/>
 

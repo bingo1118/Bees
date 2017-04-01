@@ -360,7 +360,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="20dp"
-            android:text="查看截图"
+            android:text="@string/look_image"
             />
     </RelativeLayout>
     
@@ -530,7 +530,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="开灯"
+            android:text="@string/turn_on_light"
             android:textColor="@color/white"
             android:textSize="18sp" />
 

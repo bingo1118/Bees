@@ -98,12 +98,12 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 					UnPackageFromServer mUnPackageFromServer = new UnPackServer().unClearAlarmMessage(datas);
 					String result = mUnPackageFromServer.clearAlarmMsg;
 					if(result.equals("failed")){
-						Toast.makeText(mContext, "清空失败", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.clean_fail, Toast.LENGTH_SHORT).show();
 					}else if(result.equals("success")){
 						getMessages(userNumStr,-1);
-						Toast.makeText(mContext, "清空成功", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.clean_success, Toast.LENGTH_SHORT).show();
 					}else{
-						Toast.makeText(mContext, "CRC错误", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.crc_error, Toast.LENGTH_SHORT).show();
 					}
 				}
 			}
@@ -188,8 +188,8 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 				TextView dialog_info = (TextView) v.findViewById(R.id.dialog_info);
 				TextView cancle_delete = (TextView) v.findViewById(R.id.cancle_delete);
 				TextView confire_delete = (TextView) v.findViewById(R.id.confire_delete);
-				dialog_info.setText("是否清空所有数据");
-				confire_delete.setText("清空");
+				dialog_info.setText(R.string.is_clean_all_data);
+				confire_delete.setText(R.string.clean);
 				cancle_delete.setOnClickListener(new OnClickListener() {
 					
 					@Override
@@ -252,7 +252,7 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 						pullToRefreshListView.onRefreshComplete();
 						progressBar.setVisibility(View.GONE);//@@
 						if(li.size()==0){
-							Toast.makeText(mContext, "无数据", Toast.LENGTH_SHORT).show();//@@
+							Toast.makeText(mContext,R.string.no_data, Toast.LENGTH_SHORT).show();//@@
 						}
 					}
 				}, 
@@ -261,7 +261,7 @@ public class MessagesFragment extends Fragment implements OnClickListener{
 					public void onErrorResponse(VolleyError error) {
 						// TODO Auto-generated method stub
 						progressBar.setVisibility(View.GONE);
-						Toast.makeText(mContext, "获取数据失败", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.error, Toast.LENGTH_SHORT).show();
 					}
 				}, 
 				map);

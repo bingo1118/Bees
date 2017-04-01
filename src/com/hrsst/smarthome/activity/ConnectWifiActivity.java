@@ -235,9 +235,10 @@ public class ConnectWifiActivity extends Activity implements OnClickListener {
 							mTimer1.cancel();
 							mTimer1=null;
 						}
-						Toast.makeText(mContext, "配置成功", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.configuration_success, Toast.LENGTH_SHORT).show();
 						udpSize = 0;
-						finish();
+//						finish();
+						startActivity(new Intent(ConnectWifiActivity.this,MainActivity.class));
 					}
 				}
 			}
@@ -265,7 +266,7 @@ public class ConnectWifiActivity extends Activity implements OnClickListener {
 				cdialog.startConnect();
 				cdialog.setCancelable(false);
 			}else{
-				Toast.makeText(mContext, "请选择正确的设备WIFI", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.please_choose_right_devide_wifi, Toast.LENGTH_SHORT).show();
 			}
 			break;
 		default:
@@ -332,7 +333,7 @@ public class ConnectWifiActivity extends Activity implements OnClickListener {
 					mTimer.cancel();
 					mTimer=null;
 				}
-				Toast.makeText(mContext, "配置失败...", Toast.LENGTH_SHORT)
+				Toast.makeText(mContext, R.string.configuration_fail, Toast.LENGTH_SHORT)
 				.show();
 				removeWifi();
 				//finish();
@@ -383,7 +384,7 @@ public class ConnectWifiActivity extends Activity implements OnClickListener {
 					mTimer1.cancel();
 					mTimer1=null;
 				}
-				Toast.makeText(mContext, "配置超时", 1).show();
+				Toast.makeText(mContext, R.string.configuration_outtime, 1).show();
 				removeWifi();
 				//finish();
 				break;

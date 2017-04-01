@@ -596,13 +596,13 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 				int resultStr = intent.getExtras().getInt("result");
 				switch (resultStr) {
 				case 0:
-					Toast.makeText(mContext, "操作成功", 1).show();
+					Toast.makeText(mContext, R.string.successful_operation, 1).show();
 					break;
 				case 84:
-					Toast.makeText(mContext, "无此设置选项", 1).show();				
+					Toast.makeText(mContext,R.string.have_not_setting_item, 1).show();				
 					break;
 				case 255:
-					Toast.makeText(mContext, "该设备不支持预置位", 1).show();
+					Toast.makeText(mContext, R.string.this_device_dont_support_preset_position, 1).show();
 					break;
 				default:
 					break;
@@ -680,10 +680,10 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 				}
 				if (result == 0) {
 					// 删除成功
-					Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.change_success, Toast.LENGTH_SHORT).show();
 				} else if (result == -1) {
 					// 不支持
-					Toast.makeText(mContext, "设备不支持此操作", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.the_device_dont_support_the_operation, Toast.LENGTH_SHORT).show();
 				} else {
 					// 失败
 				}
@@ -751,7 +751,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 	// 设置布防
     public void setDefence() {
     	if(!isPermission){
-    		Toast.makeText(mContext, "权限不足", Toast.LENGTH_SHORT).show();
+    		Toast.makeText(mContext, R.string.insufficient_permissions, Toast.LENGTH_SHORT).show();
     		return;
     	}
         if (defenceState == Constants.DefenceState.DEFENCE_STATE_ON) {
@@ -924,14 +924,14 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		// TODO Auto-generated method stub
 		if (isSuccess) {
 			// Capture success
-			Toast.makeText(mContext, "截图成功", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContext,R.string.screenshot_success, Toast.LENGTH_SHORT).show();
 			List<String> pictrues=Utils.getScreenShotImagePath(callId, 1);
 			if(pictrues.size()<=0){
 				return;
 			}
             Utils.saveImgToGallery(pictrues.get(0));
 		} else {
-			Toast.makeText(mContext, "截图失败", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContext, R.string.screenshot_failed, Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -1119,7 +1119,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 					.findViewById(R.id.confire_modify);
 			final EditText shareView_modify_named = (EditText) shareView
 					.findViewById(R.id.modify_named);
-			shareView_modify_named.setHint("请输入对方的账号");
+			shareView_modify_named.setHint(R.string.input_other_side_account);
 			AlertDialog.Builder shareView_builder = new AlertDialog.Builder(
 					mContext);
 			modifyDialog = shareView_builder.create();
@@ -1147,7 +1147,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 						mSocketUDPClient.sendMsg(SendServerOrder.ShareDev(mContact.getContactId(),
 								fromUserNum, toUserNum));
 					} else {
-						Toast.makeText(mContext, "输入的账号有误，请输入对方的正确账号", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext,R.string.input_account_fail_input_again, Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -1435,7 +1435,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		if (keyCode == KeyEvent.KEYCODE_BACK
 				&& event.getAction() == KeyEvent.ACTION_DOWN) {
 			if ((System.currentTimeMillis() - exitTime) > 2000) {
-				Toast.makeText(mContext, "再按一次退出监控", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.press_again_exit_monitor, Toast.LENGTH_SHORT).show();
 				exitTime = System.currentTimeMillis();
 			} else {
 				reject();
@@ -1561,12 +1561,12 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		@Override
 		public void check(final String password, final String id) {
 			if (password.trim().equals("")) {
-				Toast.makeText(mContext, "请输入监控密码", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.please_input_monitor_psw, Toast.LENGTH_SHORT).show();
 				return;
 			}
 
 			if (password.length() > 30||password.charAt(0)=='0') {
-				Toast.makeText(mContext, "设备密码无效", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.device_psw_invalid, Toast.LENGTH_SHORT).show();
 				return;
 			}
 

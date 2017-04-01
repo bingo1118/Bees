@@ -37,9 +37,9 @@ public class ChoiceRegisterActivity extends Activity implements OnClickListener 
 		email_register = (RadioButton) findViewById(R.id.register_type_email);
 		title_text = (TextView) findViewById(R.id.title_text);
 		if (actionFlag.equals("Reset")) {
-			title_text.setText("密码找回");
-			phone_register.setText("手机找回");
-			email_register.setText("邮箱找回");
+			title_text.setText(R.string.find_psw);
+			phone_register.setText(R.string.find_by_phone);
+			email_register.setText(R.string.find_by_email);
 		}
 		nextBtn.setOnClickListener(this);
 		phone_register.setOnClickListener(this);

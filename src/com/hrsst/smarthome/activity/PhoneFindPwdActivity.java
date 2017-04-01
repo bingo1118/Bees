@@ -112,13 +112,13 @@ public class PhoneFindPwdActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.find_get_code_btn:
 			if (phoneNumStr.length() != 11) {
-				Toast.makeText(mContext, "手机号格式不对", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.the_phone_format_error, Toast.LENGTH_SHORT).show();
 			} else {
 				if (null != pwdNumStr && pwdNumStr.length() > 0
 						&& pwdNumStr.equals(pwdNum1Str)) {
 					ifExit(phoneNumStr);
 				} else {
-					Toast.makeText(mContext, "两次的密码不一样，请重新输入", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,R.string.two_psw_diffrence, Toast.LENGTH_SHORT).show();
 				}
 			}
 			break;
@@ -128,7 +128,7 @@ public class PhoneFindPwdActivity extends Activity implements OnClickListener {
 				SMSSDK.submitVerificationCode("86", phoneNumStr, codeNumStr);
 				find.setEnabled(false);
 			} else {
-				Toast.makeText(mContext, "验证码不正确，请重新输入", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext,R.string.vfcode_error, Toast.LENGTH_SHORT).show();
 			}
 			break;
 		default:
@@ -150,7 +150,7 @@ public class PhoneFindPwdActivity extends Activity implements OnClickListener {
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
 			if (intent.getAction().equals("CODE_ALREADY_SEND_ACTION")) {
-				Toast.makeText(mContext, "验证码已发送", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.verification_code_have_send, Toast.LENGTH_SHORT).show();
 				phoneEt.setEnabled(false);
 				phonePwd.setEnabled(false);
 				phonePwd1.setEnabled(false);
@@ -158,11 +158,11 @@ public class PhoneFindPwdActivity extends Activity implements OnClickListener {
 				setTimerdoAction(doAction, mTimer);
 			}
 			if (intent.getAction().equals("VERIFY_SUCCESS")) {
-				Toast.makeText(mContext, "验证码已通过", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.verification_code_pass, Toast.LENGTH_SHORT).show();
 				find(phoneNumStr, pwdNumStr);
 			}
 			if (intent.getAction().equals("VERIFY_FALSE")) {
-				Toast.makeText(mContext, "验证码错误，请输入正确的验证码", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.vfcode_error, Toast.LENGTH_SHORT).show();
 				phoneEt.setEnabled(true);
 				phonePwd.setEnabled(true);
 				phonePwd1.setEnabled(true);
@@ -192,7 +192,7 @@ public class PhoneFindPwdActivity extends Activity implements OnClickListener {
 										&& obj.equals("success")) {
 									mTimer.cancel();
 									count = 0;
-									Toast.makeText(mContext, "密码更改成功", Toast.LENGTH_SHORT)
+									Toast.makeText(mContext, R.string.change_psw_success, Toast.LENGTH_SHORT)
 											.show();
 									find.setEnabled(true);
 									Intent intent = new Intent();
@@ -214,7 +214,7 @@ public class PhoneFindPwdActivity extends Activity implements OnClickListener {
 								}
 								if (null != obj && obj.length() > 0
 										&& obj.equals("false")) {
-									Toast.makeText(mContext, "找回失败，请重新找回密码", Toast.LENGTH_SHORT)
+									Toast.makeText(mContext,R.string.find_psw_fail, Toast.LENGTH_SHORT)
 											.show();
 									mTimer.cancel();
 									count = 0;
@@ -222,7 +222,7 @@ public class PhoneFindPwdActivity extends Activity implements OnClickListener {
 								}
 								if (null != obj && obj.length() > 0
 										&& obj.equals("userenotxit")) {
-									Toast.makeText(mContext, "用户不存在", Toast.LENGTH_SHORT).show();
+									Toast.makeText(mContext, R.string.user_on_exist, Toast.LENGTH_SHORT).show();
 								}
 								find.setEnabled(true);
 							} catch (JSONException e) {
@@ -267,7 +267,7 @@ public class PhoneFindPwdActivity extends Activity implements OnClickListener {
 				phonePwd1.setEnabled(true);
 				getCode.setEnabled(true);
 				find.setEnabled(true);
-				getCode.setText("获取验证码");
+				getCode.setText(R.string.get_verification_code);
 			}
 		};
 	};
@@ -287,7 +287,7 @@ public class PhoneFindPwdActivity extends Activity implements OnClickListener {
 								String obj = response.get(0).toString();
 								if (null != obj && obj.length() > 0
 										&& obj.equals("no")) {
-									Toast.makeText(mContext, "该手机号不存在", Toast.LENGTH_SHORT)
+									Toast.makeText(mContext,R.string.phone_not_exist, Toast.LENGTH_SHORT)
 											.show();
 								}
 								if (null != obj && obj.length() > 0

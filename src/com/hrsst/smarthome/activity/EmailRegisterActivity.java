@@ -63,10 +63,10 @@ public class EmailRegisterActivity extends Activity implements OnClickListener{
 				if(null!=pwdNumStr&&pwdNumStr.length()>0&&pwdNumStr.equals(pwdNum1Str)){
 					register(emailNumStr,pwdNumStr);
 				}else{
-					Toast.makeText(mContext, "两次输入的密码不一致，请重新输入", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.two_psw_diffrence, Toast.LENGTH_SHORT).show();
 				}
 			}else{
-				Toast.makeText(mContext, "邮箱格式不正确，请重新输入", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.email_format_error, Toast.LENGTH_SHORT).show();
 			}
 			break;
 
@@ -99,10 +99,10 @@ public class EmailRegisterActivity extends Activity implements OnClickListener{
 									finish();
 								}
 								if(null!=obj&&obj.length()>0&&obj.equals("false")){
-									Toast.makeText(mContext, "注册失败，请重新注册", Toast.LENGTH_SHORT).show();
+									Toast.makeText(mContext, R.string.regist_fail, Toast.LENGTH_SHORT).show();
 								}
 								if(null!=obj&&obj.length()>0&&obj.equals("userexit")){
-									Toast.makeText(mContext, "用户已存在", Toast.LENGTH_SHORT).show();
+									Toast.makeText(mContext, R.string.user_exist, Toast.LENGTH_SHORT).show();
 								}
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block

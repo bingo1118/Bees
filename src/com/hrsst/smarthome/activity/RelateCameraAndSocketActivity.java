@@ -74,10 +74,10 @@ public class RelateCameraAndSocketActivity extends Activity {
 				byte[] datas = intent.getExtras().getByteArray("datasByte");
 				String result = UnPackServer.unBinderCameraAndSocket(datas);
 				if(result.equals("success")){
-					Toast.makeText(mContext, "绑定成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.bind_success, Toast.LENGTH_SHORT).show();
 					finish();
 				}else{
-					Toast.makeText(mContext, "绑定失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.bind_fail, Toast.LENGTH_SHORT).show();
 				}
 			}
 		}
@@ -102,7 +102,7 @@ public class RelateCameraAndSocketActivity extends Activity {
 					byte[] orderSend = SendServerOrder.binderCameraAndSocket(devMac,contactId);
 					mSocketUDP.sendMsg(orderSend);
 				} else {
-					Toast.makeText(mContext, "请选择需要绑定的智能插座", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,R.string.please_choose_need_bind_socket, Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

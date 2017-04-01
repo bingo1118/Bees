@@ -58,7 +58,7 @@ public class IntroducedNextOneActivity extends Activity {
 		wifi_name = (TextView) findViewById(R.id.wifi_name);
 		wifi_pwd = (EditText) findViewById(R.id.wifi_pwd);
 	
-		wifi_name.setText("当前WIFI:"+getWIfi());
+		wifi_name.setText(getResources().getString(R.string.introducedNextOneActivity_current_wifi)+getWIfi());
 		wifi_name.setTextColor(getResources().getColor(R.color.wifi_change_color));
 		regFilter();
 		mSocketUDPClient = SocketUDP.newInstance(
@@ -80,11 +80,11 @@ public class IntroducedNextOneActivity extends Activity {
 				String wifiName = getWIfi().replaceAll("\"", "");
 				String wifiPwd = wifi_pwd.getText().toString();
 				if(wifiName==null||wifiPwd==null){
-					Toast.makeText(mContext, "wifi名称和密码不能为空", 1).show();
+					Toast.makeText(mContext, R.string.introducedNextOneActivity_wifi_cannot_null, 1).show();
 					return;
 				}
 				if(wifiName.length()==0||wifiPwd.length()==0){
-					Toast.makeText(mContext, "wifi名称和密码不能为空", 1).show();
+					Toast.makeText(mContext, R.string.introducedNextOneActivity_wifi_cannot_null, 1).show();
 					return;
 				}
 				byte[] orderSend = SendServerOrder.GetServerTimePackage();
@@ -113,11 +113,11 @@ public class IntroducedNextOneActivity extends Activity {
 					String wifiName= getWIfi().replaceAll("\"", "");
 					String wifiPwd = wifi_pwd.getText().toString().trim();
 					if(wifiName==null||wifiPwd==null){
-						Toast.makeText(mContext, "wifi名称和密码不能为空", 1).show();
+						Toast.makeText(mContext, R.string.introducedNextOneActivity_wifi_cannot_null, 1).show();
 						return;
 					}
 					if(wifiName.length()==0||wifiName.length()==0){
-						Toast.makeText(mContext, "设备wifi名称和密码不能为空", 1).show();
+						Toast.makeText(mContext, R.string.introducedNextOneActivity_device_wifi_cannot_null, 1).show();
 						return;
 					}
 					Intent intent = new Intent(mContext, ConnectWifiActivity.class);
@@ -125,7 +125,7 @@ public class IntroducedNextOneActivity extends Activity {
 					intent.putExtra("wifiName", wifiName);
 					intent.putExtra("wifiPwd", wifiPwd);
 					startActivity(intent);
-					finish();
+//					finish();
 				}
 			}
 		}
@@ -154,7 +154,7 @@ public class IntroducedNextOneActivity extends Activity {
 	protected void onRestart() {
 		// TODO Auto-generated method stub
 		super.onRestart();
-		wifi_name.setText("当前WIFI:"+getWIfi());
+		wifi_name.setText(getResources().getString(R.string.introducedNextOneActivity_current_wifi)+getWIfi());
 	}
 	
 	private String getWIfi(){

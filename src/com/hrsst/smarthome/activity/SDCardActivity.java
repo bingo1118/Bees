@@ -134,7 +134,7 @@ public class SDCardActivity extends Activity implements OnClickListener{
 					Intent back = new Intent();
 					back.setAction(Constants.Action.REPLACE_MAIN_CONTROL);
 					mContext.sendBroadcast(back);
-					Toast.makeText(mContext, "SD卡不存在", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.sd_no_exist, Toast.LENGTH_SHORT).show();
 				}
 			} else if (intent.getAction().equals(
 					Constants.P2P.ACK_GET_SD_CARD_FORMAT)) {
@@ -154,11 +154,11 @@ public class SDCardActivity extends Activity implements OnClickListener{
 					Constants.P2P.RET_GET_SD_CARD_FORMAT)) {
 				int result = intent.getIntExtra("result", -1);
 				if (result == Constants.P2P_SET.SD_FORMAT.SD_CARD_SUCCESS) {
-					Toast.makeText(mContext, "SD卡格式化成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.sd_format_success, Toast.LENGTH_SHORT).show();
 				} else if (result == Constants.P2P_SET.SD_FORMAT.SD_CARD_FAIL) {
-					Toast.makeText(mContext, "SD卡格式化失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.sd_format_fail, Toast.LENGTH_SHORT).show();
 				} else if (result == Constants.P2P_SET.SD_FORMAT.SD_NO_EXIST) {
-					Toast.makeText(mContext, "SD卡不存在", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.sd_card_no_exist, Toast.LENGTH_SHORT).show();
 				}
 				showSDImg();
 			} else if (intent.getAction().equals(
@@ -193,14 +193,14 @@ public class SDCardActivity extends Activity implements OnClickListener{
 							Intent back = new Intent();
 							back.setAction(Constants.Action.REPLACE_MAIN_CONTROL);
 							mContext.sendBroadcast(back);
-							Toast.makeText(mContext, "SD卡不存在", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, R.string.sd_card_no_exist, Toast.LENGTH_SHORT).show();
 						}
 					} else {
 						if (count == 2) {
 							Intent back = new Intent();
 							back.setAction(Constants.Action.REPLACE_MAIN_CONTROL);
 							mContext.sendBroadcast(back);
-							Toast.makeText(mContext, "SD卡不存在", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, R.string.sd_card_no_exist, Toast.LENGTH_SHORT).show();
 						}
 					}
 				}
@@ -209,7 +209,7 @@ public class SDCardActivity extends Activity implements OnClickListener{
 				Intent back = new Intent();
 				back.setAction(Constants.Action.REPLACE_MAIN_CONTROL);
 				mContext.sendBroadcast(back);
-				Toast.makeText(mContext, "不支持", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.no_surpport, Toast.LENGTH_SHORT).show();
 			}
 		}
 	};

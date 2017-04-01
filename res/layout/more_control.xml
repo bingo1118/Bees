@@ -28,7 +28,7 @@
 	  	        android:layout_width="wrap_content"
 	  	        android:layout_height="wrap_content"
 	  	        android:textColor="#000000"
-	  	        android:text="烟感"
+	  	        android:text="@string/alarmactivity_yangan"
 	  	        android:layout_centerInParent="true"
 	  	        android:textSize="18sp"
 	  	        />
@@ -51,7 +51,7 @@
 	  	        android:layout_height="wrap_content"
 	  	        android:textColor="#000000"
 	  	        android:layout_centerInParent="true"
-	  	        android:text="门磁"
+	  	        android:text="@string/alarmactivity_menci"
 	  	        android:textSize="18sp"
 	  	        />
 	  	    <ImageView 
@@ -72,7 +72,7 @@
 	  	        android:layout_width="wrap_content"
 	  	        android:layout_height="wrap_content"
 	  	        android:textColor="#000000"
-	  	        android:text="红外探测器"
+	  	        android:text="@string/alarmactivity_hongwai"
 	  	        android:layout_centerInParent="true"
 	  	        android:textSize="18sp"
 	  	        />
@@ -93,7 +93,7 @@
 	  	        android:layout_width="wrap_content"
 	  	        android:layout_height="wrap_content"
 	  	        android:textColor="#000000"
-	  	        android:text="可燃气体探测器"
+	  	         android:text="@string/alarmactivity_keranqiti"
 	  	        android:layout_centerInParent="true"
 	  	        android:textSize="18sp"
 	  	        />
@@ -115,7 +115,7 @@
 	  	        android:layout_width="wrap_content"
 	  	        android:layout_height="wrap_content"
 	  	        android:textColor="#000000"
-	  	        android:text="水禁"
+	  	        android:text="@string/shuijin"
 	  	        android:layout_centerInParent="true"
 	  	        android:textSize="18sp"
 	  	        />
@@ -137,7 +137,7 @@
 	  	        android:layout_width="wrap_content"
 	  	        android:layout_height="wrap_content"
 	  	        android:textColor="#000000"
-	  	        android:text="万能遥控器"
+	  	        android:text="@string/ykq"
 	  	        android:layout_centerInParent="true"
 	  	        android:textSize="18sp"
 	  	        />
@@ -160,7 +160,7 @@
 	  	        android:layout_height="wrap_content"
 	  	        android:textColor="#000000"
 	  	        android:layout_centerInParent="true"
-	  	        android:text="设备共享"
+	  	        android:text="@string/share_device"
 	  	        android:textSize="18sp"
 	  	        />
 	  	    <ImageView 
@@ -181,7 +181,7 @@
 	  	        android:layout_width="wrap_content"
 	  	        android:layout_height="wrap_content"
 	  	        android:textColor="#000000"
-	  	        android:text="修改智能插座名称"
+	  	        android:text="@string/change_socket_name"
 	  	        android:layout_centerInParent="true"
 	  	        android:textSize="18sp"
 	  	        />
@@ -201,7 +201,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:text="取消"
+        android:text="@string/cancel"
         android:textSize="18sp"
         />
 	</RelativeLayout>

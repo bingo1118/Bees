@@ -49,9 +49,9 @@ public class VpSimpleFragment extends Fragment {
 	}
 	
 	private void initData(UserDevice device) {
-//		String url=Constants.GETHISTORYINFO+"?deviceMac="+device.getDevMac();
+		String url=Constants.GETHISTORYINFO+"?deviceMac="+device.getDevMac();
 //		String url="http://192.168.0.23:8080/smartHome/servlet/GetHistoryInfomation?deviceMac=559b5b14";
-		String url="http://119.29.224.28:51091/smartHome/servlet/GetHistoryInfomation?deviceMac=559b5b14";
+//		String url="http://119.29.224.28:51091/smartHome/servlet/GetHistoryInfomation?deviceMac=559b5b14";
 		RequestQueue mQueue = Volley.newRequestQueue(getActivity());
 		JsonObjectRequest mJsonRequest = new JsonObjectRequest(Method.GET,
 				url, 
@@ -76,12 +76,12 @@ public class VpSimpleFragment extends Fragment {
 									iaq[i].setText(changeQuality(every_info.getString("quality")));
 								}
 							}else{
-								Toast.makeText(getActivity(), "获取信息失败", Toast.LENGTH_SHORT).show();
+								Toast.makeText(getActivity(), R.string.get_dev_fail, Toast.LENGTH_SHORT).show();
 							}
 						} catch (JSONException e) {
 							// TODO 自动生成的 catch 块
 							e.printStackTrace();
-							Toast.makeText(getActivity(), "获取设备错误", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
 						}
 						
 						
@@ -92,7 +92,7 @@ public class VpSimpleFragment extends Fragment {
 				new ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Toast.makeText(getActivity(), "获取设备错误", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
 					}
 				});
 		mQueue.add(mJsonRequest);

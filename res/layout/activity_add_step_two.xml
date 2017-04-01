@@ -10,51 +10,51 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:textColor="#000000"
-        android:text="后退"
+        android:text="@string/back"
         />
     
     <EditText
         android:id="@+id/send_et" 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="发送内容"
+        android:hint="@string/message_send"
         />
 	<TextView
 	    android:id="@+id/receive_tv" 
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_below="@id/send_et"
-	    android:text="接收内容"
+	    android:text="@string/message_get"
 	    />
     
     <Button 
         android:id="@+id/start_send1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="发送1"
+        android:text="@string/send_1"
         />
     <Button 
         android:id="@+id/start_send2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="发送2"
+        android:text="@string/send_2"
         />
     <Button 
         android:id="@+id/start_send3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="发送3"
+        android:text="@string/send_3"
         />
     <Button 
         android:id="@+id/start_send4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="发送4"
+        android:text="@string/send_4"
         />
     <Button 
         android:id="@+id/end_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="断开"
+        android:text="@string/disconnect"
         />
 </LinearLayout>

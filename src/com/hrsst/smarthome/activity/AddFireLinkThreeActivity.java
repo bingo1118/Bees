@@ -2,6 +2,7 @@ package com.hrsst.smarthome.activity;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 import com.hrsst.smarthome.R;
 import com.hrsst.smarthome.dialog.ConnectionFKDialog;
 import com.hrsst.smarthome.global.Constants;
@@ -10,6 +11,7 @@ import com.hrsst.smarthome.order.SendServerOrder;
 import com.hrsst.smarthome.order.UnPackServer;
 import com.hrsst.smarthome.pojo.UnPackageFromServer;
 import com.hrsst.smarthome.util.BitmapCache;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -94,20 +96,21 @@ public class AddFireLinkThreeActivity extends Activity {
 				UnPackageFromServer mUnPackageFromServer = new UnPackServer().unStudyOrderPack(datas);
 				String studyResult = mUnPackageFromServer.order;
 				if (studyResult.equals("fail")) {
-					Toast.makeText(context, "配置失败...", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, R.string.configuration_failed, Toast.LENGTH_SHORT).show();
 				} else if (studyResult.equals("false")) {
-					Toast.makeText(context, "CRC验证错误...", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, R.string.crc_configurantion_fail, Toast.LENGTH_SHORT).show();
 				} else if (studyResult.equals("repetition")) {
-					Toast.makeText(context, "该设备已经配置过...", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, R.string.this_device_have_configurantion, Toast.LENGTH_SHORT).show();
 				} else {
-					Toast.makeText(context, "配置成功...", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, R.string.configuration_success, Toast.LENGTH_SHORT).show();
 				}
 				if (cdialog.isShowing()) {
 					cdialog.dismiss();
 				}
 				mTimer.cancel();
 				count = 0;
-				finish();
+//				finish();
+				startActivity(new Intent(AddFireLinkThreeActivity.this,MainActivity.class));//@@
 			}
 		}
 
@@ -157,7 +160,7 @@ public class AddFireLinkThreeActivity extends Activity {
 				count = 0;
 				if (cdialog.isShowing()) {
 					cdialog.dismiss();
-					Toast.makeText(getApplicationContext(), "配置超时", Toast.LENGTH_SHORT).show();//@@
+					Toast.makeText(getApplicationContext(), R.string.configuration_outtime, Toast.LENGTH_SHORT).show();//@@
 				}
 				break;
 			default:

@@ -343,7 +343,7 @@ public class PlayBackListActivity extends FragmentActivity implements
 				int result = intent.getIntExtra("result", -1);
 				if (result == Constants.P2P_SET.ACK_RESULT.ACK_PWD_ERROR) {
 					finish();
-					Toast.makeText(mContext, "密码错误", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.psw_error, Toast.LENGTH_SHORT).show();
 				} else if (result == Constants.P2P_SET.ACK_RESULT.ACK_NET_ERROR) {
 					Log.e("my", "net error resend:set npc time");
 					faultFrag.setErrorText(getResources().getString(
@@ -352,7 +352,7 @@ public class PlayBackListActivity extends FragmentActivity implements
 					replaceFrag(faultFrag, fragments[2]);
 				} else if (result == Constants.P2P_SET.ACK_RESULT.ACK_INSUFFICIENT_PERMISSIONS) {
 					finish();
-					Toast.makeText(mContext, "权限不足", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.insufficient_permissions, Toast.LENGTH_SHORT).show();
 				}
 			} else if (intent.getAction().equals(Constants.P2P.P2P_ACCEPT)) {
 				int[] type = intent.getIntArrayExtra("type");
@@ -421,11 +421,11 @@ public class PlayBackListActivity extends FragmentActivity implements
 			list.clear();
 			waitload++;
 			if (startTime.getText().toString().equals("")) {
-				Toast.makeText(mContext, "请输入开始时间", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.input_start_time, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (endTime.getText().toString().equals("")) {
-				Toast.makeText(mContext, "请输入结束时间", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.input_end_time, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (loadFrag == null) {
@@ -439,7 +439,7 @@ public class PlayBackListActivity extends FragmentActivity implements
 				Log.e("time1", "search1" + start.toString());
 				Log.e("time2", "search2" + end.toString());
 				if (start.after(end)) {
-					Toast.makeText(mContext, "开始时间必须在结束时间之前", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.starttime_before_endtime, Toast.LENGTH_SHORT).show();
 					return;
 				}
 				madapter.setStartTime(start);
@@ -566,7 +566,7 @@ public class PlayBackListActivity extends FragmentActivity implements
 		if (contact.contactPassword == null
 				|| contact.contactPassword.equals("")) {
 			finish();
-			Toast.makeText(mContext, "密码错误", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContext, R.string.psw_error, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");

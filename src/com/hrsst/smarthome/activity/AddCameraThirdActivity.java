@@ -110,17 +110,17 @@ public class AddCameraThirdActivity extends Activity implements OnClickListener{
 			}
 			String wifiPwd = wifi_pwd.getText().toString();
 			if (ssid == null || ssid.equals("")) {
-				Toast.makeText(mContext, "请先将手机连接无线网络", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.addcamerathirdactivity_phone_connect_wifi_first, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (ssid.equals("<unknown ssid>")) {
-				Toast.makeText(mContext, "请先将手机连接无线网络", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.addcamerathirdactivity_phone_connect_wifi_first, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!isWifiOpen) {
 				if (null == wifiPwd || wifiPwd.length() <= 0
 						&& (type == 1 || type == 2)) {
-					Toast.makeText(mContext, "请输入Wi-Fi密码", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.addcamerathirdactivity_input_wifi_psw, Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}

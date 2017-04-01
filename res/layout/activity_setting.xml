@@ -16,7 +16,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginLeft="20dp"
             android:textColor="#ffffff"
-            android:text="后退"
+            android:text="@string/back"
             />
     </RelativeLayout>
     
@@ -32,6 +32,6 @@
 	    android:gravity="center"
 	    android:textSize="22sp"
 	    android:background="@drawable/login_button"
-	    android:text="注销"
+	    android:text="@string/logout"
 	    />
 </RelativeLayout>

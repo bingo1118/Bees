@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:textColor="#15fe15"
-        android:text="后退"
+        android:text="@string/back"
         />
     
     <RelativeLayout
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="开始"
+        android:text="@string/start"
         android:visibility="gone"
         />
 </RelativeLayout>

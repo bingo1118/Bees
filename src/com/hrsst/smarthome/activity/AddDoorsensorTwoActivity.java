@@ -65,13 +65,13 @@ public class AddDoorsensorTwoActivity extends Activity{
 			Bitmap mBitmapsj_2 = BitmapCache.getInstance().getBitmap(R.drawable.sj_lct_2,mContext);
 			BitmapDrawable sj_2 = new BitmapDrawable(mContext.getResources(), mBitmapsj_2);
 			step_two_image.setBackground(sj_2);
-			add_dev_tip.setText("请在下面的输入框中输入您希望将水禁设备所安放的位置。输入完成后，点击下一步。");
+			add_dev_tip.setText(R.string.add_two);
 			break;
 		case 7:
 			Bitmap mBitmapykq_2 = BitmapCache.getInstance().getBitmap(R.drawable.ykq_lct_1,mContext);
 			BitmapDrawable ykq_2 = new BitmapDrawable(mContext.getResources(), mBitmapykq_2);
 			step_two_image.setBackground(ykq_2);
-			add_dev_tip.setText("请在下面的输入框中输入您希望将万能遥控器所安放的位置。输入完成后，点击下一步。");
+			add_dev_tip.setText(R.string.add_two);
 			break;
 		default:
 			break;
@@ -88,9 +88,9 @@ public class AddDoorsensorTwoActivity extends Activity{
 					i.putExtra("location", doorsensor_locationStr);
 					i.putExtra("type", type);
 					startActivity(i);
-					finish();
+//					finish();
 				}else{
-					Toast.makeText(mContext, "请输入安放的位置", 1).show();
+					Toast.makeText(mContext, R.string.please_input_location, 1).show();
 				}
 			}
 		});

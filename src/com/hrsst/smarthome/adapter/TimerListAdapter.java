@@ -99,17 +99,17 @@ public class TimerListAdapter extends BaseAdapter{
 		int count = socketOnEnable-socketOffEnable;
 		switch (count) {
 		case -1://0 1
-			holder.start_time_tv.setText("关闭");
+			holder.start_time_tv.setText(R.string.close);
 			holder.start_time.setText(mDwTimer.getSocketOffTime());
 			holder.end_time.setText("");
 			break;
 		case 0://1 1
-			holder.start_time_tv.setText("开启时段");
+			holder.start_time_tv.setText(R.string.open_time);
 			holder.start_time.setText(mDwTimer.getSocketOnTime());
 			holder.end_time.setText(" - "+mDwTimer.getSocketOffTime());
 			break;
 		case 1://0 0
-			holder.start_time_tv.setText("开启");
+			holder.start_time_tv.setText(R.string.open);
 			holder.start_time.setText(mDwTimer.getSocketOnTime());
 			holder.end_time.setText("");
 			break;
@@ -216,7 +216,7 @@ public class TimerListAdapter extends BaseAdapter{
 						R.layout.dialog_loading, null);
 				AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 				TextView title_text = (TextView) v.findViewById(R.id.title_text);
-				title_text.setText("正在配置");
+				title_text.setText(R.string.is_setting);
 				dialog = builder.create();
 				dialog.show();
 				dialog.setContentView(v);
@@ -298,11 +298,11 @@ public class TimerListAdapter extends BaseAdapter{
 					Intent i = new Intent();
 					i.setAction("REFREASH_ADAPTER");
 					arg0.sendBroadcast(i);
-					Toast.makeText(mContext, "配置成功。。。", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.set_success, Toast.LENGTH_SHORT).show();
 					mSocketUDPClient.sendMsg(SendServerOrder.ClientACKOrder(mac,seq));
 				}
 				if("fail".equals(receiveFlag)){
-					Toast.makeText(mContext, "配置失败。。。", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.set_fail, Toast.LENGTH_SHORT).show();
 					mSocketUDPClient.sendMsg(SendServerOrder.ClientACKOrder(mac,seq));
 				}
 				if(dialog!=null&&dialog.isShowing()){

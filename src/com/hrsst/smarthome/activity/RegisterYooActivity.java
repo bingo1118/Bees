@@ -94,14 +94,14 @@ public class RegisterYooActivity extends Activity {
 							dialog_loading.dismiss();
 							dialog_loading = null;
 						}
-						Toast.makeText(mContext, "失败", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.fail, Toast.LENGTH_SHORT).show();
 						break;
 					case "false":
 						if(null!=dialog_loading){
 							dialog_loading.dismiss();
 							dialog_loading = null;
 						}
-						Toast.makeText(mContext, "CRC错误", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.crc_error, Toast.LENGTH_SHORT).show();
 						break;
 					default:
 						break;
@@ -202,14 +202,14 @@ public class RegisterYooActivity extends Activity {
 				mSocketUDPClient.sendMsg(orderSend);
 				break;
 			case NetManager.REGISTER_EMAIL_USED:
-				Toast.makeText(mContext, "该邮箱已被绑定", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.the_mail_have_bind, Toast.LENGTH_SHORT).show();
 				if(null!=dialog_loading){
 					dialog_loading.dismiss();
 					dialog_loading = null;
 				}
 				break;
 			case NetManager.REGISTER_EMAIL_FORMAT_ERROR:
-				Toast.makeText(mContext, "邮箱格式不对", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.email_format_error, Toast.LENGTH_SHORT).show();
 				if(null!=dialog_loading){
 					dialog_loading.dismiss();
 					dialog_loading = null;
@@ -286,7 +286,7 @@ public class RegisterYooActivity extends Activity {
 						.setActiveAccount(mContext, account);
 				NpcCommon.mThreeNum = AccountPersist.getInstance()
 						.getActiveAccountInfo(mContext).three_number;
-				Toast.makeText(mContext, "绑定成功", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext,R.string.bind_success, Toast.LENGTH_SHORT).show();
 				//登陆成功后跳转到添加摄像头步骤
 				Intent ii = new Intent();
 				ii.setAction("START_P2P_ACTION");

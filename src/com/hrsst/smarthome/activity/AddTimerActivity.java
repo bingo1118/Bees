@@ -148,18 +148,18 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 				by[i] = 0x00;
 			}
 			//getWeek();
-			repetition_tv.setText("执行一次");
+			repetition_tv.setText(R.string.run_once);
 			break;
 		case R.id.everyday_rel:
 			closeDiyItem();
-			repetition_tv.setText("每天");
+			repetition_tv.setText(R.string.everyday);
 			for(int i=0;i<7;i++){
 				by[i] = 0x01;
 			}
 			break;
 		case R.id.working_rel:
 			closeDiyItem();
-			repetition_tv.setText("工作日");
+			repetition_tv.setText(R.string.workday);
 			by[0] = 0x00;
 			by[6] = 0x00;
 			for(int i=1;i<6;i++){
@@ -168,7 +168,7 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.weeks_rel:
 			closeDiyItem();
-			repetition_tv.setText("周末");
+			repetition_tv.setText(R.string.weekend);
 			for(int i=1;i<6;i++){
 				by[i] = 0x00;
 			}
@@ -220,7 +220,7 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 			orderDatas[17] = 0x00;
 			clear_close_time.setVisibility(View.GONE);
 			end_time_image.setVisibility(View.VISIBLE);
-			close_time.setText("未设置");
+			close_time.setText(R.string.no_setted);
 			break;
 		case R.id.clear_open_time:
 			orderDatas[10] = 0x00;
@@ -229,13 +229,13 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 			orderDatas[13] = 0x00;
 			clear_open_time.setVisibility(View.GONE);
 			start_time_image.setVisibility(View.VISIBLE);
-			open_time.setText("未设置");
+			open_time.setText(R.string.no_setted);
 			break;
 		case R.id.confire_button:
 			View view = LayoutInflater.from(mContext).inflate(
 					R.layout.dialog_loading, null);
 			TextView title_text = (TextView) view.findViewById(R.id.title_text);
-			title_text.setText("正在配置");
+			title_text.setText(R.string.is_setting);
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 			dialog = builder.create();
 			dialog.setCancelable(false);
@@ -272,7 +272,7 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 				String receiveFlag = mUnPackageFromServer.timerOrder;
 				byte[] seq = mUnPackageFromServer.seq;
 				if("true".equals(receiveFlag)){
-					Toast.makeText(mContext, "配置成功。。。", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.configuration_success, Toast.LENGTH_SHORT).show();
 					mSocketUDPClient.sendMsg(SendServerOrder.ClientACKOrder(mac,seq));
 					Intent i = new Intent(mContext,TimerListActivity.class);
 					i.putExtra("dwMac", mac);
@@ -280,7 +280,7 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 					finish();
 				}
 				if("fail".equals(receiveFlag)){
-					Toast.makeText(mContext, "配置失败。。。", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.configurantion_fail, Toast.LENGTH_SHORT).show();
 					mSocketUDPClient.sendMsg(SendServerOrder.ClientACKOrder(mac,seq));
 				}
 				if(dialog!=null&&dialog.isShowing()){
@@ -361,7 +361,7 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 			int count = socketOnEnable-socketOffEnable;
 			switch (count) {
 			case -1://0 1
-				open_time.setText("未设置");
+				open_time.setText(R.string.no_setted);
 				start_time_image.setVisibility(View.VISIBLE);
 				close_time.setText(endTime);
 				end_time_image.setVisibility(View.GONE);
@@ -378,7 +378,7 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 				break;
 			case 1://0 0
 				open_time.setText(startTime);
-				close_time.setText("未设置");
+				close_time.setText(R.string.no_setted);
 				start_time_image.setVisibility(View.GONE);
 				end_time_image.setVisibility(View.VISIBLE);
 				clear_close_time.setVisibility(View.GONE);
@@ -389,7 +389,7 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 			}
 			int repeat = sendDatas[2];
 			if(0==repeat){
-				repetition_tv.setText("执行一次");
+				repetition_tv.setText(R.string.run_once);
 			}else{
 				List<Integer> li = new ArrayList<Integer>();
 				for(int j=6;j>=0;j--){

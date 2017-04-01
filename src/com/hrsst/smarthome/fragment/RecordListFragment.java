@@ -143,7 +143,7 @@ public class RecordListFragment extends Fragment implements OnScrollListener {
 		emptyView.setPadding(0, 200, 0, 0);
 		emptyView.setTextColor(Utils.getColorByResouce(R.color.black));
 		emptyView.setLayoutParams(params);
-		emptyView.setText("没有录像文件");
+		emptyView.setText(R.string.no_video);
 		emptyView.setVisibility(View.GONE);
 		((ViewGroup) list_record.getParent()).addView(emptyView);
 		list_record.setEmptyView(emptyView);

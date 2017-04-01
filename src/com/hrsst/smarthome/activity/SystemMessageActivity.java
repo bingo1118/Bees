@@ -200,7 +200,7 @@ public class SystemMessageActivity extends Activity{
 						sysAdapter.notifyDataSetChanged();//189 31 26
 						progressBar.setVisibility(View.GONE);//@@
 						if(li.size()==0){
-							Toast.makeText(mContext, "无数据", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, R.string.no_data, Toast.LENGTH_SHORT).show();
 						}//@@
 					}
 				}, 
@@ -208,7 +208,7 @@ public class SystemMessageActivity extends Activity{
 					@Override
 					public void onErrorResponse(VolleyError error) {
 						progressBar.setVisibility(View.GONE);//@@
-						Toast.makeText(mContext, "获取列表错误", Toast.LENGTH_SHORT).show();//@@
+						Toast.makeText(mContext, R.string.error, Toast.LENGTH_SHORT).show();//@@
 					}
 				}, 
 				map);

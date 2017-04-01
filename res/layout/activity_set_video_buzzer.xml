@@ -38,7 +38,7 @@
 		<TextView 
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:text="设置摄像机蜂鸣器"
+		    android:text="@string/set_buzzer"
 		    android:textColor="#ffffff"
 		    android:textSize="16sp"
 		    android:layout_centerInParent="true"

@@ -113,7 +113,7 @@ public class BinderPresetPosActivity extends Activity implements OnClickListener
 						dialog_loading = null;
 					}
 					getDefenceStatus();
-					Toast.makeText(mContext, "绑定成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.bind_success, Toast.LENGTH_SHORT).show();
 					alarmType=null;
 					yuzhiweiNumber=null;
 				}else{
@@ -122,7 +122,7 @@ public class BinderPresetPosActivity extends Activity implements OnClickListener
 							1, 
 							item,
 							Constants.P2P_SET.DEFENCE_AREA_SET.DEFENCE_AREA_TYPE_CLEAR);
-					Toast.makeText(mContext, "绑定失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.bind_fail, Toast.LENGTH_SHORT).show();
 					alarmType=null;
 					yuzhiweiNumber=null;
 				}
@@ -167,7 +167,7 @@ public class BinderPresetPosActivity extends Activity implements OnClickListener
 						if(null!=dialog){
 							dialog.dismiss();
 							dialog = null;
-							Toast.makeText(mContext, "清除成功", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, R.string.clear_success, Toast.LENGTH_SHORT).show();
 						}
 						getDefenceStatus();
 					}else{
@@ -178,7 +178,7 @@ public class BinderPresetPosActivity extends Activity implements OnClickListener
 						dialog_loading.dismiss();
 						dialog_loading = null;
 					}
-					Toast.makeText(mContext, "绑定失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,R.string.bind_fail, Toast.LENGTH_SHORT).show();
 					alarmType=null;
 					yuzhiweiNumber=null;
 				}
@@ -194,19 +194,36 @@ public class BinderPresetPosActivity extends Activity implements OnClickListener
 							case "烟感探测器":
 								presetType = 1;
 								break;
+							case "Smoke Detection Alarm":
+								presetType = 1;
+								break;
 							case "门磁探测器":
+								presetType = 2;
+							case "Wireless Doorsensor":
 								presetType = 2;
 								break;
 							case "燃气探测器":
 								presetType = 4;
 								break;
+							case "Wireless Gas Detection Alarm":
+								presetType = 4;
+								break;
 							case "红外探测器":
+								presetType = 3;
+								break;
+							case "Wireless Infrared Detection Alarm":
 								presetType = 3;
 								break;
 							case "水禁":
 								presetType = 5;
 								break;
+							case "Water Level Detector":
+								presetType = 5;
+								break;
 							case "万能遥控器":
+								presetType = 6;
+								break;
+							case "Controler":
 								presetType = 6;
 								break;
 							default:
@@ -227,7 +244,7 @@ public class BinderPresetPosActivity extends Activity implements OnClickListener
 							1, 
 							item,
 							Constants.P2P_SET.DEFENCE_AREA_SET.DEFENCE_AREA_TYPE_CLEAR);
-					Toast.makeText(mContext, "绑定失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.bind_fail, Toast.LENGTH_SHORT).show();
 					alarmType=null;
 					yuzhiweiNumber=null;
 				}
@@ -559,7 +576,7 @@ public class BinderPresetPosActivity extends Activity implements OnClickListener
 				mContext,
 				mContext.getResources().getString(R.string.learing_code),
 				mContext.getResources().getString(R.string.learing_code_prompt),
-				"绑定",
+				mContext.getResources().getString(R.string.bind),
 				mContext.getResources().getString(R.string.cancel)
 				);
 		dialog.setOnButtonOkListener(new NormalDialog.OnButtonOkListener() {
@@ -568,7 +585,7 @@ public class BinderPresetPosActivity extends Activity implements OnClickListener
 			public void onClick() {
 				// TODO Auto-generated method stub
 				if(alarmType==null||yuzhiweiNumber==null){
-					Toast.makeText(mContext, "请选择传感器类型和预置位", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,R.string.please_choose_chuanganqi_and_preset_position, Toast.LENGTH_SHORT).show();
 					return;
 				}
 				if(null==dialog_loading){

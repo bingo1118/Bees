@@ -25,7 +25,7 @@
 	        android:layout_height="40dp"
 	        android:layout_centerInParent="true"
 	        android:background="@null"
-	        android:hint="输入设备名称"
+	        android:hint="@string/enter_device_name"
         />
     </RelativeLayout>
     
@@ -44,7 +44,7 @@
 	        android:layout_height="40dp"
 	        android:layout_centerInParent="true"
 	        android:background="@null"
-	        android:hint="输入设备密码"
+	        android:hint="@string/enter_device_psw"
         />
     </RelativeLayout>
 	

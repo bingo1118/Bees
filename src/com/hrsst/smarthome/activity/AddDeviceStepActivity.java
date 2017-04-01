@@ -129,7 +129,7 @@ public class AddDeviceStepActivity extends Activity {
 					Intent intent = new Intent(mContext,
 							ActionComnfigerActivity.class);
 					startActivity(intent);
-					finish();
+//					finish();
 					break;
 				case 1://烟感
 					if (mUserDeviceList.size() > 0) {
@@ -138,9 +138,9 @@ public class AddDeviceStepActivity extends Activity {
 						intent1.putExtra("devList",
 								(Serializable) mUserDeviceList);
 						startActivity(intent1);
-						finish();
+//						finish();
 					} else {
-						Toast.makeText(mContext, "请先添加智能插座", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext,R.string.adddevicestepactivity_add_smart_socket_first, Toast.LENGTH_SHORT).show();
 					}
 					break;
 				case 2://无线门磁
@@ -151,9 +151,9 @@ public class AddDeviceStepActivity extends Activity {
 								(Serializable) mUserDeviceList);
 						intent2.putExtra("type", 2);
 						startActivity(intent2);
-						finish();
+//						finish();
 					} else {
-						Toast.makeText(mContext, "请先添加智能插座", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext,R.string.adddevicestepactivity_add_smart_socket_first, Toast.LENGTH_SHORT).show();
 					}
 					break;
 				case 3://红外探测器
@@ -164,9 +164,9 @@ public class AddDeviceStepActivity extends Activity {
 								(Serializable) mUserDeviceList);
 						intent4.putExtra("type", 4);
 						startActivity(intent4);
-						finish();
+//						finish();
 					}else{
-						Toast.makeText(mContext, "请先添加智能插座", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.adddevicestepactivity_add_smart_socket_first, Toast.LENGTH_SHORT).show();
 					}
 					
 					break;
@@ -178,9 +178,9 @@ public class AddDeviceStepActivity extends Activity {
 								(Serializable) mUserDeviceList);
 						intent5.putExtra("type", 5);
 						startActivity(intent5);
-						finish();
+//						finish();
 					}else{
-						Toast.makeText(mContext, "请先添加智能插座", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.adddevicestepactivity_add_smart_socket_first, Toast.LENGTH_SHORT).show();
 					}
 					
 					break;
@@ -192,7 +192,7 @@ public class AddDeviceStepActivity extends Activity {
 								(Serializable) mUserDeviceList);
 						intent6.putExtra("type", 6);
 						startActivity(intent6);
-						finish();
+//						finish();
 					}else{
 						Toast.makeText(mContext, "请先添加智能插座", Toast.LENGTH_SHORT).show();
 					}
@@ -206,9 +206,9 @@ public class AddDeviceStepActivity extends Activity {
 								(Serializable) mUserDeviceList);
 						intent7.putExtra("type", 7);
 						startActivity(intent7);
-						finish();
+//						finish();
 					}else{
-						Toast.makeText(mContext, "请先添加智能插座", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.adddevicestepactivity_add_smart_socket_first, Toast.LENGTH_SHORT).show();
 					}
 					
 					break;
@@ -217,7 +217,7 @@ public class AddDeviceStepActivity extends Activity {
 						String userNumStr = SharedPreferencesManager.getInstance().getData(mContext, Constants.UserInfo.USER_ID);
 						Intent intent8 = new Intent(mContext,AddAirDeviceActivity.class);
 						startActivity(intent8);
-						finish();
+//						finish();
 //					}else{
 //						Toast.makeText(mContext, "请先添加智能插座", Toast.LENGTH_SHORT).show();
 //					}

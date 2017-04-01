@@ -161,10 +161,10 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 				
 				if(openOrColse==1){
 					holder.image.setImageResource(R.drawable.zhuangtai_on);
-					holder.open_or_close_tv.setText("开");
+					holder.open_or_close_tv.setText(R.string.on);
 				}else{
 					holder.image.setImageResource(R.drawable.zhuangtai_off);
-					holder.open_or_close_tv.setText("关");
+					holder.open_or_close_tv.setText(R.string.off);
 				}
 				if(onOrOutLine==1){
 					holder.defence_image.setEnabled(true);
@@ -439,12 +439,12 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 //			Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.zhuangtai_on, mContext);
 //			BitmapDrawable bd = new BitmapDrawable(mContext.getResources(), mBitmap);
 			im.setImageResource(R.drawable.zhuangtai_on);
-			tv_open.setText("开");
+			tv_open.setText(R.string.on);
 		}else{
 //			Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.zhuangtai_off, mContext);
 //			BitmapDrawable bd = new BitmapDrawable(mContext.getResources(), mBitmap);
 			im.setImageResource(R.drawable.zhuangtai_off);
-			tv_open.setText("关");
+			tv_open.setText(R.string.off);
 		}
 		if(onOrOutLine==1){//插座是否在线
 //			Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.chazuo_on, mContext);

@@ -77,7 +77,7 @@ public class SplashActivity extends Activity{
 				mSocketUDPClient.startAcceptMessage();
 			}
 		}else{
-			Toast.makeText(mContext, "请连接网络", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContext, R.string.please_connect_network, Toast.LENGTH_SHORT).show();
 			Intent i2 = new Intent(SplashActivity.this,LoginActivity.class);
 			i2.putExtra("ifLogin", "no");
 			startActivity(i2);
@@ -169,7 +169,7 @@ public class SplashActivity extends Activity{
 						mTimer=null;
 					}
 					count=0;
-					Toast.makeText(mContext, "请输入正确的用户名和密码", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.please_input_right_user_name_and_psw, Toast.LENGTH_SHORT).show();
 					Intent i2 = new Intent(SplashActivity.this,LoginActivity.class);
 					i2.putExtra("ifLogin", "no");
 					startActivity(i2);
@@ -254,7 +254,7 @@ public class SplashActivity extends Activity{
 				Intent i2 = new Intent(SplashActivity.this,LoginActivity.class);
 				i2.putExtra("ifLogin", "no");
 				startActivity(i2);
-				Toast.makeText(mContext, "登录超时", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.login_timeout, Toast.LENGTH_SHORT).show();
 				finish();
 				break;
 			default:

@@ -66,10 +66,10 @@ public class EmailFindPwdActivity extends Activity implements OnClickListener {
 						&& pwdNumStr.equals(pwdNum1Str)) {
 					find(emailNumStr, pwdNumStr);
 				} else {
-					Toast.makeText(mContext, "两次输入的密码不一致，请重新输入", 1).show();
+					Toast.makeText(mContext, R.string.two_psw_diffrence, 1).show();
 				}
 			} else {
-				Toast.makeText(mContext, "邮箱格式不正确，请重新输入", 1).show();
+				Toast.makeText(mContext,R.string.email_format_error, 1).show();
 			}
 			break;
 
@@ -108,12 +108,12 @@ public class EmailFindPwdActivity extends Activity implements OnClickListener {
 								}
 								if (null != obj && obj.length() > 0
 										&& obj.equals("false")) {
-									Toast.makeText(mContext, "找回失败，请重新找回密码", 1)
+									Toast.makeText(mContext, R.string.find_psw_fail, 1)
 											.show();
 								}
 								if (null != obj && obj.length() > 0
 										&& obj.equals("userenotxit")) {
-									Toast.makeText(mContext, "用户不存在", 1).show();
+									Toast.makeText(mContext, R.string.user_on_exist, 1).show();
 								}
 							} catch (JSONException e) {
 								// TODO Auto-generated catch block

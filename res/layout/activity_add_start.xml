@@ -18,7 +18,7 @@
         android:textColor="@color/wifi_change_color"
         android:layout_marginBottom="20dp"
         android:textSize="16sp"
-        android:text="点击选取设备WIFI"
+        android:text="@string/choose_device_wifi"
         />
      
     <Button 

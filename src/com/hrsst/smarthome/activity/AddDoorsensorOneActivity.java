@@ -79,13 +79,13 @@ public class AddDoorsensorOneActivity extends Activity {
 			Bitmap mBitmapsj_1 = BitmapCache.getInstance().getBitmap(R.drawable.sj_lct_1,mContext);
 			BitmapDrawable bdsj_1 = new BitmapDrawable(mContext.getResources(), mBitmapsj_1);
 			step_one_image.setBackground(bdsj_1);
-			add_dev_tip.setText("请点击以下\"选择智能插座\"，前往插座列表选择一个需与水禁设备配对的智能插座。选择完成后返回，点击下一步。");
+			add_dev_tip.setText(R.string.add_one);
 			break;
 		case 7:
 			Bitmap mBitmapykq_1 = BitmapCache.getInstance().getBitmap(R.drawable.ykq_lct_1,mContext);
 			BitmapDrawable bdykq_1 = new BitmapDrawable(mContext.getResources(), mBitmapykq_1);
 			step_one_image.setBackground(bdykq_1);
-			add_dev_tip.setText("请点击以下\"选择智能插座\"，前往插座列表选择一个需与万能遥控器配对的智能插座。选择完成后返回，点击下一步。");
+			add_dev_tip.setText(R.string.add_one);
 			break;
 		default:
 			break;
@@ -101,9 +101,9 @@ public class AddDoorsensorOneActivity extends Activity {
 					i.putExtra("doorsensor", devMac);
 					i.putExtra("type", type);
 					startActivity(i);
-					finish();
+//					finish();
 				} else {
-					Toast.makeText(mContext, "请选择智能插座", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.please_choose_smart_socket, Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

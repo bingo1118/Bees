@@ -13,9 +13,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import com.hrsst.smarthome.R;
 import com.hrsst.smarthome.global.Constants;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -109,7 +108,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			@Override
 			public void run() {
 				Looper.prepare();
-				Toast.makeText(mContext, "很抱歉,程序出现异常,即将退出.", 2000).show();
+				Toast.makeText(mContext, R.string.will_over, 2000).show();
 				Looper.loop();
 			}
 		}.start();

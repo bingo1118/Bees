@@ -93,9 +93,9 @@ public class AlarmTypeListActivity extends Activity{
 				if(null!=result&&result.length()>0){
 					if(result.equals("success")){
 						getDevice(mac,type,"");
-						Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.change_success, Toast.LENGTH_SHORT).show();
 					}else if(result.equals("failed")){
-						Toast.makeText(mContext, "修改失败", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext,R.string.change_fail, Toast.LENGTH_SHORT).show();
 					}
 				}
 			}
@@ -134,8 +134,8 @@ public class AlarmTypeListActivity extends Activity{
 						// TODO Auto-generated method stub
 						String modifyName = modify_named.getText().toString()
 								.trim();
-						if(modifyName.length()>=50){
-							Toast.makeText(mContext, "输入的文字过长", Toast.LENGTH_SHORT).show();
+						if(modifyName.length()>=15){//@@
+							Toast.makeText(mContext, R.string.input_string_too_long, Toast.LENGTH_SHORT).show();
 						}else{
 							byte[] orderSend =SendServerOrder.ModifyAlarmName(alarmMac, modifyName);
 							mSocketUDPClient.sendMsg(orderSend);
@@ -153,22 +153,22 @@ public class AlarmTypeListActivity extends Activity{
 		alarm_type_name_list = (TextView) findViewById(R.id.alarm_type_name_list);
 		switch (type) {
 		case 1:
-			alarm_type_name_list.setText("烟感列表");
+			alarm_type_name_list.setText(R.string.list_of_yangan);
 			break;
 		case 2:
-			alarm_type_name_list.setText("门磁列表");
+			alarm_type_name_list.setText(R.string.list_of_menci);
 			break;
 		case 4:
-			alarm_type_name_list.setText("可燃气体探测器列表");
+			alarm_type_name_list.setText(R.string.list_of_keranqiti);
 			break;
 		case 3:
-			alarm_type_name_list.setText("红外探测器列表");
+			alarm_type_name_list.setText(R.string.list_of_hongwai);
 			break;
 		case 5:
-			alarm_type_name_list.setText("水禁列表");
+			alarm_type_name_list.setText(R.string.list_of_shuijin);
 			break;
 		case 6:
-			alarm_type_name_list.setText("万能遥控器列表");
+			alarm_type_name_list.setText(R.string.list_of_ykq);
 			break;
 		default:
 			break;
@@ -253,14 +253,14 @@ public class AlarmTypeListActivity extends Activity{
 						alarm_type_list.setAdapter(mDevTypeAdapter);
 						progressBar.setVisibility(View.GONE);//@@
 						if(li.size()==0){
-							Toast.makeText(mContext, "无数据", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, R.string.no_data, Toast.LENGTH_SHORT).show();
 						}//@@
 					}
 				}, 
 				new ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Toast.makeText(mContext, "获取列表出错", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.error, Toast.LENGTH_SHORT).show();
 						progressBar.setVisibility(View.GONE);//@@
 					}
 				}, 

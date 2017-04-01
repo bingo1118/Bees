@@ -107,13 +107,13 @@ public class PhoneRegisterActivity extends Activity implements OnClickListener {
 		switch (view.getId()) {
 		case R.id.get_code_btn:
 			if (phoneNumStr.length() != 11) {
-				Toast.makeText(mContext, "手机号格式不对", 1).show();
+				Toast.makeText(mContext, R.string.the_phone_format_error, 1).show();
 			} else {
 				if (null != pwdNumStr && pwdNumStr.length() > 0
 						&& pwdNumStr.equals(pwdNum1Str)) {
 					ifExit(phoneNumStr);
 				} else {
-					Toast.makeText(mContext, "两次的密码不一样，请重新输入", 1).show();
+					Toast.makeText(mContext,R.string.two_psw_diffrence, 1).show();
 				}
 			}
 			break;
@@ -123,7 +123,7 @@ public class PhoneRegisterActivity extends Activity implements OnClickListener {
 				SMSSDK.submitVerificationCode("86", phoneNumStr, codeNumStr);
 				registerBtn.setEnabled(false);
 			} else {
-				Toast.makeText(mContext, "验证码不正确，请重新输入", 1).show();
+				Toast.makeText(mContext, R.string.verification_code_error, 1).show();
 			}
 			break;
 		default:
@@ -146,7 +146,7 @@ public class PhoneRegisterActivity extends Activity implements OnClickListener {
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
 			if (intent.getAction().equals("CODE_ALREADY_SEND_ACTION")) {
-				Toast.makeText(mContext, "验证码已发送", 1).show();
+				Toast.makeText(mContext,R.string.verification_code_have_send, 1).show();
 				phoneNum.setEnabled(false);
 				pwdNum.setEnabled(false);
 				pwdNum1.setEnabled(false);
@@ -154,11 +154,11 @@ public class PhoneRegisterActivity extends Activity implements OnClickListener {
 				setTimerdoAction(doAction, mTimer);
 			}
 			if (intent.getAction().equals("VERIFY_SUCCESS")) {
-				Toast.makeText(mContext, "验证码已通过", 1).show();
+				Toast.makeText(mContext, R.string.verification_code_pass, 1).show();
 				register(phoneNumStr, pwdNumStr);
 			}
 			if (intent.getAction().equals("VERIFY_FALSE")) {
-				Toast.makeText(mContext, "验证码错误，请输入正确的验证码", 1).show();
+				Toast.makeText(mContext, R.string.verification_code_error, 1).show();
 				phoneNum.setEnabled(true);
 				pwdNum.setEnabled(true);
 				pwdNum1.setEnabled(true);
@@ -189,7 +189,7 @@ public class PhoneRegisterActivity extends Activity implements OnClickListener {
 								}
 								if (null != obj && obj.length() > 0
 										&& obj.equals("yes")) {
-									Toast.makeText(mContext, "该手机号已存在", 1)
+									Toast.makeText(mContext, R.string.phone_exist, 1)
 											.show();
 								}
 							} catch (JSONException e) {
@@ -226,7 +226,7 @@ public class PhoneRegisterActivity extends Activity implements OnClickListener {
 										&& obj.equals("success")) {
 									mTimer.cancel();
 									count = 0;
-									Toast.makeText(mContext, "注册成功", 1).show();
+									Toast.makeText(mContext,R.string.regist_success, 1).show();
 									registerBtn.setEnabled(true);
 									Intent i = new Intent();
 									i.setAction("PHONE_REGISTER_SUCCESS");
@@ -237,7 +237,7 @@ public class PhoneRegisterActivity extends Activity implements OnClickListener {
 								}
 								if (null != obj && obj.length() > 0
 										&& obj.equals("false")) {
-									Toast.makeText(mContext, "注册失败，请重新注册", 1)
+									Toast.makeText(mContext, R.string.regist_fail, 1)
 											.show();
 									mTimer.cancel();
 									count = 0;
@@ -286,7 +286,7 @@ public class PhoneRegisterActivity extends Activity implements OnClickListener {
 				pwdNum1.setEnabled(true);
 				codeBtn.setEnabled(true);
 				registerBtn.setEnabled(true);
-				codeBtn.setText("获取验证码");
+				codeBtn.setText(R.string.get_verification_code);
 			}
 		};
 	};

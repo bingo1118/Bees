@@ -263,11 +263,11 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 					String binderResult = mUnPackageFromServer.binderResult;
 					switch (binderResult) {
 					case "success":
-						Toast.makeText(mContext, "删除成功", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.delete_success, Toast.LENGTH_SHORT).show();
 						getUserDev();
 						break;
 					case "failed":
-						Toast.makeText(mContext, "删除失败", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.delete_fail, Toast.LENGTH_SHORT).show();
 						break;
 					default:
 						break;
@@ -355,7 +355,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 				wifiList = arg1.getExtras().getStringArrayList("count");
 				if(wifiList.size()>0){
 					new_dev_rela.setVisibility(View.GONE);
-					new_dev_num_tv.setText("    最新消息：发现 "+wifiList.size()+""+"  个新设备      ");
+					new_dev_num_tv.setText(getResources().getString(R.string.new_find)+wifiList.size()+""+getResources().getString(R.string.ge_new_device));
 				}else{
 					new_dev_rela.setVisibility(View.GONE);
 				}
@@ -372,9 +372,9 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 	 * 获取设备列表（Volley）@@
 	 */
 	private void getUserDev(){//获取设备列表@@
-//		String url=Constants.HTTPGETDEV+userNum;
+		String url=Constants.HTTPGETDEV+userNum;
 //		String url="http://192.168.0.23:8080/smartHome/servlet/GetDeviceStateAction?userNum="+userNum;
-		String url="http://119.29.224.28:51091/smartHome/servlet/GetDeviceStateAction?userNum="+userNum;
+//		String url="http://119.29.224.28:51091/smartHome/servlet/GetDeviceStateAction?userNum="+userNum;
 		RequestQueue mQueue = Volley.newRequestQueue(mContext);
 		JsonObjectRequest mJsonRequest = new JsonObjectRequest(Method.GET,
 				url, 
@@ -413,20 +413,22 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 									userDevice.setEnvironment(environmentInfo);
 									mUserDeviceList.add(userDevice);
 								}
-								refreshGridview();
+								refreshGridview();//@@
 							}else if(errorCode==2){
 								mUserDeviceList=new ArrayList<UserDevice>();//@@
 								refreshGridview();//@@
-								Toast.makeText(getActivity(), "您没有任何设备", Toast.LENGTH_SHORT).show();
+								Toast.makeText(getActivity(), R.string.no_dev, Toast.LENGTH_SHORT).show();
 							}else{
 								mUserDeviceList=new ArrayList<UserDevice>();//@@
 								refreshGridview();//@@
-								Toast.makeText(getActivity(), "获取设备失败", Toast.LENGTH_SHORT).show();
+								Toast.makeText(getActivity(), R.string.get_dev_fail, Toast.LENGTH_SHORT).show();
 							}
 						} catch (JSONException e) {
 							// TODO 自动生成的 catch 块
 							e.printStackTrace();
-							Toast.makeText(getActivity(), "获取设备错误", Toast.LENGTH_SHORT).show();
+							mUserDeviceList=new ArrayList<UserDevice>();//@@
+							refreshGridview();//@@
+							Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
 						}
 						
 						
@@ -435,7 +437,9 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 				new ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Toast.makeText(getActivity(), "获取设备错误", Toast.LENGTH_SHORT).show();
+						mUserDeviceList=new ArrayList<UserDevice>();//@@
+						refreshGridview();//@@
+						Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
 					}
 				});
 		mQueue.add(mJsonRequest);
@@ -509,7 +513,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 							intent.putExtra("ocState", itemUserDevice.getSocketStates());
 							startActivity(intent);
 						}else{
-							Toast.makeText(mContext, "设备离线", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, R.string.device_offline, Toast.LENGTH_SHORT).show();
 						}
 						break;
 					case 2:
@@ -528,7 +532,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 							monitor.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 							mContext.startActivity(monitor);
 						}else{
-							Toast.makeText(mContext, "设备离线", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext,R.string.device_offline, Toast.LENGTH_SHORT).show();
 						}
 						break;
 					case 3:

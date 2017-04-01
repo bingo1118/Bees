@@ -322,12 +322,12 @@ public class NormalDialog {
 	
 	private void findAllAlarmType(final View view){
 		List<String> lt = new ArrayList<String>();
-		lt.add("ÑÌ¸ĞÌ½²âÆ÷");
-		lt.add("ÃÅ´ÅÌ½²âÆ÷");
-		lt.add("È¼ÆøÌ½²âÆ÷");
-		lt.add("ºìÍâÌ½²âÆ÷");
-		lt.add("Ë®½û");
-		lt.add("ÍòÄÜÒ£¿ØÆ÷");
+		lt.add(context.getString(R.string.smoke_detection));
+		lt.add(context.getString(R.string.doorsensor));
+		lt.add(context.getString(R.string.gas_detection));
+		lt.add(context.getString(R.string.infrared_detection));
+		lt.add(context.getString(R.string.shuijin));
+		lt.add(context.getString(R.string.ykq));
 		AlarmTypeAdapter mAlarmTypeAdapter = new AlarmTypeAdapter(context,lt);
 		listrView.setAdapter(mAlarmTypeAdapter);
 		YzwAdapter mYzwAdapter = new YzwAdapter(context,Constants.STATUS);

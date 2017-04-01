@@ -82,11 +82,11 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 					case "success":
 						contact.contactName = modifyName;
 						contact.contactPassword = password_new;
-						Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.change_success, Toast.LENGTH_SHORT).show();
 						finishThis();
 						break;
 					case "failed":
-						Toast.makeText(mContext, "修改失败", 1).show();
+						Toast.makeText(mContext, R.string.change_fail, 1).show();
 						break;
 					default:
 						break;
@@ -106,7 +106,7 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 						dialog.dismiss();
 						dialog = null;
 					}
-					Toast.makeText(mContext, "操作失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.operation_fail, Toast.LENGTH_SHORT).show();
 				}
 			} else if (intent.getAction().equals(
 					Constants.P2P.ACK_RET_SET_DEVICE_PASSWORD)) {
@@ -116,9 +116,9 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 						dialog.dismiss();
 						dialog = null;
 					}
-					Toast.makeText(mContext, "旧密码错误", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.old_psw_error, Toast.LENGTH_SHORT).show();
 				} else if (result == Constants.P2P_SET.ACK_RESULT.ACK_NET_ERROR) {
-					Toast.makeText(mContext, "网络异常，操作失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.network_fail, Toast.LENGTH_SHORT).show();
 				}
 			} else if (intent.getAction().equals(
 					Constants.P2P.RET_DEVICE_NOT_SUPPORT)) {
@@ -151,32 +151,32 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 			modifyName = contactName.getText().toString().trim();
 			
 			if ("".equals(modifyName.trim())) {
-				Toast.makeText(mContext, "请输入设备名称", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.please_input_device_name, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			
 			if ("".equals(password_old.trim())) {
-				Toast.makeText(mContext, "请输入旧的管理密码", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.please_input_old_massage_psw, Toast.LENGTH_SHORT).show();
 				return;
 			}
 
 			if ("".equals(password_new.trim())) {
-				Toast.makeText(mContext, "请输入新的管理密码", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.please_input_new_massage_psw, Toast.LENGTH_SHORT).show();
 				return;
 			}
 
 			if (password_new.length()>30|| password_new.charAt(0) == '0') {
-				Toast.makeText(mContext, "设备密码无效", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.device_password_invalid, Toast.LENGTH_SHORT).show();
 				return;
 			}
 
 			if ("".equals(password_re_new.trim())) {
-				Toast.makeText(mContext, "请再输入一次密码", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.please_input_psw_again, Toast.LENGTH_SHORT).show();
 				return;
 			}
 
 			if (!password_re_new.equals(password_new)) {
-				Toast.makeText(mContext, "您两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext,R.string.differentpassword, Toast.LENGTH_SHORT).show();
 				return;
 			}
 

@@ -57,7 +57,8 @@ public class PersonerFragment extends Fragment implements OnClickListener{
 		user_id.setOnClickListener(this);
 		menu_pe = (TextView) view.findViewById(R.id.menu_pe);
 		menu_pe.setOnClickListener(this);
-		Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.faxian,mContext);
+//		Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.faxian,mContext);
+		Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.zhineng,mContext);//@@
 		BitmapDrawable bd = new BitmapDrawable(mContext.getResources(), mBitmap);
 		per_imageView = (ImageView) view.findViewById(R.id.per_imageView);
 		per_imageView.setImageDrawable(bd);

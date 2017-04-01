@@ -123,7 +123,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 			socket_info_bg.setBackground(bd);
 			socket_mImageView.setBackgroundResource(R.drawable.dev_button);
 			openOrClose.setImageResource(R.drawable.switch_selector_on);
-			devStatus="开";
+			devStatus=getResources().getString(R.string.on);
 			mTextView.setText(devName+" "+devStatus);
 			ocState = 0;
 		} else {
@@ -133,7 +133,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 			socket_mImageView.setBackgroundResource(R.drawable.dev_button_off);
 			openOrClose.setImageResource(R.drawable.switch_selector);
 			ocState = 1;
-			devStatus="关";
+			devStatus=getResources().getString(R.string.off);
 			mTextView.setText(devName+" "+devStatus);
 		}
 		states = new byte[8];
@@ -178,10 +178,13 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 				String result = UnPackServer.unBinderCameraAndSocketPk(datas);
 				if("success".equals(result)){
 					relateResult=null;
-					Toast.makeText(mContext, "解除成功", Toast.LENGTH_SHORT).show();
-					relate_tv.setText("绑定");
+					Toast.makeText(mContext, R.string.remove_succcess, Toast.LENGTH_SHORT).show();
+					//更新ui
+					byte[] orderSend =SendServerOrder.findBinderCameraAndSocket(mac);//@@
+					mSocketUDPClient.sendMsg(orderSend);//@@
+					relate_tv.setText(R.string.bind);
 				}else{
-					Toast.makeText(mContext, "解除失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.remove_fail, Toast.LENGTH_SHORT).show();
 				}
 			}
 			
@@ -191,7 +194,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 				if(null!=mUserDeviceList&&mUserDeviceList.size()>0){
 					showCameraList(mUserDeviceList);
 				}else{
-					Toast.makeText(mContext, "请先添加摄像头", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.add_video_first, Toast.LENGTH_SHORT).show();
 				}
 			}
 			
@@ -199,13 +202,13 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 				byte[] datas = arg1.getExtras().getByteArray("datasByte");
 				String result = UnPackServer.unBinderCameraAndSocket(datas);
 				if("success".equals(result)){
-					Toast.makeText(mContext, "绑定成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.bind_success, Toast.LENGTH_SHORT).show();
 					//更新ui
 					byte[] orderSend =SendServerOrder.findBinderCameraAndSocket(mac);
 					mSocketUDPClient.sendMsg(orderSend);
-					relate_tv.setText("解绑");
+					relate_tv.setText(R.string.deviceinfoactivity_unbind);
 				}else{
-					Toast.makeText(mContext, "绑定失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.bind_fail, Toast.LENGTH_SHORT).show();
 				}
 				cameraMac=null;
 				if(null!=dialog_loading){
@@ -227,12 +230,13 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					if("yes".equals(relateResult)){
 						relate_image.setImageResource(R.drawable.relate_selector_on);
 						String devName = mUnPackageFromServer.devName;
-						relate_tv_name.setText("已与摄像头："+devName+"绑定");
-						relate_tv.setText("解绑");
+						relate_tv_name.setText(getResources().getString(R.string.connected_with)+devName);
+						relate_tv
+						.setText(R.string.deviceinfoactivity_unbind);
 					}else{
 						relate_image.setImageResource(R.drawable.relate_selector);
 						relate_tv_name.setText("");
-						relate_tv.setText("绑定");
+						relate_tv.setText(R.string.bind);
 					}
 				}
 			}
@@ -249,7 +253,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					socket_mImageView.setBackgroundResource(R.drawable.dev_button);
 					openOrClose.setImageResource(R.drawable.switch_selector_on);
 					ocState = 0;
-					devStatus = "开";
+					devStatus =getResources().getString(R.string.on);
 					mTextView.setText(devName+" "+devStatus);
 				}
 				if ("open".equals(receiveFlag)) {
@@ -259,7 +263,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					socket_mImageView.setBackgroundResource(R.drawable.dev_button_off);
 					openOrClose.setImageResource(R.drawable.switch_selector);
 					ocState = 1;
-					devStatus = "关";
+					devStatus = getResources().getString(R.string.off);
 					mTextView.setText(devName+" "+devStatus);
 				}
 			}
@@ -277,10 +281,10 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					case "success":
 						devName = modifyName;
 						mTextView.setText(devName+" "+devStatus);
-						Toast.makeText(mContext, "修改成功", 1).show();
+						Toast.makeText(mContext, R.string.modify_success, 1).show();
 						break;
 					case "failed":
-						Toast.makeText(mContext, "修改失败", 1).show();
+						Toast.makeText(mContext, R.string.change_fail, 1).show();
 						break;
 					default:
 						break;
@@ -377,7 +381,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					mUserDevice.setDevMac(mac);
 					modifyDialog.dismiss();
 					if(modifyName.length()>15){
-						Toast.makeText(mContext, "输入名称过长，请重新输入", Toast.LENGTH_SHORT).show();//@@
+						Toast.makeText(mContext, R.string.name_too_long, Toast.LENGTH_SHORT).show();//@@
 					}else{
 						byte[] orderSend =SendServerOrder.ModifyDev(mUserDevice,(byte)0x02);
 						mSocketUDPClient.sendMsg(orderSend);
@@ -440,7 +444,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					.findViewById(R.id.confire_modify);
 			final EditText shareView_modify_named = (EditText) shareView
 					.findViewById(R.id.modify_named);
-			shareView_modify_named.setHint("请输入对方的账号");
+			shareView_modify_named.setHint(R.string.input_other_side_account);
 			AlertDialog.Builder shareView_builder = new AlertDialog.Builder(
 					mContext);
 			modifyDialog = shareView_builder.create();
@@ -472,7 +476,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 						mSocketUDPClient.sendMsg(SendServerOrder.ShareDev(mac,
 								fromUserNum, toUserNum));
 					} else {
-						Toast.makeText(mContext, "输入的账号有误，请输入对方的正确账号", 1).show();
+						Toast.makeText(mContext, R.string.input_account_fail_input_again, 1).show();
 					}
 				}
 			});
@@ -519,7 +523,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					dialog.dismiss();
 					showDialog();
 				}else{
-					Toast.makeText(mContext, "请选择需要关联的摄像头", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.please_choose_need_video, Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

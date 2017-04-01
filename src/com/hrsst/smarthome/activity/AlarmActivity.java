@@ -235,27 +235,27 @@ public class AlarmActivity extends Activity {
 		String s = null;
 		switch (type) {
 		case 1:
-			s = "烟感";
+			s = getResources().getString(R.string.alarmactivity_yangan);
 			break;
 		case 2:
-			s = "门磁";
+			s = getResources().getString(R.string.alarmactivity_menci);
 			break;
 		case 3:
-			s = "红外探测器";
+			s = getResources().getString(R.string.alarmactivity_hongwai);
 			break;
 		case 4:
-			s = "可燃气体探测器";
+			s = getResources().getString(R.string.alarmactivity_keranqiti);
 			break;
 		case 5:
-			s = "水禁";
+			s = getResources().getString(R.string.water_dev);
 			break;
 		case 6:
-			s = "万能遥控器";
+			s = getResources().getString(R.string.controler_dev);
 			break;
 		default:
 			break;
 		}
-		alarm_msg_tv.setText(positionStr + "的" + s + "发出报警消息");
-		alarm_msg_time_tv.setText("报警时间:" + timeStr);
+		alarm_msg_tv.setText(positionStr + getResources().getString(R.string.alarmactivity_de) + s + getResources().getString(R.string.alarmactivity_issue_an_alert));
+		alarm_msg_time_tv.setText(getResources().getString(R.string.alarmactivity_alarm_time) + timeStr);
 	}
 }

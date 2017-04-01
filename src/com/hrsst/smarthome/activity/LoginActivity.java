@@ -102,7 +102,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 					&& null != userPwdStr && userPwdStr.length() > 0) {
 				login(userIDStr,userPwdStr);
 			} else {
-				Toast.makeText(mContext, "请输入正确的用户名和密码", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mContext, R.string.please_input_right_user_name_and_psw, Toast.LENGTH_SHORT).show();
 			}
 			break;
 		case R.id.tv_new_user:

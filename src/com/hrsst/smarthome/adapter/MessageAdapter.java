@@ -67,37 +67,37 @@ public class MessageAdapter extends BaseAdapter{
 			Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.firelink_alarm,mContext);
 			BitmapDrawable bd = new BitmapDrawable(mContext.getResources(), mBitmap);
 			holder.message_adapter_image.setImageDrawable(bd);
-			holder.alarm_dev_name.setText("独立式烟感探测报警器");
+			holder.alarm_dev_name.setText(R.string.devicelistadapter_smoke_detection_alarm);
 			break;
 		case 2:
 			Bitmap mBitmap2 = BitmapCache.getInstance().getBitmap(R.drawable.doorsensor_alarm,mContext);
 			BitmapDrawable bd2 = new BitmapDrawable(mContext.getResources(), mBitmap2);
 			holder.message_adapter_image.setImageDrawable(bd2);
-			holder.alarm_dev_name.setText("门磁报警器");
+			holder.alarm_dev_name.setText(R.string.devicelistadapter_menci);
 			break;
 		case 3:
 			Bitmap mBitmap3 = BitmapCache.getInstance().getBitmap(R.drawable.hw_logo_m,mContext);
 			BitmapDrawable bd3 = new BitmapDrawable(mContext.getResources(), mBitmap3);
 			holder.message_adapter_image.setImageDrawable(bd3);
-			holder.alarm_dev_name.setText("红外探测报警器");
+			holder.alarm_dev_name.setText(R.string.devicelistadapter_hongwai);
 			break;
 		case 4:
 			Bitmap mBitmap4 = BitmapCache.getInstance().getBitmap(R.drawable.rq_logo_m,mContext);
 			BitmapDrawable bd4 = new BitmapDrawable(mContext.getResources(), mBitmap4);
 			holder.message_adapter_image.setImageDrawable(bd4);
-			holder.alarm_dev_name.setText("可燃气体探测报警器");
+			holder.alarm_dev_name.setText(R.string.devicelistadapter_ranqi);
 			break;
 		case 5:
 			Bitmap mBitmap5 = BitmapCache.getInstance().getBitmap(R.drawable.bjxx_tb_sj,mContext);
 			BitmapDrawable bd5 = new BitmapDrawable(mContext.getResources(), mBitmap5);
 			holder.message_adapter_image.setImageDrawable(bd5);
-			holder.alarm_dev_name.setText("水禁");
+			holder.alarm_dev_name.setText(R.string.shuijin);
 			break;//@@
 		case 6:
 			Bitmap mBitmap6 = BitmapCache.getInstance().getBitmap(R.drawable.bjxx_tb_ykq,mContext);
 			BitmapDrawable bd6 = new BitmapDrawable(mContext.getResources(), mBitmap6);
 			holder.message_adapter_image.setImageDrawable(bd6);
-			holder.alarm_dev_name.setText("万能遥控器");
+			holder.alarm_dev_name.setText(R.string.ykq);
 			break;//@@
 		default:
 			break;

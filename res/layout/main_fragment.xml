@@ -24,6 +24,7 @@
 		   	    
 		   	</RelativeLayout>
 		   	
+		   	
 			<LinearLayout 
 			    android:id="@+id/tab_component"
 			    android:layout_width="match_parent"
@@ -48,7 +49,7 @@
 			           android:layout_height="match_parent"
 			           android:gravity="center"
 			           android:textColor="#ffffff"
-			           android:text="首页"/>
+			           android:text="@string/main_fragment_home"/>
 			    </RelativeLayout>
 			    <ImageView 
 			        android:layout_width="1dp"
@@ -66,7 +67,7 @@
 			            android:layout_height="match_parent"
 			            android:gravity="center"
 			            android:textColor="#ffffff"
-			            android:text="智能"/>
+			            android:text="@string/main_fragment_intelligent"/>
 			    </RelativeLayout>
 			    <ImageView 
 			        android:layout_width="1dp"
@@ -76,15 +77,14 @@
 			        android:id="@+id/icon_discover"
 			        android:layout_width="1dp"
 			        android:layout_height="match_parent"
-			        android:layout_weight="1"
+			        android:layout_weight="0.01"
 			        >
-			        <TextView 
+			        <!-- <TextView 
 			            android:id="@+id/tv_image"
 			            android:layout_width="match_parent"
 			            android:layout_height="match_parent"
 			            android:gravity="center"
-			            android:textColor="#ffffff"
-			            android:text="发现"/>
+			            android:text="@string/main_fragment_discover"/> -->
 			    </RelativeLayout>
 			    <ImageView 
 			        android:visibility="gone"
@@ -107,7 +107,7 @@
 			            android:layout_height="match_parent"
 			            android:gravity="center"
 			            android:textColor="#ffffff"
-			            android:text="消息"
+			            android:text="@string/main_fragment_message"
 			        />
 			    </RelativeLayout>
 			    <ImageView 

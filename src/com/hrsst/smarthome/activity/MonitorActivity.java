@@ -391,13 +391,13 @@ public class MonitorActivity extends BaseMonitorActivity implements
 				switch (resultStr) {
 				case 0:
 					
-					Toast.makeText(mContext, "操作成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.successful_operation, Toast.LENGTH_SHORT).show();
 					break;
 				case 84:
-					Toast.makeText(mContext, "无此设置选项", Toast.LENGTH_SHORT).show();				
+					Toast.makeText(mContext, R.string.have_not_setting_item, Toast.LENGTH_SHORT).show();				
 					break;
 				case 255:
-					Toast.makeText(mContext, "该设备不支持预置位", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.this_device_dont_support_preset_position, Toast.LENGTH_SHORT).show();
 					break;
 				default:
 					break;
@@ -487,10 +487,10 @@ public class MonitorActivity extends BaseMonitorActivity implements
 				if (result == 0) {
 					if (cur_modify_lamp_state == 0) {
 						lamp_switch = 0;
-						txLamp.setText("开灯");
+						txLamp.setText(R.string.turn_on_light);
 					} else {
 						lamp_switch = 1;
-						txLamp.setText("关灯");
+						txLamp.setText(R.string.turn_off_light);
 					}
 					showLampState();
 				} else {
@@ -510,10 +510,10 @@ public class MonitorActivity extends BaseMonitorActivity implements
 				Log.i("dxslamp", "result3-->" + result);
 				if (result == 1) {
 					lamp_switch = 1;
-					txLamp.setText("关灯");
+					txLamp.setText(R.string.turn_off_light);
 				} else {
 					lamp_switch = 0;
-					txLamp.setText("开灯");
+					txLamp.setText(R.string.turn_on_light);
 				}
 				showLampState();
 			} else if (intent.getAction().equals(

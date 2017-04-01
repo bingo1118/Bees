@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:text="邮箱找回"
+            android:text="@string/find_by_email"
             android:textSize="22sp"
             android:textColor="#000000"
             android:textStyle="bold" />
@@ -65,7 +65,7 @@
 	            android:password="true"
 	            android:layout_centerInParent="true"
 	            android:background="@null"
-	            android:hint="输入新的密码"
+	            android:hint="@string/input_new_pwd"
 	            />
         </RelativeLayout>
         
@@ -85,7 +85,7 @@
 	            android:background="@null"
 	            android:password="true"
 	            android:layout_centerInParent="true"
-	            android:hint="再次输入新的密码"
+	            android:hint="@string/enter_new_psw_again"
 	            />
         </RelativeLayout>
     </RelativeLayout>
@@ -98,7 +98,7 @@
      android:layout_alignParentBottom="true"
      android:layout_centerInParent="true"
      android:layout_marginBottom="100dp"
-     android:text="找回"
+     android:text="@string/find"
     />
     
 </RelativeLayout>

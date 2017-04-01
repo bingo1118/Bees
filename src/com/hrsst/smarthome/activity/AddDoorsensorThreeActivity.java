@@ -85,7 +85,7 @@ public class AddDoorsensorThreeActivity extends Activity {
 			cdialog = new ConnectionDoorSenSorDialog(mContext,R.anim.connect_rq_anim);
 			break;
 		case 6:
-			add_dev_tip.setText("将感应器的两个金属触头同时接触水面，点击下一步");
+			add_dev_tip.setText(R.string.add_three_sj);
 			Bitmap mBitmapsj_3 = BitmapCache.getInstance().getBitmap(R.drawable.sj_lct_3,mContext);
 			BitmapDrawable sj_3 = new BitmapDrawable(mContext.getResources(), mBitmapsj_3);
 			step_three_image.setBackground(sj_3);
@@ -93,7 +93,7 @@ public class AddDoorsensorThreeActivity extends Activity {
 			cdialog = new ConnectionDoorSenSorDialog(mContext,R.anim.connect_doorsensor_anim);
 			break;
 		case 7:
-			add_dev_tip.setText("点击遥控器的报警按钮，点击下一步");
+			add_dev_tip.setText(R.string.add_three_ykq);
 			Bitmap mBitmapykq_3 = BitmapCache.getInstance().getBitmap(R.drawable.ykq_lct_2,mContext);
 			BitmapDrawable ykq_3 = new BitmapDrawable(mContext.getResources(), mBitmapykq_3);
 			step_three_image.setBackground(ykq_3);
@@ -143,18 +143,19 @@ public class AddDoorsensorThreeActivity extends Activity {
 				UnPackageFromServer	mUnPackageFromServer = new UnPackServer().unStudyOrderPack(datas);
 				String studyResult = mUnPackageFromServer.order;
 				if (studyResult.equals("fail")) {
-					Toast.makeText(context, "配置失败...", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context,R.string.configuration_failed, Toast.LENGTH_SHORT).show();
 				} else if (studyResult.equals("repetition")) {
-					Toast.makeText(context, "该设备已经配置过...", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, R.string.device_have_configuration, Toast.LENGTH_SHORT).show();
 				} else {
-					Toast.makeText(context, "配置成功...", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, R.string.configuration_success, Toast.LENGTH_SHORT).show();
 				}
 				if (cdialog.isShowing()) {
 					cdialog.dismiss();
 				}
 				mTimer.cancel();
 				count = 0;
-				finish();
+//				finish();
+				startActivity(new Intent(AddDoorsensorThreeActivity.this,MainActivity.class));//@@
 			}
 		}
 
@@ -204,8 +205,10 @@ public class AddDoorsensorThreeActivity extends Activity {
 				count = 0;
 				if (cdialog.isShowing()) {
 					cdialog.dismiss();
+					Toast.makeText(getApplicationContext(), R.string.configuration_outtime, Toast.LENGTH_SHORT).show();//@@
 				}
-				finish();
+//				finish();
+//				startActivity(new Intent(AddDoorsensorThreeActivity.this,MainActivity.class));//@@
 				break;
 			default:
 				break;

@@ -229,10 +229,10 @@ public class RecordProjectActivity extends Activity implements OnClickListener,
 							contact.contactPassword);
 					// updateRecordType(cur_modify_record_type);
 					// showRecordType();
-					Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.modify_success, Toast.LENGTH_SHORT).show();
 				} else {
 					showRecordType();
-					Toast.makeText(mContext, "操作失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.operator_error, Toast.LENGTH_SHORT).show();
 				}
 			} else if (intent.getAction().equals(
 					Constants.P2P.RET_GET_RECORD_TIME)) {
@@ -263,13 +263,13 @@ public class RecordProjectActivity extends Activity implements OnClickListener,
 					radio_two_time.setEnabled(true);
 					radio_three_time.setEnabled(true);
 					progressBar_record_time.setVisibility(RelativeLayout.GONE);
-					Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.modify_success, Toast.LENGTH_SHORT).show();
 				} else {
 					radio_one_time.setEnabled(true);
 					radio_two_time.setEnabled(true);
 					radio_three_time.setEnabled(true);
 					progressBar_record_time.setVisibility(RelativeLayout.GONE);
-					Toast.makeText(mContext, "操作失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,  R.string.operator_error, Toast.LENGTH_SHORT).show();
 				}
 			} else if (intent.getAction().equals(
 					Constants.P2P.RET_GET_RECORD_PLAN_TIME)) {
@@ -309,12 +309,12 @@ public class RecordProjectActivity extends Activity implements OnClickListener,
 					change_plan_time.setEnabled(true);
 					progressBar_plan_time.setVisibility(RelativeLayout.GONE);
 					time_text.setVisibility(RelativeLayout.VISIBLE);
-					Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,R.string.modify_success, Toast.LENGTH_SHORT).show();
 				} else {
 					change_plan_time.setEnabled(true);
 					progressBar_plan_time.setVisibility(RelativeLayout.GONE);
 					time_text.setVisibility(RelativeLayout.VISIBLE);
-					Toast.makeText(mContext, "操作失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext,  R.string.operator_error, Toast.LENGTH_SHORT).show();
 				}
 			} else if (intent.getAction().equals(
 					Constants.P2P.ACK_RET_SET_RECORD_TYPE)) {
@@ -413,9 +413,9 @@ public class RecordProjectActivity extends Activity implements OnClickListener,
 				if (result == 0) {
 					P2PHandler.getInstance().getNpcSettings(idOrIp,
 							contact.contactPassword);
-					Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.modify_success, Toast.LENGTH_SHORT).show();
 				} else if (result == 83) {
-					Toast.makeText(mContext, "操作失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.operator_error, Toast.LENGTH_SHORT).show();
 				}
 			}else if (intent.getAction().equals(
 					Constants.P2P.ACK_GET_SD_CARD_CAPACITY)) {
@@ -471,11 +471,11 @@ public class RecordProjectActivity extends Activity implements OnClickListener,
 					Constants.P2P.RET_GET_SD_CARD_FORMAT)) {
 				int result = intent.getIntExtra("result", -1);
 				if (result == Constants.P2P_SET.SD_FORMAT.SD_CARD_SUCCESS) {
-					Toast.makeText(mContext, "SD卡格式化成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.sd_format_success, Toast.LENGTH_SHORT).show();
 				} else if (result == Constants.P2P_SET.SD_FORMAT.SD_CARD_FAIL) {
-					Toast.makeText(mContext, "SD卡格式化失败", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.sd_format_fail, Toast.LENGTH_SHORT).show();
 				} else if (result == Constants.P2P_SET.SD_FORMAT.SD_NO_EXIST) {
-					Toast.makeText(mContext, "SD卡不存在", Toast.LENGTH_SHORT).show();
+					Toast.makeText(mContext, R.string.sd_card_no_exist, Toast.LENGTH_SHORT).show();
 				}
 			} else if (intent.getAction().equals(
 					Constants.P2P.RET_GET_USB_CAPACITY)) {
@@ -506,14 +506,14 @@ public class RecordProjectActivity extends Activity implements OnClickListener,
 							Intent back = new Intent();
 							back.setAction(Constants.Action.REPLACE_MAIN_CONTROL);
 							mContext.sendBroadcast(back);
-							Toast.makeText(mContext, "SD卡不存在", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext,R.string.sd_card_no_exist, Toast.LENGTH_SHORT).show();
 						}
 					} else {
 						if (count == 2) {
 							Intent back = new Intent();
 							back.setAction(Constants.Action.REPLACE_MAIN_CONTROL);
 							mContext.sendBroadcast(back);
-							Toast.makeText(mContext, "SD卡不存在", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext,R.string.sd_card_no_exist, Toast.LENGTH_SHORT).show();
 						}
 						//sd_card_remainning_capacity.setBackgroundResource(R.drawable.tiao_bg_bottom);
 					}
