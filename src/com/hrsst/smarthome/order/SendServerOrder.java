@@ -9,6 +9,12 @@ import com.hrsst.smarthome.util.IntegerTo16;
 
 public class SendServerOrder {
 	
+	/**
+	 * 手机回复包
+	 * @param mac
+	 * @param seq
+	 * @return
+	 */
 	public static byte[] ClientACKOrder(String mac,byte[] seq){
 		byte[] datas = new byte[26];
 		byte[] macByte = mac.getBytes();

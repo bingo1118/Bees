@@ -228,8 +228,9 @@ public class ConnectWifiActivity extends Activity implements OnClickListener {
 				if(null!=datas&&datas.length>0){
 					UnPackageFromServer mUnPackageFromServer = new UnPackServer().unBinderUser(datas);
 					String result = mUnPackageFromServer.binderUser;
+					byte[] seq = mUnPackageFromServer.seq;//@@
 					if(result.equals("failed")){
-						//Toast.makeText(mContext, "配置失败", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, R.string.configuration_failed, Toast.LENGTH_SHORT).show();
 					}else if(result.equals("success")){
 						if(mTimer1!=null){
 							mTimer1.cancel();
@@ -240,6 +241,7 @@ public class ConnectWifiActivity extends Activity implements OnClickListener {
 //						finish();
 						startActivity(new Intent(ConnectWifiActivity.this,MainActivity.class));
 					}
+					mSocketUDPClient.sendMsg(SendServerOrder.ClientACKOrder(wifiMac,seq));//手机回复包@@
 				}
 			}
 		}

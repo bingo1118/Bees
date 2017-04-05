@@ -142,6 +142,7 @@ public class AddDoorsensorThreeActivity extends Activity {
 				byte[] datas = intent.getExtras().getByteArray("datasByte");
 				UnPackageFromServer	mUnPackageFromServer = new UnPackServer().unStudyOrderPack(datas);
 				String studyResult = mUnPackageFromServer.order;
+				byte[] seq = mUnPackageFromServer.seq;//@@
 				if (studyResult.equals("fail")) {
 					Toast.makeText(context,R.string.configuration_failed, Toast.LENGTH_SHORT).show();
 				} else if (studyResult.equals("repetition")) {
@@ -149,6 +150,7 @@ public class AddDoorsensorThreeActivity extends Activity {
 				} else {
 					Toast.makeText(context, R.string.configuration_success, Toast.LENGTH_SHORT).show();
 				}
+				mSocketUDP.sendMsg(SendServerOrder.ClientACKOrder(doorsensor,seq));//»Ø¸´ACK@@
 				if (cdialog.isShowing()) {
 					cdialog.dismiss();
 				}
