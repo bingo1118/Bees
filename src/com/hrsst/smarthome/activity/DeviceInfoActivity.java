@@ -50,6 +50,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 	private String mac, devName,cameraMac;
 	private int ocState;
 	private byte[] states;
+	private int ifshare;//@@
 	private TextView mTextView,relate_tv,relate_tv_name;
 	private RelativeLayout socket_info_bg, more_control_rela, cancel_tv_name,
 			modify_dev_name, fk_tv_name, door_tv_name, dev_share,infrared_tv_name,gas_tv_name,
@@ -66,6 +67,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_device_info);
 		mac = getIntent().getExtras().getString("mac");
 		ocState = getIntent().getExtras().getInt("ocState");
+		ifshare=getIntent().getExtras().getInt("ifshare");//@@
 		devName = getIntent().getExtras().getString("devName");
 		mContext = this;
 		init();
@@ -438,6 +440,10 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 			startActivity(ykq);
 			break;
 		case R.id.dev_share:// Éè±¸¹²Ïí
+			if(ifshare==1){
+				Toast.makeText(mContext,R.string.shared_dev_can_not_share, Toast.LENGTH_LONG).show();
+				break;
+			}//@@
 			View shareView = LayoutInflater.from(mContext).inflate(
 					R.layout.modify_dev_name_dialog, null);
 			TextView shareView_cancle_modify = (TextView) shareView
@@ -471,10 +477,19 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+					String userPhone= SharedPreferencesManager.getInstance().getData(
+							mContext,
+							"userPhone");
+					String userEmail= SharedPreferencesManager.getInstance().getData(
+							mContext,
+							"userEmail");
+					String userNum = SharedPreferencesManager.getInstance().getData(
+							mContext,
+							Constants.UserInfo.USER_NUMBER);
 					modifyDialog.dismiss();
 					String toUserNum = shareView_modify_named.getText()
 							.toString().trim();
-					if (toUserNum != null && toUserNum.length() > 0&&!fromUserNum.equals(toUserNum)) {
+					if (toUserNum != null && toUserNum.length() > 0&&!userNum.equals(toUserNum)&&!toUserNum.equals(userPhone)&&!toUserNum.equals(userEmail)) {
 						mSocketUDPClient.sendMsg(SendServerOrder.ShareDev(mac,
 								fromUserNum, toUserNum));
 					} else {

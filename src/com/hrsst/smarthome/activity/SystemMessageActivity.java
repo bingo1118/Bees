@@ -98,7 +98,7 @@ public class SystemMessageActivity extends Activity{
 		system_msg_list.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			@Override
 			public void onMenuItemClick(int position, SwipeMenu menu, int index) {
-				ShareMessages item = li.get(position);
+				ShareMessages item = li.get(li.size()-1-position);//@@
 				switch (index) {
 				case 0:
 					// delete

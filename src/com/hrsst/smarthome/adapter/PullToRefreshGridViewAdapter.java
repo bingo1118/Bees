@@ -38,22 +38,52 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 	private Context mContext;
 	private List<UserDevice> list;
 	private ViewHolder holder;
+	private ViewHolder2 holder2 = null;
 	private Map<String, Integer> m;
 	private String cameraId;
 	private String cameraPwd;
+	
+	private static final int TYPE_COUNT = 2;//item类型的总数
+	private static final int TYPE_AIR = 0;//环境探测器类型
+	private static final int TYPE_DEV = 1;//其他设备类型
+	private int currentType;//当前item类型
 
 	public PullToRefreshGridViewAdapter(Context mContext,List<UserDevice> list) {
 		this.mContext = mContext;
 		this.list = list;
-		
-//		UserDevice dev=new UserDevice();
-//		dev.setDevType(3);
-//		this.list.add(dev);
-		
-		
 		socketPos =new TreeSet<Integer>();
 		cameraPos =new TreeSet<Integer>();
+		for(int i=0;i<list.size();i++){//@@
+			int type=list.get(i).getDevType();
+			if(type==1){
+				socketPos.add(i);
+			}
+			if(type==2){
+				cameraPos.add(i);
+			}
+		}
 		m = new TreeMap<String, Integer>();
+	}
+	
+	@Override
+	public int getItemViewType(int position) {
+		// TODO Auto-generated method stub
+		UserDevice mUserDevice = null;
+		int type = 0;
+		if(position<list.size()){
+			mUserDevice=list.get(position);
+			type = mUserDevice.getDevType();
+		}
+		if (type==3) {
+			return TYPE_AIR;
+		}else {
+			return TYPE_DEV;
+		}
+	}
+
+	@Override
+	public int getViewTypeCount() {
+		return TYPE_COUNT;
 	}
 
 	@Override
@@ -76,188 +106,206 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		UserDevice mUserDevice = null;
+		
+		View AirView = null;
+		View DevView = null;
+		
 		int type = 0;
 		if(position<list.size()){
 			mUserDevice=list.get(position);
 			type = mUserDevice.getDevType();
 		}
-		if (convertView == null) {
-			if(type==3){
-				EnvironmentInfo info=mUserDevice.getEnvironment();
-				convertView = LayoutInflater.from(mContext).inflate(R.layout.air_dev, null);
-				convertView.setPadding(50, 15, 0, 10);
-//				convertView.setPadding(10, 15, 0, 10);
-				if(info==null){
-					info=new EnvironmentInfo();
-				}
-				TextView temperature=(TextView)convertView.findViewById(R.id.tv_temperature);//温度
-				temperature.setText(info.getTemperature()+"°");
-				TextView humidity=(TextView)convertView.findViewById(R.id.tv_humidity);//湿度
-				humidity.setText(info.getHumidity()+"%");
-				TextView pm25=(TextView)convertView.findViewById(R.id.tv_pm25);//pm2.5
-				pm25.setText(info.getPm25()+" µg/m³");
-				TextView methanal=(TextView)convertView.findViewById(R.id.tv_methanal);//甲醛
-				methanal.setText(info.getMethanal()+" mg/m³");
-				TextView quality=(TextView)convertView.findViewById(R.id.tv_environment_quality);//空气质量
-				switch (info.getEnvironmentQuality()) {
-				case 1:
-					quality.setText("优");
-					quality.setTextColor(0xff16bb5c);
-					break;
-				case 2:
-					quality.setText("良");
-					quality.setTextColor(0xff08b9b7);
-					break;
-				case 3:
-					quality.setText("中");
-					quality.setTextColor(0xffde9e06);
-					break;
-				case 4:
-					quality.setText("差");
-					quality.setTextColor(0xffe4150b);
-					break;
-				default:
-					quality.setText("--");
-					quality.setTextColor(0xffe4150b);
-					break;
-				}
-				
-				TextView name=(TextView)convertView.findViewById(R.id.tv_dev_name);//设备名称
-				name.setText(mUserDevice.getDevName());
-			}else{
-				convertView = LayoutInflater.from(mContext).inflate(R.layout.adapter_uselayout, null);
-				convertView.setPadding(50, 15, 0, 10);
-//				convertView.setPadding(10, 15, 0, 10);
-				holder = new ViewHolder();
-				holder.image = (ImageView) convertView.findViewById(R.id.mImageView);
-				holder.defence_image = (ImageView) convertView.findViewById(R.id.defence_image);
-				holder.text = (TextView) convertView.findViewById(R.id.mTextView);
-				holder.open_or_close_tv = (TextView) convertView.findViewById(R.id.open_or_close_tv);
-				holder.device_list_rela = (RelativeLayout) convertView.findViewById(R.id.device_list_rela);
-				convertView.setTag(holder);
+		
+		currentType = getItemViewType(position);
+		if (currentType == TYPE_AIR) {
+			holder2=null;
+			if (convertView == null) {
+				holder2 = new ViewHolder2();
+				AirView = LayoutInflater.from(mContext).inflate(R.layout.air_dev, null);
+				AirView.setPadding(50, 15, 0, 10);
+				holder2.temperature=(TextView)AirView.findViewById(R.id.tv_temperature);//温度
+				holder2.humidity=(TextView)AirView.findViewById(R.id.tv_humidity);//湿度
+				holder2.pm25=(TextView)AirView.findViewById(R.id.tv_pm25);//pm2.5
+				holder2.methanal=(TextView)AirView.findViewById(R.id.tv_methanal);//甲醛
+				holder2.quality=(TextView)AirView.findViewById(R.id.tv_environment_quality);//空气质量
+				holder2.name=(TextView)AirView.findViewById(R.id.tv_dev_name);//设备名称
+				AirView.setTag(holder2);
+				convertView = AirView;
+			}else {
+				holder2 = (ViewHolder2)convertView.getTag();
 			}
-			
-		} else {
-			if(type!=3){
-				holder = (ViewHolder) convertView.getTag();
-			}
-			
-		}
-		if(list.size()>0&&position<list.size()&&type!=3){
-//			UserDevice mUserDevice =list.get(position);
-			//添加摄像头启用
-//			int type = mUserDevice.getDevType();
-			int onOrOutLine = mUserDevice.getLightOnOrOutLine();
-			int openOrColse = mUserDevice.getSocketStates();
-			switch (type) {
+			EnvironmentInfo info=mUserDevice.getEnvironment();
+			holder2.temperature.setText(info.getTemperature()+"°");
+			holder2.humidity.setText(info.getHumidity()+"%");
+			holder2.pm25.setText(info.getPm25()+" µg/m³");
+			holder2.methanal.setText(info.getMethanal()+" mg/m³");
+			switch (info.getEnvironmentQuality()) {
 			case 1:
-				socketPos.add(position);//存储插座位置。。
-				int defenceType = mUserDevice.getDefence();
-				if(defenceType==0){
-					holder.defence_image.setBackgroundResource(R.drawable.defence_on);
-				}else{
-					holder.defence_image.setBackgroundResource(R.drawable.defence_off);
-				}
-				
-				if(openOrColse==1){
-					holder.image.setImageResource(R.drawable.zhuangtai_on);
-					holder.open_or_close_tv.setText(R.string.on);
-				}else{
-					holder.image.setImageResource(R.drawable.zhuangtai_off);
-					holder.open_or_close_tv.setText(R.string.off);
-				}
-				if(onOrOutLine==1){
-					holder.defence_image.setEnabled(true);
-					holder.device_list_rela.setBackgroundResource(R.drawable.chazuo_on);
-				}else{
-					holder.defence_image.setEnabled(false);
-					holder.device_list_rela.setBackgroundResource(R.drawable.chazuo_off);
-				}
-				holder.text.setText(mUserDevice.getDevName());
+				holder2.quality.setText("优");
+				holder2.quality.setTextColor(0xff16bb5c);
 				break;
 			case 2:
-				cameraPos.add(position);//添加摄像头位置
-				holder.defence_image.setBackgroundResource(R.drawable.defence_anxia);
-				holder.image.setVisibility(View.GONE);
-				holder.open_or_close_tv.setVisibility(View.GONE);
-				String cameraId = mUserDevice.getDevMac().trim();
-				String cameraPwd = mUserDevice.getCameraPwd().trim();
-				P2PHandler.getInstance().getDefenceStates(
-						cameraId, cameraPwd);
-				m.put(cameraId, position);
-				if(onOrOutLine==1){
-					holder.defence_image.setEnabled(true);
-					holder.device_list_rela.setBackgroundResource(R.drawable.shouye_sxt_on);
-				}else{
-					holder.defence_image.setEnabled(false);
-					holder.device_list_rela.setBackgroundResource(R.drawable.shouye_sxt_off);
-				}
-				holder.text.setText(mUserDevice.getDevName());
+				holder2.quality.setText("良");
+				holder2.quality.setTextColor(0xff08b9b7);
+				break;
+			case 3:
+				holder2.quality.setText("中");
+				holder2.quality.setTextColor(0xffde9e06);
+				break;
+			case 4:
+				holder2.quality.setText("差");
+				holder2.quality.setTextColor(0xffe4150b);
 				break;
 			default:
+				holder2.quality.setText("--");
+				holder2.quality.setTextColor(0xffe4150b);
 				break;
 			}
-			
-			//布防按钮。。
-			holder.defence_image.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					UserDevice mUserDevice = list.get(position);
-					int type = mUserDevice.getDevType();
-					int defence = mUserDevice.getDefence();
-					switch (type) {
-					case 1:
-						if(defence==0){
-							defence=1;
-						}else{
-							defence=0;
-						}
-						Intent i = new Intent();
-						i.putExtra("defencePos", position);
-						i.putExtra("defenceType", defence);
-						i.putExtra("devMac", list.get(position).getDevMac());
-						i.setAction("DEFENCE_ACTION");
-						mContext.sendBroadcast(i);
-						break;
-					case 2:
-						System.out.println("defence="+defence);
-						if(defence==0){
-							P2PHandler.getInstance().setRemoteDefence(
-									mUserDevice.getDevMac().trim(),
-									mUserDevice.getCameraPwd().trim(),
-									Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_ON);
-							defence=1;
-							cameraId = mUserDevice.getDevMac().trim();
-							cameraPwd = mUserDevice.getCameraPwd().trim();
-							holder.defence_image.setBackgroundResource(R.drawable.defence_on);
-						}else{
-							P2PHandler.getInstance().setRemoteDefence(
-									mUserDevice.getDevMac().trim(),
-									mUserDevice.getCameraPwd().trim(),
-									Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_OFF);
-							defence=0;
-							cameraId = mUserDevice.getDevMac().trim();
-							cameraPwd = mUserDevice.getCameraPwd().trim();
-							holder.defence_image.setBackgroundResource(R.drawable.defence_off);
-						}
-						break;
-					default:
-						break;
+			holder2.name.setText(mUserDevice.getDevName());
+		}else if (currentType == TYPE_DEV){
+			holder=null;
+			if (convertView == null) {
+				holder = new ViewHolder();
+				DevView = LayoutInflater.from(mContext).inflate(R.layout.adapter_uselayout, null);
+				DevView.setPadding(50, 15, 0, 10);
+				holder.ifShare=(ImageView)DevView.findViewById(R.id.ifShare);
+				holder.image = (ImageView) DevView.findViewById(R.id.mImageView);
+				holder.defence_image = (ImageView) DevView.findViewById(R.id.defence_image);
+				holder.text = (TextView) DevView.findViewById(R.id.mTextView);
+				holder.open_or_close_tv = (TextView) DevView.findViewById(R.id.open_or_close_tv);
+				holder.device_list_rela = (RelativeLayout) DevView.findViewById(R.id.device_list_rela);				
+				DevView.setTag(holder);
+				convertView=DevView;
+			}else{
+				holder=(ViewHolder)convertView.getTag();
+			}
+			if(list.size()>0&&position<list.size()){
+//				UserDevice mUserDevice =list.get(position);
+				//添加摄像头启用
+//				int type = mUserDevice.getDevType();
+				int onOrOutLine = mUserDevice.getLightOnOrOutLine();
+				int openOrColse = mUserDevice.getSocketStates();
+				switch (type) {
+				case 1:
+//					socketPos.add(position);//存储插座位置。。@@
+					int defenceType = mUserDevice.getDefence();
+					if(defenceType==0){
+						holder.defence_image.setBackgroundResource(R.drawable.defence_on);
+					}else{
+						holder.defence_image.setBackgroundResource(R.drawable.defence_off);
+					}
+					int ifshare=mUserDevice.getIsShare();//@@
+					if(ifshare==1){
+						holder.ifShare.setVisibility(View.VISIBLE);
+					}else{
+						holder.ifShare.setVisibility(View.GONE);
 					}
 					
+					if(openOrColse==1){
+						holder.image.setImageResource(R.drawable.zhuangtai_on);
+						holder.open_or_close_tv.setText(R.string.on);
+					}else{
+						holder.image.setImageResource(R.drawable.zhuangtai_off);
+						holder.open_or_close_tv.setText(R.string.off);
+					}
+					if(onOrOutLine==1){
+						holder.defence_image.setEnabled(true);
+						holder.device_list_rela.setBackgroundResource(R.drawable.chazuo_on);
+					}else{
+						holder.defence_image.setEnabled(false);
+						holder.device_list_rela.setBackgroundResource(R.drawable.chazuo_off);
+					}
+					holder.text.setText(mUserDevice.getDevName());
+					break;
+				case 2:
+//					cameraPos.add(position);//添加摄像头位置@@
+					int ifshare1=mUserDevice.getIsShare();//@@
+					if(ifshare1==1){
+						holder.ifShare.setVisibility(View.VISIBLE);
+					}else{
+						holder.ifShare.setVisibility(View.GONE);
+					}
+					holder.defence_image.setBackgroundResource(R.drawable.defence_anxia);
+					holder.image.setVisibility(View.GONE);
+					holder.open_or_close_tv.setVisibility(View.GONE);
+					String cameraId = mUserDevice.getDevMac().trim();
+					String cameraPwd = mUserDevice.getCameraPwd().trim();
+					P2PHandler.getInstance().getDefenceStates(
+							cameraId, cameraPwd);
+					m.put(cameraId, position);
+					if(onOrOutLine==1){
+						holder.defence_image.setEnabled(true);
+						holder.device_list_rela.setBackgroundResource(R.drawable.shouye_sxt_on);
+					}else{
+						holder.defence_image.setEnabled(false);
+						holder.device_list_rela.setBackgroundResource(R.drawable.shouye_sxt_off);
+					}
+					holder.text.setText(mUserDevice.getDevName());
+					break;
+				default:
+					break;
 				}
-			});
-			
-			
-		}
-		if(position==list.size()){
-			holder.device_list_rela.setBackgroundResource(R.drawable.add_device);
-			holder.defence_image.setVisibility(View.GONE);
-			holder.image.setVisibility(View.GONE);
-			holder.text.setVisibility(View.GONE);
-			holder.open_or_close_tv.setVisibility(View.GONE);
+				//布防按钮。。
+				holder.defence_image.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						// TODO Auto-generated method stub
+						UserDevice mUserDevice = list.get(position);
+						int type = mUserDevice.getDevType();
+						int defence = mUserDevice.getDefence();
+						switch (type) {
+						case 1:
+							if(defence==0){
+								defence=1;
+							}else{
+								defence=0;
+							}
+							Intent i = new Intent();
+							i.putExtra("defencePos", position);
+							i.putExtra("defenceType", defence);
+							i.putExtra("devMac", list.get(position).getDevMac());
+							i.setAction("DEFENCE_ACTION");
+							mContext.sendBroadcast(i);
+							break;
+						case 2:
+							System.out.println("defence="+defence);
+							if(defence==0){
+								P2PHandler.getInstance().setRemoteDefence(
+										mUserDevice.getDevMac().trim(),
+										mUserDevice.getCameraPwd().trim(),
+										Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_ON);
+								defence=1;
+								cameraId = mUserDevice.getDevMac().trim();
+								cameraPwd = mUserDevice.getCameraPwd().trim();
+								holder.defence_image.setBackgroundResource(R.drawable.defence_on);
+							}else{
+								P2PHandler.getInstance().setRemoteDefence(
+										mUserDevice.getDevMac().trim(),
+										mUserDevice.getCameraPwd().trim(),
+										Constants.P2P_SET.REMOTE_DEFENCE_SET.ALARM_SWITCH_OFF);
+								defence=0;
+								cameraId = mUserDevice.getDevMac().trim();
+								cameraPwd = mUserDevice.getCameraPwd().trim();
+								holder.defence_image.setBackgroundResource(R.drawable.defence_off);
+							}
+							break;
+						default:
+							break;
+						}
+						
+					}
+				});
+				
+			}
+			if(position==list.size()){
+				holder.device_list_rela.setBackgroundResource(R.drawable.add_device);
+				holder.defence_image.setVisibility(View.GONE);
+				holder.image.setVisibility(View.GONE);
+				holder.text.setVisibility(View.GONE);
+				holder.open_or_close_tv.setVisibility(View.GONE);
+				holder.ifShare.setVisibility(View.GONE);//@@
+			}
 		}
 		return convertView;
 	}
@@ -325,7 +373,7 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
     	if (mGridView == null){
             return;
         }
-    	View view = mGridView.getChildAt(pos);
+    	View view = mGridView.getChildAt(pos- mGridView.getFirstVisiblePosition());//@@
     	if(view==null){
     		return;
     	}
@@ -344,7 +392,7 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
     	if (mGridView == null){
             return;
         }
-    	View view = mGridView.getChildAt(pos);
+    	View view = mGridView.getChildAt(pos- mGridView.getFirstVisiblePosition());//@@
     	if(view==null){
     		 return;
     	}
@@ -386,7 +434,7 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
     	if (mGridView == null){
             return;
         }
-    	View view = mGridView.getChildAt(((UserDevice) obj).getId());
+    	View view = mGridView.getChildAt(((UserDevice) obj).getId()- mGridView.getFirstVisiblePosition());//@@
     	if(view==null){
     		return;
     	}
@@ -423,7 +471,7 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 		if (mGridView == null){
             return;
         }
-		View view = mGridView.getChildAt(index);
+		View view = mGridView.getChildAt(index- mGridView.getFirstVisiblePosition());//@@
 		if(view==null){
 			return;
 		}
@@ -482,6 +530,15 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 		public TextView text,open_or_close_tv;
 		public RelativeLayout device_list_rela;
 		public ImageView defence_image;
+		public ImageView ifShare;//@@
+	}
+	static class ViewHolder2 {
+		public TextView temperature;//温度
+		public TextView humidity;//湿度;
+		public TextView pm25;//pm2.5
+		public TextView methanal;//甲醛
+		public TextView quality;//空气质量	
+		public TextView name;//设备名称
 	}
 
 }

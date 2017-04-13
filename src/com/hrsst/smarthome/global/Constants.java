@@ -11,6 +11,8 @@ public class Constants {
 	public static final String ADDENVIRONMENTDEVICE = SERVER_URL2+"/servlet/AddEnvironmentDevice";//添加环境探测器@@
 	public static final String HTTPGETDEV = SERVER_URL2+"/servlet/GetDeviceStateAction?userNum=";//获取设备信息@@
 	public static final String GETHISTORYINFO= SERVER_URL2+"/servlet/GetHistoryInfomation";//获取环境探测器历史数据@@
+	public static final String LOGINHTTP= SERVER_URL2+"/servlet/LoginUser";//登陆http形式@@
+	public static final String UNLOGINHTTP= SERVER_URL2+"/servlet/UnloginUser?userNum=";//注销http形式@@
 	
 	public static final String UPDATE_USER_PWD_URL = SERVER_URL+"/updateUserPwd.action";
 	public static final String USER_LOGIN_URL = SERVER_URL+"/loginUser.action";

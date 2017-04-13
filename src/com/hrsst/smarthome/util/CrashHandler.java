@@ -102,6 +102,9 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	private boolean handleException(Throwable ex) {
 		if (ex == null) {
 			return false;
+		}else{
+			String a=ex.getMessage();
+			String b=ex.getLocalizedMessage();
 		}
 		// 使用Toast来显示异常信息
 		new Thread() {

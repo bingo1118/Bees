@@ -51,6 +51,14 @@
                 android:layout_marginLeft="75dp"
                 android:layout_marginTop="3dp"
                 android:src="@drawable/zhuangtai_on" />
+            
+            <ImageView
+                android:id="@+id/ifShare"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="95dp"
+                android:src="@drawable/shouye_gx"
+                android:visibility="gone"/>
         </RelativeLayout>
     </RelativeLayout>
 

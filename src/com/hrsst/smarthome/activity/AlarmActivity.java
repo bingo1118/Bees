@@ -258,4 +258,20 @@ public class AlarmActivity extends Activity {
 		alarm_msg_tv.setText(positionStr + getResources().getString(R.string.alarmactivity_de) + s + getResources().getString(R.string.alarmactivity_issue_an_alert));
 		alarm_msg_time_tv.setText(getResources().getString(R.string.alarmactivity_alarm_time) + timeStr);
 	}
+	
+	//收到新的报警信息后更新该界面@@
+	@Override
+	protected void onNewIntent(Intent intent) {
+		payload = intent.getByteArrayExtra("payload");
+		mContact = (Contact)intent.getSerializableExtra("mContact");
+		if(null!=mContact){
+			//显示可以查看视频按钮
+			watch_video_image.setVisibility(View.VISIBLE);
+		}else{
+			//隐藏可以查看视频按钮
+			watch_video_image.setVisibility(View.GONE);
+		}	
+		getAlarmMessages(payload);
+		super.onNewIntent(intent);
+	}
 }

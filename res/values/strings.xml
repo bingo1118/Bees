@@ -4,7 +4,7 @@
     <string name="app_name">BEES</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="id_name">Mail/Phone number</string>
+    <string name="id_name">Mail/Phone Number</string>
     <string name="pwd_name">Password</string>
     <string name="new_user_name">Regist</string>
     <string name="foreget_pwd_name">Forget Password</string>
@@ -36,11 +36,11 @@
     <string name="down_londing_click">Downloading, clicking Cancel.</string>
     <string name="down_fault_click">Download failed, click to remove.</string>
     <!-- 上下拉加载 -->
-    <string name="pull_to_refresh_pull_label1">Last updated: just now</string>
+    <string name="pull_to_refresh_pull_label1">Last Updated: just now</string>
     <!-- pull loadingLayout text -->
-    <string name="pull_loading_old_geng_ganggang">Last updated: just now</string>
-    <string name="pull_loading_old_geng">Last updated:</string>
-    <string name="pull_loading_new_geng">This update:</string>
+    <string name="pull_loading_old_geng_ganggang">Last Updated: just now</string>
+    <string name="pull_loading_old_geng">Last Updated:</string>
+    <string name="pull_loading_new_geng">This Update:</string>
     <string name="change_wifi"><u>Replace my wifi</u></string>
     <string name="device_name"><u>Select The Smart Socket</u></string>
 
@@ -412,7 +412,7 @@
     <string name="add_device">Add Device</string>
     <string name="tv_add_device1">It is still empty here! You need to add a device to view it.</string>
     <string name="tv_add_device2">Video, act quickly~</string>
-    <string name="lan_search">List of new devices</string>
+    <string name="lan_search">List of New Devices</string>
     <string name="manually_add">Add manully</string>
     <string name="input_wifi_password">Input wifi password</string>
     <string name="nearby_wireless_network">Nearby wireless network</string>
@@ -512,7 +512,7 @@
     <string name="device_not_support">The device does not support this operation.</string>
     <string name="not_open">The GPIO is not open</string>
     <string name="frequent_operation">Operation is too frequent, the previous operation is not completed.</string>
-    <string name="new_device_list">List of new devices</string>
+    <string name="new_device_list">List of New Devices</string>
     <string name="connect_failed_reason3">3.The current network environment is poor</string>
     <string name="set_wifi_failed">Set wifi failed</string>
     <string name="okay">Okay</string>
@@ -614,7 +614,7 @@
     <string name="alarmactivity_hongwai">Wireless Infrared Detection Alarm</string>
     <string name="alarmactivity_keranqiti">Wireless Gas Detection Alarm</string>
     <string name="alarmactivity_alarm_time">Alarm time:</string>
-    <string name="alarmactivity_de"></string>
+    <string name="alarmactivity_de">&#160;</string>
     <string name="alarmactivity_issue_an_alert">issue an alarm message.</string>
     <string name="change_success">Successfully modified</string>
     <string name="change_fail">Modification fails</string>
@@ -625,11 +625,11 @@
     <string name="list_of_hongwai">List of Infrared Detection Alarm</string>
     <string name="list_of_shuijin">List of Water Level Detector</string>
      <string name="list_of_ykq">List of Controller</string>
-    <string name="successful_operation">Successful operation</string>
+    <string name="successful_operation">Successful Operation</string>
     <string name="have_not_setting_item">No this setting option</string>
     <string name="this_device_dont_support_preset_position">The device does not support presets</string>
     <string name="the_device_dont_support_the_operation">The device does not support this operation</string>
-    <string name="screenshot_success">Screenshot success</string>
+    <string name="screenshot_success">Screenshot Success</string>
     <string name="screenshot_failed">Screenshot Failed</string>
     <string name="input_other_side_account">Another Account</string>
     <string name="input_account_fail_input_again">Enter the account number is wrong, please enter the correct.</string>
@@ -646,11 +646,11 @@
     <string name="find_by_phone">By Phone</string>
     <string name="find_by_email">By Email</string>
     <string name="please_choose_right_devide_wifi">Please select the correct device WIFI</string>
-    <string name="configuration_fail">Configuration failed ...</string>
+    <string name="configuration_fail">Configuration Failed</string>
     <string name="configuration_outtime">Configuration Timeout</string>
     <string name="remove_succcess">Success Lifted</string>
     <string name="deviceinfoactivity_bind">Bind</string>
-    <string name="remove_fail">Remove fail</string>
+    <string name="remove_fail">Remove Fail</string>
     <string name="add_video_first">Please add the camera first</string>
     <string name="deviceinfoactivity_unbind">Unbind</string>
     <string name="unbind_fail">Bind failed</string>
@@ -664,7 +664,7 @@
     <string name="user_exist">The user already exists</string>
     <string name="please_input_right_user_name_and_psw">Please enter the correct username and password</string>
     <string name="session_expired">The session has expired</string>
-    <string name="updata_message">Update message</string>
+    <string name="updata_message">Update Message</string>
     <string name="sure">Sure</string>
     <string name="update_now1">Update Immediately</string>
     <string name="next_time1">Next Time</string>
@@ -686,7 +686,7 @@
     <string name="get_verification_code">Get verification code</string>
     <string name="phone_not_exist">The phone number does not exist</string>
     <string name="phone_exist">The phone number already exists</string>
-    <string name="regist_success">Registration success</string>
+    <string name="regist_success">Registration Success</string>
     <string name="no_the_next_file">No Next File</string>
     <string name="no_the_previous_file">No Previous File</string>
     <string name="try_again_exit_play">Press again to exit the play</string>
@@ -698,7 +698,7 @@
     <string name="sd_formatted_fail">SD card format failed</string>
     <string name="sd_card_no_exist">SD card does not exist</string>
     <string name="fail">Failure</string>
-    <string name="crc_error">CRC error</string>
+    <string name="crc_error">CRC Error</string>
     <string name="the_mail_have_bind">The email has been bound</string>
     <string name="please_choose_need_bind_socket">Please select the smart socket you want to bind</string>
     <string name="no_surpport">Not Support</string>
@@ -724,10 +724,10 @@
     <string name="input_device_new_psw_again">Enter new password again</string>
     <string name="video_screenshots">Video Screenshots</string>
     <string name="choose_device_wifi">Click to select device WIFI</string>
-    <string name="share_device_to_you">Share a device.</string>
+    <string name="share_device_to_you">&#160;share a device.</string>
     <string name="system_message">System Messages</string>
     <string name="enter_device_name">Enter Device Name</string>
-    <string name="enter_device_psw">Enter device password</string>
+    <string name="enter_device_psw">Enter Device Password</string>
     <string name="enter_wifi_psw">Enter wifi password</string>
     <string name="back">Back</string>
     <string name="message_send">Content</string>
@@ -740,23 +740,23 @@
     <string name="set_time">Set Timer</string>
     <string name="repeat">Repeat</string>
     <string name="bind_chuanganqi_yuzhiwei">Sensor Bind Preset</string>
-    <string name="record_time">Record time:</string>
+    <string name="record_time">Record Time:</string>
     <string name="switcher">Switch</string>
     <string name="timer">Timer</string>
     <string name="please_load_emai_relive">Email has been sent. Please log in to the mailbox to activate.</string>
     <string name="enter_new_psw_again">Re-enter new password</string>
     <string name="find">Find Back</string>
     <string name="socket_timer">Socket Power Timing</string>
-    <string name="add_timer">Add timing</string>
+    <string name="add_timer">Add Timing</string>
     <string name="choose_new_device">Please select new device：</string>
-    <string name="list_camare">Camera list</string>
+    <string name="list_camare">Camera List</string>
     <string name="chuanganqi_type">Sensor Type</string>
-    <string name="yuzhiwei">Preset position</string>
+    <string name="yuzhiwei">Preset Position</string>
     <string name="set_yuzhiwei">Set Preset Position</string>
     <string name="click_store_yuzhiwei">(Click to store the current camera preset)</string>
     <string name="look_yuzhiwei">View Presets</string>
     <string name="click_turn_to_yuzhiwei">(Click to stored preset)</string>
-    <string name="is_delete_data">Whether the data needs to be deleted？</string>
+    <string name="is_delete_data">Whether delete the data?</string>
     <string name="log">Log:</string>
     <string name="share_device">Device Sharing</string>
     <string name="change_socket_name">Modify Smart Socket Name</string>
@@ -781,7 +781,7 @@
     <string name="air_you">优</string>
     <string name="null_data">--</string>
     <string name="no_data">No Data</string>
-    <string name="error">Error</string>
+    <string name="error">Network Error</string>
     <string name="shuijin">Water Level Detector</string>
     <string name="ykq">Controler</string>
     <string name="name_too_long">Enter the name too long. Please re-enter it.</string>
@@ -796,5 +796,6 @@
     <string name="add_air_dev">"      Long press the button on the device for 2-4 seconds and release, scan the screen on the QR code to get the device MAC number, and fill in the device name, click Next."</string>
     <string name="dev_name">Device Name:</string>
     <string name="set_buzzer">Set Buzzer</string>
+    <string name="shared_dev_can_not_share">Shared device can not share again.</string>
 
 </resources>

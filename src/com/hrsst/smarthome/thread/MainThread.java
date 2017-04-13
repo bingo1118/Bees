@@ -159,6 +159,7 @@ public class MainThread {
 		try {
 			long now_time = System.currentTimeMillis();
 			//1000 * 60 * 60 * 12
+			//间隔12个小时提示更新
 			if ((now_time - last_check_update_time) > 1000 * 60 * 60 * 12) {
 				SharedPreferencesManager.getInstance()
 						.putLastAutoCheckUpdateTime(now_time, MyApp.app);

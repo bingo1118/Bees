@@ -190,13 +190,13 @@ public class SocketUDP {
 			unBinderUser.setAction("Constants.Action.unBinderUser");
 			MyApp.app.sendBroadcast(unBinderUser);
 			break;
-		case 25://19
+		case 25://19 心跳包回复
 			Intent unHearPackage = new Intent();
 			unHearPackage.putExtra("datasByte", result);
 			unHearPackage.setAction("Constants.Action.unHearPackage");
 			MyApp.app.sendBroadcast(unHearPackage);
 			break;
-		case 23://19
+		case 23://17
 			Intent unLoginUser = new Intent();
 			unLoginUser.putExtra("datasByte", result);
 			unLoginUser.setAction("Constants.Action.unLoginUser");

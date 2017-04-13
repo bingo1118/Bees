@@ -239,6 +239,8 @@ public class UnPackServer {
 			int result = pk[9];
 			if(result==0){
 				mUnPackageFromServer.heartPackage= "onLine";
+			}else if(result==3){
+				mUnPackageFromServer.heartPackage= "onLine";//@@
 			}else{
 				mUnPackageFromServer.heartPackage= "offLine";
 			}

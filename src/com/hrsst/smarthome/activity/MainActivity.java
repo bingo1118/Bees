@@ -1,9 +1,21 @@
 package com.hrsst.smarthome.activity;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.hrsst.smarthome.R;
 import com.hrsst.smarthome.fragment.ExperienceFragment;
 import com.hrsst.smarthome.fragment.MessagesFragment;
@@ -19,6 +31,7 @@ import com.hrsst.smarthome.thread.MainService;
 import com.hrsst.smarthome.thread.MainThread;
 import com.hrsst.smarthome.util.SharedPreferencesManager;
 import com.hrsst.smarthome.util.UpdateManager;
+import com.hrsst.smarthome.volley.JsonArrayPostRequest;
 import com.igexin.sdk.PushManager;
 import com.p2p.core.P2PHandler;
 
@@ -406,11 +419,43 @@ public class MainActivity extends Activity implements OnClickListener{
 			Intent i = new Intent(MainActivity.this,SplashActivity.class);
 			startActivity(i);
 			finish();
+			UnloginUser();
 			break;
 		default:
 			break;
 		}
 		
+	}
+	
+	/**
+	 * 解绑推送@@
+	 */
+	private void UnloginUser() {
+		String userName=SharedPreferencesManager.getInstance().getData(mContext, Constants.UserInfo.USER_NUMBER);
+		String url=Constants.UNLOGINHTTP+userName+"&appType=1";
+		RequestQueue mQueue = Volley.newRequestQueue(mContext);
+		Map<String, String> map = new HashMap<String, String>();
+		StringRequest mJsonRequest = new StringRequest(
+				url, new Listener<String>() {
+
+					@Override
+					public void onResponse(String response) {
+						try {
+							JSONObject object=new JSONObject(response);
+							String a=object.getString("unbindAliasClientIdResult");
+							String b=object.getString("errorCode");
+						} catch (JSONException e) {
+							// TODO 自动生成的 catch 块
+							e.printStackTrace();
+						}
+					}
+				}, new ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						// TODO Auto-generated method stub
+					}
+				});
+		mQueue.add(mJsonRequest);
 	}
 	
 	/**

@@ -38,11 +38,12 @@ public class PushDemoReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
+        
 
         switch (bundle.getInt(PushConsts.CMD_ACTION)) {
             case PushConsts.GET_MSG_DATA:
                 // 获取透传数据
-                // String appid = bundle.getString("appid");
+//                String appid = bundle.getString("appid");
                 payload = bundle.getByteArray("payload");
                 if(payload!=null&&payload.length>8){
                 	int type = payload[0];

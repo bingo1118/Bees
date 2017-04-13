@@ -113,7 +113,7 @@ public class AddCameraFourthActivity extends Activity{
 			}
 		}
 	};
-	
+	//是否把摄像机绑定插座
 	private void showRelateDialog(){
 		View v = LayoutInflater.from(mContext).inflate(
 				R.layout.relate_dialog, null);

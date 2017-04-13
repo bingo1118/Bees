@@ -370,8 +370,9 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 
 	/**
 	 * 获取设备列表（Volley）@@
+	 * @return 
 	 */
-	private void getUserDev(){//获取设备列表@@
+	private synchronized void getUserDev(){//获取设备列表@@
 		String url=Constants.HTTPGETDEV+userNum;
 //		String url="http://192.168.0.23:8080/smartHome/servlet/GetDeviceStateAction?userNum="+userNum;
 //		String url="http://119.29.224.28:51091/smartHome/servlet/GetDeviceStateAction?userNum="+userNum;
@@ -511,6 +512,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 							intent.putExtra("mac", itemUserDevice.getDevMac());
 							intent.putExtra("devName", itemUserDevice.getDevName());
 							intent.putExtra("ocState", itemUserDevice.getSocketStates());
+							intent.putExtra("ifshare", itemUserDevice.getIsShare());//@@
 							startActivity(intent);
 						}else{
 							Toast.makeText(mContext, R.string.device_offline, Toast.LENGTH_SHORT).show();
@@ -530,6 +532,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 							monitor.putExtra("contact", mContact);
 							monitor.putExtra("connectType",Constants.ConnectType.P2PCONNECT);
 							monitor.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							monitor.putExtra("ifshare", itemUserDevice.getIsShare());//@@
 							mContext.startActivity(monitor);
 						}else{
 							Toast.makeText(mContext,R.string.device_offline, Toast.LENGTH_SHORT).show();
@@ -559,12 +562,15 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 				if(position<count){
 					View v = LayoutInflater.from(mContext).inflate(
 							R.layout.long_click_dialog, null);
+					
 					AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 					dialog = builder.create();
 					dialog.show();
 					dialog.setContentView(v);
 					
 					final UserDevice mU = mUserDeviceList.get(position);
+					TextView text=(TextView)v.findViewById(R.id.dialog_info);//@@
+					text.setText(getResources().getString(R.string.is_delete_data)+"mac:"+mU.getDevMac());//@@
 					TextView cancle_delete = (TextView) v.findViewById(R.id.cancle_delete);
 					TextView confire_delete = (TextView) v.findViewById(R.id.confire_delete);
 					cancle_delete.setOnClickListener(new OnClickListener() {

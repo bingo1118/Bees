@@ -147,6 +147,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 	private boolean yuzhiweiFlag=false;
 	NetSpeed speed;
 	private TextView net_speed_tv;
+	private int ifshare;//@@
 	/*
 	 * 平均码流
 	高清1280*720 ： 平均170KB/S
@@ -165,6 +166,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 	        win.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 	    mContext=this;
 		mContact=(Contact) getIntent().getSerializableExtra("contact");
+		ifshare=getIntent().getExtras().getInt("ifshare");//@@
 		P2PHandler.getInstance().getNpcSettings(mContact.contactId,
 				mContact.contactPassword);//@@
 		P2PHandler.getInstance().getBindAlarmId(mContact.contactId,
@@ -1111,6 +1113,10 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 			reject();
 			break;
 		case R.id.share_dev_im://查看截图
+			if(ifshare==1){
+				Toast.makeText(mContext,R.string.shared_dev_can_not_share, Toast.LENGTH_LONG).show();
+				break;
+			}//@@
 			View shareView = LayoutInflater.from(mContext).inflate(
 					R.layout.modify_dev_name_dialog, null);
 			TextView shareView_cancle_modify = (TextView) shareView
@@ -1140,10 +1146,19 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+					String userPhone= SharedPreferencesManager.getInstance().getData(
+							mContext,
+							"userPhone");
+					String userEmail= SharedPreferencesManager.getInstance().getData(
+							mContext,
+							"userEmail");
+					String userNum = SharedPreferencesManager.getInstance().getData(
+							mContext,
+							Constants.UserInfo.USER_NUMBER);
 					modifyDialog.dismiss();
 					String toUserNum = shareView_modify_named.getText()
 							.toString().trim();
-					if (toUserNum != null && toUserNum.length() > 0&&!fromUserNum.equals(toUserNum)) {
+					if (toUserNum != null && toUserNum.length() > 0&&!userNum.equals(toUserNum)&&!toUserNum.equals(userPhone)&&!toUserNum.equals(userEmail)) {
 						mSocketUDPClient.sendMsg(SendServerOrder.ShareDev(mContact.getContactId(),
 								fromUserNum, toUserNum));
 					} else {

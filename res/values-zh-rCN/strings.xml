@@ -644,7 +644,7 @@
      <string name="list_of_shuijin">水禁列表</string>
      <string name="list_of_ykq">万能遥控器列表</string>
      <string name="no_data">无数据</string>
-     <string name="error">错误</string>
+     <string name="error">网络异常</string>
      <string name="successful_operation">操作成功</string>
      <string name="have_not_setting_item">无此设置选项</string>
      <string name="this_device_dont_support_preset_position">该设备不支持预置位</string>
@@ -776,7 +776,7 @@
      <string name="click_store_yuzhiwei">(点击将当前摄像机角度存储预置位)</string>
      <string name="look_yuzhiwei">查看预置位</string>
      <string name="click_turn_to_yuzhiwei">(点击摄像机将转到已存储的预置位)</string>
-     <string name="is_delete_data">是否需要删除该数据？</string>
+     <string name="is_delete_data">是否删除该数据？</string>
      <string name="log">日志：</string>
      <string name="share_device">设备共享</string>
      <string name="change_socket_name">修改智能插座名称</string>
@@ -806,4 +806,5 @@
     <string name="dev_name">设备名称：</string>
     <string name="add_air_dev">"      开启设备后，长按设备上的按钮2-4秒并松开，扫描屏幕上的二维码获取设备MAC号，并填写设备名称，点击下一步即可。"</string>
     <string name="set_buzzer">设置摄像机蜂鸣器</string>
+    <string name="shared_dev_can_not_share">共享设备不能再次共享</string>
 </resources>
