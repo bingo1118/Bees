@@ -25,6 +25,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -33,6 +36,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.Window;
 import android.view.WindowManager;
@@ -75,6 +79,7 @@ import com.p2p.core.P2PView;
 public class ApMonitorActivity extends BaseMonitorActivity implements OnClickListener {
 	
 	ImageView yinliang;//@@
+	boolean isOpenReverse=true;//视频翻转状态@@
 	public static final String PACKAGE_NAME = "com.hrsst.smarthome.global.";//@@
 	public static final String RET_GET_BUZZER = PACKAGE_NAME+"RET_GET_BUZZER";//@@
 	
@@ -90,7 +95,9 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 	ImageView close_voice,send_voice,iv_half_screen,hungup,screenshot,defence_state;
 	LinearLayout layout_voice_state;
 	RelativeLayout r_p2pview,yuzhiwei;
-    ImageView voice_state,image_setting_im,baidu1,baidu2,baidu3,baidu4,baidu5;
+    ImageView voice_state,baidu1,baidu2,baidu3,baidu4,baidu5;
+    private RelativeLayout record_im ;//录像设置按钮@@
+    private RelativeLayout time_set_im;//时间设置@@
     LinearLayout l_device_list;
 	private Contact mContact;
 	int callType=3;
@@ -153,6 +160,13 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 	高清1280*720 ： 平均170KB/S
 	标清640*360 ：平均110KB/S
 	流畅320*192：平均70KB/S*/
+	private ImageView iv_fanzhuan;//翻转按钮@@
+	private View view1, view2;  
+    private ViewPager viewPager;  //对应的viewPager  
+    private List<View> viewList;//view数组  
+    private TextView pager1;
+    private TextView pager2;
+	protected int position=0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -211,11 +225,99 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 		ScrrenOrientation = Configuration.ORIENTATION_PORTRAIT;
 		vibrator=(Vibrator) mContext.getSystemService(mContext.VIBRATOR_SERVICE);
+		 
+	}
+	//@@
+	private void initviewset() {
+				viewPager = (ViewPager) findViewById(R.id.viewpager);  
+				pager1=(TextView)findViewById(R.id.pager1);
+				pager2=(TextView)findViewById(R.id.pager2);
+		        LayoutInflater inflater=getLayoutInflater();  
+		        view1 = inflater.inflate(R.layout.apview_set1, null);  
+		        view2 = inflater.inflate(R.layout.apview_set2,null);  
+		          
+		        viewList = new ArrayList<View>();// 将要分页显示的View装入数组中  
+		        viewList.add(view1);  
+		        viewList.add(view2);  
+		        play_back_im = (RelativeLayout)view1.findViewById(R.id.play_back_im);
+		        image_im = (RelativeLayout)view1.findViewById(R.id.image_im);
+		        preset_pos_im = (RelativeLayout)view1.findViewById(R.id.preset_pos_im);
+		        share_dev_im = (RelativeLayout)view1.findViewById(R.id.share_dev_im);
+		        setting_im = (RelativeLayout)view1.findViewById(R.id.setting_im);
+		        sd_card_im = (RelativeLayout)view2.findViewById(R.id.sd_card_im);
+		        record_im= (RelativeLayout)view2.findViewById(R.id.record_im);
+		        time_set_im=(RelativeLayout)view2.findViewById(R.id.time_set_im);
+		        PagerAdapter pagerAdapter = new PagerAdapter() {  
+		            
+		        	@Override
+		        	public void setPrimaryItem(ViewGroup container,
+		        			int position, Object object) {
+		        		// TODO 自动生成的方法存根
+		        		super.setPrimaryItem(container, position, object);
+		        	}
+		            @Override  
+		            public boolean isViewFromObject(View arg0, Object arg1) {  
+		                // TODO Auto-generated method stub  
+		                return arg0 == arg1;  
+		            }  
+		              
+		            @Override  
+		            public int getCount() {  
+		                // TODO Auto-generated method stub  
+		                return viewList.size();  
+		            }  
+		              
+		            @Override  
+		            public void destroyItem(ViewGroup container, int position,  
+		                    Object object) {  
+		                // TODO Auto-generated method stub  
+		                container.removeView(viewList.get(position));  
+		            }  
+		              
+		            @Override  
+		            public Object instantiateItem(ViewGroup container, int position) {  
+		                // TODO Auto-generated method stub  
+		                container.addView(viewList.get(position)); 
+		                return viewList.get(position);  
+		            }  
+		        };  
+		          
+		          
+		        viewPager.setAdapter(pagerAdapter);
+		        viewPager.setOnPageChangeListener(new OnPageChangeListener() {
+					
+					@Override
+					public void onPageSelected(int arg0) {
+						if(position==1){
+		                	  pager1.setText("●");
+		                	  pager2.setText("○");
+		                	  position=0;
+		                  }else{
+		                	  pager1.setText("○");
+		                	  pager2.setText("●");
+		                	  position=1;
+		                  }
+					}
+					
+					@Override
+					public void onPageScrolled(int arg0, float arg1, int arg2) {
+						// TODO 自动生成的方法存根
+						
+					}
+					
+					@Override
+					public void onPageScrollStateChanged(int arg0) {
+						// TODO 自动生成的方法存根
+						
+					}
+				});
 	}
 	public void initcComponent(){
 		yinliang=(ImageView)findViewById(R.id.yinliang_im);
 		pView=(P2PView)findViewById(R.id.p2pview);
 		P2PView.type=0;
+		
+		initviewset();//@@
 		
 		yinliang_im=(ImageView)findViewById(R.id.yinliang_im);
 		yinliang_im.setOnClickListener(this);
@@ -229,13 +331,13 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		
 		yuzhiwei = (RelativeLayout)findViewById(R.id.yuzhiwei);
 		yuzhiwei_im = (ImageView)findViewById(R.id.yuzhiwei_im);
-		preset_pos_im = (RelativeLayout)findViewById(R.id.preset_pos_im);
-		setting_im = (RelativeLayout)findViewById(R.id.setting_im);
-		image_setting_im = (ImageView)findViewById(R.id.image_setting_im);
-		sd_card_im = (RelativeLayout)findViewById(R.id.sd_card_im);
-		share_dev_im = (RelativeLayout)findViewById(R.id.share_dev_im);
-		image_im = (RelativeLayout)findViewById(R.id.image_im);
-		play_back_im = (RelativeLayout)findViewById(R.id.play_back_im);
+//		preset_pos_im = (RelativeLayout)findViewById(R.id.preset_pos_im);
+//		setting_im = (RelativeLayout)findViewById(R.id.setting_im);
+//		image_setting_im = (RelativeLayout)findViewById(R.id.image_setting_im);
+//		sd_card_im = (RelativeLayout)findViewById(R.id.sd_card_im);
+//		share_dev_im = (RelativeLayout)findViewById(R.id.share_dev_im);
+//		image_im = (RelativeLayout)findViewById(R.id.image_im);
+//		play_back_im = (RelativeLayout)findViewById(R.id.play_back_im);
 		tv_name = (TextView) findViewById(R.id.tv_name);
 		tv_name.setText(mContact.contactName);
 		layout_title=(RelativeLayout)findViewById(R.id.layout_title);
@@ -245,6 +347,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		rl_control=(RelativeLayout)findViewById(R.id.rl_control);
 		iv_voice=(ImageView)findViewById(R.id.iv_voice);
 		iv_speak=(ImageView)findViewById(R.id.iv_speak);
+		iv_fanzhuan=(ImageView)findViewById(R.id.iv_fanzhuan);//@@
 		iv_screenshot=(ImageView)findViewById(R.id.iv_screenshot);
 		control_bottom=(RelativeLayout)findViewById(R.id.control_bottom);
 		control_top=(LinearLayout)findViewById(R.id.control_top);
@@ -344,7 +447,8 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		yuzhiwei_im.setOnClickListener(this);
 		preset_pos_im.setOnClickListener(this);
 		setting_im.setOnClickListener(this);
-		image_setting_im.setOnClickListener(this);
+		record_im.setOnClickListener(this);
+		time_set_im.setOnClickListener(this);
 		sd_card_im.setOnClickListener(this);
 		share_dev_im.setOnClickListener(this);
 		play_back_im.setOnClickListener(this);
@@ -352,6 +456,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		iv_full_screen.setOnClickListener(this);
 		iv_voice.setOnClickListener(this);
 		iv_screenshot.setOnClickListener(this);
+		iv_fanzhuan.setOnClickListener(this);//@@
 		choose_video_format.setOnClickListener(this);
 		close_voice.setOnClickListener(this);
 		send_voice.setOnClickListener(this);
@@ -586,6 +691,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		filter.addAction(Constants.P2P.ACK_GET_REMOTE_DEFENCE);
 		filter.addAction(Constants.P2P.RET_PRESET_MOTORPOS_STATUS);
 		filter.addAction(RET_GET_BUZZER);//@@
+		filter.addAction(Constants.P2P.RET_GET_IMAGE_REVERSE);//@@
 		mContext.registerReceiver(mReceiver, filter);
 		isRegFilter = true;
 	}
@@ -705,7 +811,16 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 				}else{
 					yinliang.setBackground(getResources().getDrawable(R.drawable.yinliang_jingyin));
 				}//@@
-			}
+			}else if(intent.getAction().equals(Constants.P2P.RET_GET_IMAGE_REVERSE)){
+				 int type=intent.getIntExtra("type",-1);
+				 if(type==0){
+					 
+					 isOpenReverse=true;
+				 }else if(type==1){
+					 
+					 isOpenReverse=false;
+				 }
+			}//@@
 		}
 	};
 	public void changeDefence(int defencestate){
@@ -829,6 +944,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 			iv_full_screen.setVisibility(View.GONE);
 			iv_voice.setVisibility(View.GONE);
 			iv_screenshot.setVisibility(View.GONE);
+			iv_fanzhuan.setVisibility(View.GONE);//@@
 //			设置control_bottom的高度
 			int height=(int) getResources().getDimension(R.dimen.p2p_monitor_bar_height);
 			setControlButtomHeight(height);
@@ -849,6 +965,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 			iv_full_screen.setVisibility(View.VISIBLE);
 			iv_voice.setVisibility(View.VISIBLE);
 			iv_screenshot.setVisibility(View.VISIBLE);
+			iv_fanzhuan.setVisibility(View.VISIBLE);//@@
 //			设置control_bottom的高度等于0
 			setControlButtomHeight(0);
 			control_bottom.setVisibility(View.INVISIBLE);
@@ -1036,6 +1153,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 			Intent setBuzzer = new Intent(mContext,SetVideoBuzzerActivity.class);
 			setBuzzer.putExtra("contact", mContact);
 			startActivity(setBuzzer);
+			reject();//@@
 			break;
 		case R.id.preset_pos_binder_im:
 			Intent i14 = new Intent(mContext,BinderPresetPosActivity.class);
@@ -1078,12 +1196,14 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 				iv_full_screen.setVisibility(View.GONE);
 				iv_voice.setVisibility(View.GONE);
 				iv_screenshot.setVisibility(View.GONE);
+				iv_fanzhuan.setVisibility(View.GONE);//@@
 				yuzhiweiFlag=true;
 				yuzhiwei.setVisibility(View.VISIBLE);
 			}else{
 				iv_full_screen.setVisibility(View.VISIBLE);
 				iv_voice.setVisibility(View.VISIBLE);
 				iv_screenshot.setVisibility(View.VISIBLE);
+				iv_fanzhuan.setVisibility(View.VISIBLE);//@@
 				yuzhiwei.setVisibility(View.GONE);
 				yuzhiweiFlag=false;
 			}
@@ -1094,11 +1214,17 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 			startActivity(i13);
 			reject();
 			break;
-		case R.id.image_setting_im://视频录制
+		case R.id.record_im://视频录制
 			Intent i11 = new Intent(mContext,RecordProjectActivity.class);
 			i11.putExtra("contact", mContact);
 			startActivity(i11);
 			reject();
+			break;
+		case R.id.time_set_im://时间设置@@
+//			Intent intent_time = new Intent(mContext,RecordProjectActivity.class);
+//			intent_time.putExtra("contact", mContact);
+//			startActivity(intent_time);
+//			reject();
 			break;
 		case R.id.sd_card_im://sd卡信息
 			Intent i12 = new Intent(mContext,SDCardActivity.class);
@@ -1112,7 +1238,7 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 			startActivity(i1);
 			reject();
 			break;
-		case R.id.share_dev_im://查看截图
+		case R.id.share_dev_im://分享
 			if(ifshare==1){
 				Toast.makeText(mContext,R.string.shared_dev_can_not_share, Toast.LENGTH_LONG).show();
 				break;
@@ -1207,6 +1333,14 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		case R.id.screenshot:
 		case R.id.iv_screenshot:
 			this.captureScreen(-1);
+			break;
+		case R.id.iv_fanzhuan://视频翻转@@
+			if(isOpenReverse==true){
+				P2PHandler.getInstance().setImageReverse(mContact.contactId, mContact.contactPassword, 1);
+			}else{
+				P2PHandler.getInstance().setImageReverse(mContact.contactId, mContact.contactPassword, 0);
+			}
+			P2PHandler.getInstance().getNpcSettings(mContact.contactId, mContact.contactPassword);
 			break;
 		case R.id.hungup:
 			reject();

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:id="@+id/l_control"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#f4f4f4"
+        android:orientation="horizontal" >
+    
+        <RelativeLayout
+            android:id="@+id/sd_card_im" 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            >
+            <ImageView 
+                 android:id="@+id/sd_card_imageview"
+	            android:layout_width="35dp"
+	            android:layout_height="35dp"
+	            android:src="@drawable/tb_shezhi_cc"
+	            android:layout_centerHorizontal="true"
+	            
+         	/>
+             <TextView 
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/sd_card_imageview"
+	            android:text="@string/storage"
+	            android:textSize="12sp"
+	            android:textColor="#595959"
+	            android:layout_centerHorizontal="true"
+	            android:gravity="center"/>
+         </RelativeLayout>
+         
+         <RelativeLayout
+            android:id="@+id/time_set_im" 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            >
+             <ImageView 
+                 android:id="@+id/time_set_imageview"
+	            android:layout_width="35dp"
+	            android:layout_height="35dp"
+	            android:src="@drawable/tb_shezhi_sj"
+	            android:layout_centerHorizontal="true"
+	            
+         	/>
+             <TextView 
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/time_set_imageview"
+	            android:text="@string/time"
+	            android:textSize="12sp"
+	            android:textColor="#595959"
+	            android:layout_centerHorizontal="true"
+	            android:gravity="center"/>
+         </RelativeLayout>
+         
+         <RelativeLayout
+            android:id="@+id/record_im" 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            >
+            <ImageView 
+                 android:id="@+id/record_imageview"
+	            android:layout_width="35dp"
+	            android:layout_height="35dp"
+	            android:src="@drawable/tb_shezhi_lx"
+	            android:layout_centerHorizontal="true"
+	            
+         	/>
+             <TextView 
+                android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/record_imageview"
+	            android:text="@string/record"
+	            android:textSize="12sp"
+	            android:textColor="#595959"
+	            android:layout_centerHorizontal="true"
+	            android:gravity="center"/>
+         </RelativeLayout>
+         <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            >
+           
+         </RelativeLayout>
+         <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            >
+            
+         </RelativeLayout>
+
+</LinearLayout>

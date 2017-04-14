@@ -797,5 +797,13 @@
     <string name="dev_name">Device Name:</string>
     <string name="set_buzzer">Set Buzzer</string>
     <string name="shared_dev_can_not_share">Shared device can not share again.</string>
+     <string name="video">Video</string>
+    <string name="image">Image</string>
+    <string name="preset">Preset</string>
+    <string name="share">Share</string>
+    <string name="modify">Modify</string>
+    <string name="storage">Storage</string>
+    <string name="time">Time</string>
+    <string name="record">Record</string>
 
 </resources>

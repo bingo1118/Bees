@@ -92,6 +92,16 @@
          android:layout_marginBottom="8dp"
          android:layout_alignParentBottom="true"
 	     android:background="@drawable/selector_portrait_screenshot"/>
+       
+       <ImageView 
+	     android:id="@+id/iv_fanzhuan"
+	     android:layout_width="30dp"
+	     android:layout_height="30dp"
+	     android:layout_toRightOf="@id/iv_screenshot"
+	     android:layout_marginLeft="8dp"
+         android:layout_marginBottom="8dp"
+         android:layout_alignParentBottom="true"
+	     android:background="@drawable/fanzhuan_selector"/>
       <TextView 
 	      android:id="@+id/net_speed_tv"
 	      android:layout_width="wrap_content"
@@ -399,105 +409,40 @@
                 android:textSize="14sp" />
         </RelativeLayout>
     </RelativeLayout>
-    <LinearLayout 
-        android:id="@+id/l_control"
+    
+    <android.support.v4.view.ViewPager  
+	    android:id="@+id/viewpager"  
+	    android:layout_width="match_parent"
+	    android:layout_height="50dp"
+	    android:background="#f4f4f4"
+	    android:layout_gravity="center" />  
+	<LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="20dp"
         android:background="#f4f4f4"
-        android:orientation="horizontal">
-        <RelativeLayout 
-            android:id="@+id/play_back_im"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            >
-            <ImageView 
-	            
-	            android:layout_width="45dp"
-	            android:layout_height="45dp"
-	            android:src="@drawable/play_back_image_selector"
-	            android:layout_centerInParent="true"
-            />
-        </RelativeLayout>
+        android:orientation="horizontal" >
+	    <TextView 
+	        android:id="@+id/pager1"
+	        android:layout_width="0dp"
+        	android:layout_height="match_parent"
+        	android:layout_weight="1"
+        	android:gravity="right|center_vertical"
+        	android:textColor="@color/blue"
+        	android:text="●"
+        	android:textSize="8sp"
+        	android:layout_marginRight="2dp"/>
+	    <TextView 
+	        android:id="@+id/pager2"
+	        android:layout_width="0dp"
+        	android:layout_height="match_parent"
+        	android:layout_weight="1"
+        	android:gravity="left|center_vertical"
+        	android:textColor="@color/blue"
+        	android:text="○"
+        	android:textSize="8sp"
+        	android:layout_marginLeft="2dp"/>
+	</LinearLayout>
         
-        <RelativeLayout 
-            android:id="@+id/image_im"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            >
-            <ImageView
-	            android:layout_width="45dp"
-	            android:layout_height="45dp"
-	            android:src="@drawable/image_selector"
-	            android:layout_centerInParent="true"
-	            />
-        </RelativeLayout>
-         
-          <RelativeLayout 
-            android:id="@+id/preset_pos_im"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            >
-            <ImageView 
-	            
-	            android:layout_width="45dp"
-	            android:layout_height="45dp"
-	            android:src="@drawable/preset_pos_image_selector"
-	            android:layout_centerInParent="true"
-	            />
-          </RelativeLayout>
-          
-           <RelativeLayout 
-               	android:id="@+id/share_dev_im"
-	            android:layout_width="0dp"
-	            android:layout_height="wrap_content"
-	            android:layout_weight="1"
-	            android:layout_gravity="center_vertical"
-	            >
-            <ImageView 
-	            
-	            android:layout_width="45dp"
-	            android:layout_height="45dp"
-	            android:src="@drawable/share_dev_image_selector"
-	            android:layout_centerInParent="true"
-         		/>
-          </RelativeLayout>
-        
-         <RelativeLayout
-            android:id="@+id/setting_im" 
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            >
-             <ImageView 
-	            android:layout_width="45dp"
-	            android:layout_height="45dp"
-	            android:src="@drawable/modify_dev_info_image_selector"
-	            android:layout_centerInParent="true"
-         	/>
-         </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/sd_card_im" 
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            >
-             <ImageView 
-	            android:layout_width="45dp"
-	            android:layout_height="45dp"
-	            android:src="@drawable/sd_card_image_selector"
-	            android:layout_centerInParent="true"
-         	/>
-         </RelativeLayout>
-  
-    </LinearLayout>
     <View 
         android:id="@+id/line"
         android:layout_width="match_parent"
@@ -528,39 +473,33 @@
             android:scaleType="fitCenter"
             android:src="@anim/voice_state" />
       </LinearLayout>
-        <ImageView 
-            android:id="@+id/iv_speak"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+        
+
+        <ImageView
+             android:id="@+id/iv_speak"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="100dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/portrait_speak"
-            />
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/portrait_speak" />
+
         <ImageView
             android:id="@+id/yinliang_im"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_alignTop="@+id/image_setting_im"
-            android:layout_marginRight="20dp"
+            android:layout_alignBottom="@+id/iv_speak"
+            android:layout_marginBottom="17dp"
+            android:layout_marginRight="18dp"
             android:layout_toLeftOf="@+id/iv_speak"
             android:background="@drawable/yinliang_jingyin" />
-
-        <ImageView
-            android:id="@+id/image_setting_im"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/selector_portrait_disarm" />
 
         <ImageView
             android:id="@+id/preset_pos_binder_im"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_alignTop="@+id/image_setting_im"
-            android:layout_marginLeft="20dp"
+            android:layout_alignTop="@+id/yinliang_im"
+            android:layout_marginLeft="18dp"
             android:layout_toRightOf="@+id/iv_speak"
             android:src="@drawable/preset_pos_binder_selector" />
 
