@@ -1221,10 +1221,10 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 			reject();
 			break;
 		case R.id.time_set_im://时间设置@@
-//			Intent intent_time = new Intent(mContext,RecordProjectActivity.class);
-//			intent_time.putExtra("contact", mContact);
-//			startActivity(intent_time);
-//			reject();
+			Intent intent_time = new Intent(mContext,SetTimeActivity.class);
+			intent_time.putExtra("contact", mContact);
+			startActivity(intent_time);
+			reject();
 			break;
 		case R.id.sd_card_im://sd卡信息
 			Intent i12 = new Intent(mContext,SDCardActivity.class);

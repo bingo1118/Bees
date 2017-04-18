@@ -624,7 +624,7 @@
     <string name="list_of_keranqiti">List of Gas Detection Alarm</string>
     <string name="list_of_hongwai">List of Infrared Detection Alarm</string>
     <string name="list_of_shuijin">List of Water Level Detector</string>
-     <string name="list_of_ykq">List of Controller</string>
+    <string name="list_of_ykq">List of Controller</string>
     <string name="successful_operation">Successful Operation</string>
     <string name="have_not_setting_item">No this setting option</string>
     <string name="this_device_dont_support_preset_position">The device does not support presets</string>
@@ -797,7 +797,7 @@
     <string name="dev_name">Device Name:</string>
     <string name="set_buzzer">Set Buzzer</string>
     <string name="shared_dev_can_not_share">Shared device can not share again.</string>
-     <string name="video">Video</string>
+    <string name="video">Video</string>
     <string name="image">Image</string>
     <string name="preset">Preset</string>
     <string name="share">Share</string>
@@ -805,5 +805,7 @@
     <string name="storage">Storage</string>
     <string name="time">Time</string>
     <string name="record">Record</string>
+    <string name="time_zone_setting">Time Zone Setting</string>
+    <string name="title_activity_set_time">SetTimeActivity</string>
 
 </resources>

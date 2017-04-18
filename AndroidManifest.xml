@@ -509,6 +509,10 @@
             android:name=".SetVideoBuzzerActivity"
             android:label="@string/title_activity_set_video_buzzer" >
         </activity>
+        <activity
+            android:name="com.hrsst.smarthome.activity.SetTimeActivity"
+            android:label="@string/title_activity_set_time" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
