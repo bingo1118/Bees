@@ -816,4 +816,6 @@
     <string name="time">时间</string>
     <string name="record">录像</string>
     <string name="time_zone_setting">时区设置</string>
+    <string name="no_more_then_ten_words">设备名称不能超过10个字符</string>
+    <string name="psw_have_to_be_num">密码必须为6到10位全数字格式</string>
 </resources>

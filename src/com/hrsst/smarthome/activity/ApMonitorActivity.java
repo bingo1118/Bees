@@ -183,8 +183,8 @@ public class ApMonitorActivity extends BaseMonitorActivity implements OnClickLis
 		ifshare=getIntent().getExtras().getInt("ifshare");//@@
 		P2PHandler.getInstance().getNpcSettings(mContact.contactId,
 				mContact.contactPassword);//@@
-		P2PHandler.getInstance().getBindAlarmId(mContact.contactId,
-				mContact.contactPassword);//@@
+//		P2PHandler.getInstance().getBindAlarmId(mContact.contactId,
+//				mContact.contactPassword);//@@
 		if(mContact.contactType==P2PValue.DeviceType.IPC){
 			setIsLand(false);
 		}else{

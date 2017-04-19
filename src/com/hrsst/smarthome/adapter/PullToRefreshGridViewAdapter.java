@@ -322,7 +322,9 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
 								defence=1;
 								cameraId = mUserDevice.getDevMac().trim();
 								cameraPwd = mUserDevice.getCameraPwd().trim();
-								holder3.defence_image.setBackgroundResource(R.drawable.defence_on);
+								View view = mGridView.getChildAt(position- mGridView.getFirstVisiblePosition());//@@
+								view.findViewById(R.id.defence_image).setBackgroundResource(R.drawable.defence_on);//@@
+//								holder3.defence_image.setBackgroundResource(R.drawable.defence_on);
 							}else{
 								P2PHandler.getInstance().setRemoteDefence(
 										mUserDevice.getDevMac().trim(),
@@ -488,16 +490,17 @@ public class PullToRefreshGridViewAdapter extends BaseAdapter {
     	TextView open_or_close_tv = (TextView) view.findViewById(R.id.open_or_close_tv);
     	TextView text = (TextView) view.findViewById(R.id.mTextView);
     	RelativeLayout device_list_rela = (RelativeLayout) view.findViewById(R.id.device_list_rela);
-    	switch (((UserDevice) obj).getDefence()) {
-		case 1:
-			defence_image.setBackgroundResource(R.drawable.defence_on);
-			break;
-		case 0:
-			defence_image.setBackgroundResource(R.drawable.defence_off);
-			break;
-		default:
-			break;
-		}
+    	//此处代码导致布防图标混乱@@
+//    	switch (((UserDevice) obj).getDefence()) {
+//		case 1:
+//			defence_image.setBackgroundResource(R.drawable.defence_on);
+//			break;
+//		case 0:
+//			defence_image.setBackgroundResource(R.drawable.defence_off);
+//			break;
+//		default:
+//			break;
+//		}
     	
 		image.setVisibility(View.GONE);
 		open_or_close_tv.setVisibility(View.GONE);

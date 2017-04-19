@@ -155,6 +155,12 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 				return;
 			}
 			
+			//名称不能超过十个字符@@
+			if (modifyName.length()>10) {
+				Toast.makeText(mContext, R.string.no_more_then_ten_words, Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
 			if ("".equals(password_old.trim())) {
 				Toast.makeText(mContext, R.string.please_input_old_massage_psw, Toast.LENGTH_SHORT).show();
 				return;
@@ -177,6 +183,12 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 
 			if (!password_re_new.equals(password_new)) {
 				Toast.makeText(mContext,R.string.differentpassword, Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			//限制密码为纯数字@@
+			if (password_new.length()<6|| !isNumeric(password_new)||password_new.length()>10) {
+				Toast.makeText(mContext, R.string.psw_have_to_be_num, Toast.LENGTH_SHORT).show();
 				return;
 			}
 
@@ -225,4 +237,18 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+	/**
+	 * 判断字符串是否全为数字
+	 * @param str
+	 * @return
+	 */
+	public static boolean isNumeric(String str){
+		  for (int i = 0; i < str.length(); i++){
+		   System.out.println(str.charAt(i));
+		   if (!Character.isDigit(str.charAt(i))){
+		    return false;
+		   }
+		  }
+		  return true;
+		 }
 }
