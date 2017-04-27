@@ -402,7 +402,16 @@ public class SplashActivity extends Activity{
 								finish();
 								break;
 							case 1:
+								if(mTimer!=null){//@@
+									mTimer.cancel();
+									mTimer=null;
+								}
+								count=0;//@@
 								Toast.makeText(mContext, R.string.user_on_exist, Toast.LENGTH_SHORT).show();
+								Intent i3 = new Intent(SplashActivity.this,LoginActivity.class);//@@
+								i3.putExtra("ifLogin", "no");//@@
+								startActivity(i3);//@@
+								finish();//@@
 								break;
 							default:
 								break;

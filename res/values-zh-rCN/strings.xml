@@ -796,7 +796,7 @@
     <string name="bind">绑定</string>
     <string name="name_too_long">输入名称过长，请重新输入</string>
     <string name="no_dev">您没有任何设备</string>
-     <string name="get_dev_fail">获取数据失败</string>
+     <string name="get_dev_fail">无数据</string>
      <string name="will_over">很抱歉,程序出现异常,即将退出.</string>
      <string name="add_air_success">环境探测器添加成功</string>
      <string name="add_one">请点击以下"选择智能插座"，前往插座列表选择一个需与设备配对的智能插座。选择完成后返回，点击下一步。</string>
@@ -818,4 +818,5 @@
     <string name="time_zone_setting">时区设置</string>
     <string name="no_more_then_ten_words">设备名称不能超过10个字符</string>
     <string name="psw_have_to_be_num">密码必须为6到10位全数字格式</string>
+    <string name="close_alarm_voice">关闭声音</string>
 </resources>

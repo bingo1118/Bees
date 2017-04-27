@@ -43,7 +43,7 @@ public class AlarmActivity extends Activity {
 	private String positionStr;
 	private TextView alarm_msg_tv, alarm_msg_time_tv;
 	private Contact mContact;
-
+	private TextView close_alarm_voice;//@@
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,6 +91,15 @@ public class AlarmActivity extends Activity {
 				}else{
 					watch_video_image.setVisibility(View.GONE);
 				}
+			}
+		});
+		close_alarm_voice=(TextView)findViewById(R.id.close_alarm_voice);//@@
+		close_alarm_voice.setOnClickListener(new OnClickListener() {//@@
+			
+			@Override
+			public void onClick(View v) {
+				SharedPreferencesManager.getInstance().putData(mContext,"lastclosetime" ,System.currentTimeMillis());
+				MusicManger.getInstance().stop();
 			}
 		});
 		getAlarmMessages(payload);
@@ -159,7 +168,11 @@ public class AlarmActivity extends Activity {
 
 	// 报警声音
 	public void loadMusicAndVibrate() {
-		isAlarm = true;
+		long lastclasetime=SharedPreferencesManager.getInstance().getLongData(mContext,"lastclosetime");//@@
+		if(Math.abs(System.currentTimeMillis()-lastclasetime)<60*1000){
+			//@@关闭声音一秒内不再有些声音
+			return;
+		}
 		MusicManger.getInstance().playAlarmMusic(getApplicationContext());
 		new Thread() {
 			public void run() {

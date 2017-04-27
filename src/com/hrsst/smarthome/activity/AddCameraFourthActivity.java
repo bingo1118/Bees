@@ -190,7 +190,13 @@ public class AddCameraFourthActivity extends Activity{
 						Toast.makeText(mContext, R.string.addcamerafourthactivity_camera_exist, Toast.LENGTH_SHORT).show();
 						finish();
 					}else{
-						if(null!=cameraPwd&&cameraPwd.length()>0&&null!=cameraName&&cameraName.length()>0){
+						if(cameraName.length()>10){//@@
+							Toast.makeText(mContext, R.string.no_more_then_ten_words, Toast.LENGTH_SHORT).show();
+						}else if(!isNumeric(cameraPwd)){//@@
+							Toast.makeText(mContext, R.string.visitor_pwd_must_digit, Toast.LENGTH_SHORT).show();
+						}else if(cameraPwd.length()>9){//@@
+							Toast.makeText(mContext, R.string.visitor_pwd_to_long, Toast.LENGTH_SHORT).show();
+						}else if(null!=cameraPwd&&cameraPwd.length()>0&&null!=cameraName&&cameraName.length()>0){
 							UserDevice mUserDevice = new UserDevice();
 							mUserDevice.setCameraPwd(cameraPwd);
 							mUserDevice.setDevMac(contactId);
@@ -203,12 +209,17 @@ public class AddCameraFourthActivity extends Activity{
 						}else if(null==cameraName||cameraName.length()==0){
 							Toast.makeText(mContext, R.string.addcamerafourthactivity_input_device_name, Toast.LENGTH_SHORT).show();
 						}else if(null==cameraPwd||cameraPwd.length()==0){
-							Toast.makeText(mContext, R.string.addcamerafourthactivity_input_device
-									+ R.string.addcamerafourthactivity_initial_psw, Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext,R.string.remind_input_wifi_pwd1 , Toast.LENGTH_SHORT).show();
 						}
 					}
 				}else{
-					if(null!=cameraPwd&&cameraPwd.length()>0&&null!=cameraName&&cameraName.length()>0){
+					if(cameraName.length()>10){
+						Toast.makeText(mContext, R.string.no_more_then_ten_words, Toast.LENGTH_SHORT).show();
+					}else if(!isNumeric(cameraPwd)){
+						Toast.makeText(mContext, R.string.visitor_pwd_must_digit, Toast.LENGTH_SHORT).show();
+					}else if(cameraPwd.length()>9){
+						Toast.makeText(mContext, R.string.visitor_pwd_to_long, Toast.LENGTH_SHORT).show();
+					}else if(null!=cameraPwd&&cameraPwd.length()>0&&null!=cameraName&&cameraName.length()>0){
 						UserDevice mUserDevice = new UserDevice();
 						mUserDevice.setCameraPwd(cameraPwd);
 						mUserDevice.setDevMac(contactId);
@@ -221,8 +232,7 @@ public class AddCameraFourthActivity extends Activity{
 					}else if(null==cameraName||cameraName.length()==0){
 						Toast.makeText(mContext, R.string.addcamerafourthactivity_input_device_name, Toast.LENGTH_SHORT).show();
 					}else if(null==cameraPwd||cameraPwd.length()==0){
-						Toast.makeText(mContext, R.string.addcamerafourthactivity_input_device
-								+ R.string.addcamerafourthactivity_initial_psw, Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext,R.string.remind_input_wifi_pwd1 , Toast.LENGTH_SHORT).show();
 					}
 				}
 			}
@@ -238,5 +248,19 @@ public class AddCameraFourthActivity extends Activity{
 		unregisterReceiver(mReceiver);
 		super.onDestroy();
 	}
+	/**
+	 * ÅÐ¶Ï×Ö·û´®ÊÇ·ñÈ«ÎªÊý×Ö
+	 * @param str
+	 * @return
+	 */
+	public static boolean isNumeric(String str){
+		  for (int i = 0; i < str.length(); i++){
+		   System.out.println(str.charAt(i));
+		   if (!Character.isDigit(str.charAt(i))){
+		    return false;
+		   }
+		  }
+		  return true;
+		 }
 	
 }

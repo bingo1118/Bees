@@ -786,7 +786,7 @@
     <string name="ykq">Controler</string>
     <string name="name_too_long">Enter the name too long. Please re-enter it.</string>
     <string name="no_dev">You do not have any equipment.</string>
-    <string name="get_dev_fail">Get device failed.</string>
+    <string name="get_dev_fail">No data.</string>
     <string name="will_over">Sorry, the program is abnormal and is about to exit.</string>
     <string name="add_air_success">Add Succeed</string>
     <string name="add_one">Please click on "Select Smart Socket" below to go to the list of receptacles to select a smart outlet to be paired with the device. After the selection is complete, click Next.</string>
@@ -809,5 +809,5 @@
     <string name="title_activity_set_time">SetTimeActivity</string>
     <string name="no_more_then_ten_words">Device name can not exceed 10 characters.</string>
     <string name="psw_have_to_be_num">The password must be 6 to 10 digits in all digital format.</string>
-
+	<string name="close_alarm_voice">Close Voice</string>
 </resources>

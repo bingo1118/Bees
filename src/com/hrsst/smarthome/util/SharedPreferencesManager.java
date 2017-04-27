@@ -83,6 +83,18 @@ public class SharedPreferencesManager {
 		editor.putString(key, value);
 		editor.commit();
 	}
+	//@@
+		public void putData(Context context,String key,long value){
+			SharedPreferences sf = context.getSharedPreferences(FILE_NAME, context.MODE_PRIVATE);
+			Editor editor = sf.edit();
+			editor.putLong(key, value);
+			editor.commit();
+		}
+		//@@
+		public long getLongData(Context context,String key){
+			SharedPreferences sf = context.getSharedPreferences(FILE_NAME, context.MODE_PRIVATE);
+			return sf.getLong(key,0);
+		}
 	
 	public int getCBellType(Context context) {
 		SharedPreferences sf = context.getSharedPreferences(SP_FILE_GWELL,

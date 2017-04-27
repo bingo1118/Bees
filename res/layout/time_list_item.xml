@@ -62,17 +62,17 @@
 		      
 	        <com.hrsst.smarthome.wheelutil.WheelView 
 	            android:id="@+id/hourwheel"
-	            android:layout_height="160dp"
+	            android:layout_height="wrap_content"
 	            android:layout_width="match_parent"
 	            android:layout_weight="1"/> 
 	        <com.hrsst.smarthome.wheelutil.WheelView 
 	            android:id="@+id/minutewheel"
-	            android:layout_height="160dp"
+	            android:layout_height="wrap_content"
 	            android:layout_width="match_parent"
 	            android:layout_weight="1"/> 
 	        <com.hrsst.smarthome.wheelutil.WheelView 
 	            android:id="@+id/secondWheel"
-		        android:layout_height="160dp"
+		        android:layout_height="wrap_content"
 		        android:layout_width="match_parent"
 		        android:layout_weight="1"/>   
 	    </LinearLayout>

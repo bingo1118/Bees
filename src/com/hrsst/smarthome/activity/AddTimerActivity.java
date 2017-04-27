@@ -585,19 +585,19 @@ public class AddTimerActivity extends Activity implements OnClickListener{
 	    secondWheel = (WheelView)findViewById(R.id.secondWheel);
         
         hourWheel.setAdapter(new StrericWheelAdapter(hourContent));
-        hourWheel.setCurrentItem(curHour-1);
+        hourWheel.setCurrentItem(curHour);
         hourWheel.setCyclic(true);
         hourWheel.addScrollingListener(scrolledListener);
         hourWheel.setInterpolator(new AnticipateOvershootInterpolator());
         
         minuteWheel.setAdapter(new StrericWheelAdapter(minuteContent));
-        minuteWheel.setCurrentItem(curMinute-1);
+        minuteWheel.setCurrentItem(curMinute);
         minuteWheel.setCyclic(true);
         minuteWheel.addScrollingListener(scrolledListener);
         minuteWheel.setInterpolator(new AnticipateOvershootInterpolator());
 
         secondWheel.setAdapter(new StrericWheelAdapter(secondContent));
-        secondWheel.setCurrentItem(curSecond-1);
+        secondWheel.setCurrentItem(curSecond);
         secondWheel.setCyclic(true);
         secondWheel.addScrollingListener(scrolledListener);
         secondWheel.setInterpolator(new AnticipateOvershootInterpolator());
