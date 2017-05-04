@@ -81,7 +81,8 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 					switch (binderResult) {
 					case "success":
 						contact.contactName = modifyName;
-						contact.contactPassword = password_new;
+//						contact.contactPassword = password_new;
+						contact.contactPassword = mUserDevice.getCameraPwd();//@@5.4
 						Toast.makeText(mContext, R.string.change_success, Toast.LENGTH_SHORT).show();
 						finishThis();
 						break;
@@ -155,8 +156,8 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 				return;
 			}
 			
-			//名称不能超过十个字符@@
-			if (modifyName.length()>10) {
+			//名称不能超过8个字符@@
+			if (modifyName.length()>8) {
 				Toast.makeText(mContext, R.string.no_more_then_ten_words, Toast.LENGTH_SHORT).show();
 				return;
 			}
@@ -176,13 +177,13 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 				return;
 			}
 			//限制密码为纯数字@@
-			if (password_new.charAt(0) == '0'||!isNumeric(password_new)) {
-				Toast.makeText(mContext, R.string.visitor_pwd_must_digit, Toast.LENGTH_SHORT).show();
-				return;
-			}
-			//密码长度不能超过9个字符@@
-			if (password_new.length()>9) {
-				Toast.makeText(mContext, R.string.visitor_pwd_to_long, Toast.LENGTH_SHORT).show();
+//			if (password_new.charAt(0) == '0'||!isNumeric(password_new)) {
+//				Toast.makeText(mContext, R.string.visitor_pwd_must_digit, Toast.LENGTH_SHORT).show();
+//				return;
+//			}
+			//密码长度不能超过6-15个字符@@
+			if (password_new.length()>15||password_new.length()<6) {
+				Toast.makeText(mContext, R.string.psw_have_to_be_num, Toast.LENGTH_SHORT).show();
 				return;
 			}
 
@@ -198,13 +199,15 @@ public class ModifyCameraInfoActivity extends Activity implements OnClickListene
 			}
 			dialog.showDialog();
 			
+			String password_o=P2PHandler.getInstance().EntryPassword(password_old);//如果包含英文，转换为数字格式。。
+			String password_n=P2PHandler.getInstance().EntryPassword(password_new);//如果包含英文，转换为数字格式。。
 			mUserDevice = new UserDevice();
 			mUserDevice.setUserNum(fromUserNum);
-			mUserDevice.setCameraPwd(password_new);
+//			mUserDevice.setCameraPwd(password_new);
+			mUserDevice.setCameraPwd(password_n);//@@5.4
 			mUserDevice.setDevName(modifyName);
 			mUserDevice.setDevMac(contact.contactId);
-			String password_o=P2PHandler.getInstance().EntryPassword(password_old);
-			String password_n=P2PHandler.getInstance().EntryPassword(password_new);
+			
 			P2PHandler.getInstance().setDevicePassword(contact.contactId,
 					password_o, password_n);
 			break;

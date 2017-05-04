@@ -807,7 +807,7 @@
     <string name="record">Record</string>
     <string name="time_zone_setting">Time Zone Setting</string>
     <string name="title_activity_set_time">SetTimeActivity</string>
-    <string name="no_more_then_ten_words">Device name can not exceed 10 characters.</string>
-    <string name="psw_have_to_be_num">The password must be 6 to 10 digits in all digital format.</string>
+    <string name="no_more_then_ten_words">Device name can not exceed 8 characters.</string>
+    <string name="psw_have_to_be_num">The password must be 6 to 15 digits.</string>
 	<string name="close_alarm_voice">Close Voice</string>
 </resources>

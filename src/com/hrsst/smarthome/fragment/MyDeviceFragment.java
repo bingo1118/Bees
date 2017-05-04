@@ -111,6 +111,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 	private int camaradefencenum=0;//@@
 	Timer timer;//@@4.27
 	TimerTask task;//@@4.27
+	Map<String,String> camaraAcount;//@@摄像机账号密码5.3
 	final Handler handler = new Handler() {//@@4.27定时刷新摄像机状态
 		   public void handleMessage(Message msg) {
 		      switch (msg.what) {
@@ -214,7 +215,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 		public void onReceive(Context arg0, Intent arg1) {
 			// TODO Auto-generated method stub
 			if(arg1.getAction().equals("REFRESH_DEV_INFO")){
-				getUserDev();
+				getUserDev(1);
 			}
 			
 			if (arg1.getAction().equals(Constants.P2P.RET_SET_REMOTE_DEFENCE)) {
@@ -284,7 +285,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 					switch (binderResult) {
 					case "success":
 						Toast.makeText(mContext, R.string.delete_success, Toast.LENGTH_SHORT).show();
-						getUserDev();
+						getUserDev(1);
 						break;
 					case "failed":
 						Toast.makeText(mContext, R.string.delete_fail, Toast.LENGTH_SHORT).show();
@@ -390,9 +391,10 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 
 	/**
 	 * 获取设备列表（Volley）@@
+	 * @param i  i=0表示在onStart中调用 i=1表示其他情况
 	 * @return 
 	 */
-	private synchronized void getUserDev(){//获取设备列表@@
+	private synchronized void getUserDev(final int i){//获取设备列表@@
 		isdefenced=false;//@@加载摄像头布防图标标志位
 		String url=Constants.HTTPGETDEV+userNum;
 //		String url="http://192.168.0.23:8080/smartHome/servlet/GetDeviceStateAction?userNum="+userNum;
@@ -435,14 +437,14 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 									userDevice.setEnvironment(environmentInfo);
 									mUserDeviceList.add(userDevice);
 								}
-								refreshGridview();//@@
+								refreshGridview(i);//@@
 							}else if(errorCode==2){
 								mUserDeviceList=new ArrayList<UserDevice>();//@@
-								refreshGridview();//@@
+								refreshGridview(i);//@@
 								Toast.makeText(getActivity(), R.string.no_dev, Toast.LENGTH_SHORT).show();
 							}else{
 								mUserDeviceList=new ArrayList<UserDevice>();//@@
-								refreshGridview();//@@
+								refreshGridview(i);//@@
 								Toast.makeText(getActivity(), R.string.get_dev_fail, Toast.LENGTH_SHORT).show();
 							}
 						} catch (JSONException e) {
@@ -450,7 +452,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 							e.printStackTrace();
 							if(mUserDeviceList==null){//@@4.27
 								mUserDeviceList=new ArrayList<UserDevice>();//@@
-								refreshGridview();//@@
+								refreshGridview(i);//@@
 							}//@@4.27
 //							Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
 						}
@@ -463,7 +465,7 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 					public void onErrorResponse(VolleyError error) {
 						if(mUserDeviceList==null){//@@4.27
 							mUserDeviceList=new ArrayList<UserDevice>();//@@
-							refreshGridview();//@@
+							refreshGridview(i);//@@
 						}//@@4.27
 //						Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
 					}
@@ -501,14 +503,11 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 			public void onRefresh() {
 				
 				new MainThread(mContext).getWifiSSID();
-				getUserDev();
+				getUserDev(1);
 				if(null==mTimer){
 					mTimer = new Timer();
 				}
 				setTimerdoAction(doAction,mTimer);
-				while(isdefenced){//@@等待布防图标加载完成
-					
-				}
 			}
 		});
 		//点击事件。。
@@ -763,16 +762,17 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onStart();
 		//getDevice(userNum,"");
-		getUserDev();
+//		mPullToRefreshGridViewAdapter=null;//@@5.3
+		getUserDev(0);//@@5.3
 		timer = new Timer();
 		task = new TimerTask() {
 		       public void run () {
-		       Message message = new Message( );
+		       Message message = new Message();
 		       message.what = 1;
 		       handler.sendMessage(message);
 		   }
 		};
-		timer.schedule(task, 8000); 
+		timer.schedule(task,1000); 
 		
 	}
 
@@ -826,20 +826,28 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 	
 	/**
 	 * 刷新GridView@@
+	 * @param i 
 	 */
-	private void refreshGridview() {
-		mPullToRefreshGridViewAdapter = new PullToRefreshGridViewAdapter(mContext,mUserDeviceList);
-		mPullToRefreshGridViewAdapter.setGridView(mGridView);
-		mGridView.setAdapter(mPullToRefreshGridViewAdapter);
+	private void refreshGridview(int i) {
+		if(i==0||mPullToRefreshGridViewAdapter.getList().size()!=mUserDeviceList.size()){
+			mPullToRefreshGridViewAdapter = new PullToRefreshGridViewAdapter(mContext,mUserDeviceList);
+			mPullToRefreshGridViewAdapter.setGridView(mGridView);
+			mGridView.setAdapter(mPullToRefreshGridViewAdapter);
+		}else{
+			mPullToRefreshGridViewAdapter.setList(mUserDeviceList);
+			mPullToRefreshGridViewAdapter.notifyDataSetChanged();
+		}
 		mPullToRefreshGridView.onRefreshComplete();
 		mSmartSocketList = new ArrayList<UserDevice>();//智能插座列表。。
 		cameraList=new ArrayList<String>();//摄像机mac地址表@@
+		camaraAcount=new HashMap<>();//@@5.3
 		for(UserDevice u:mUserDeviceList){
 			if(u.getDevType()==1){
 				mSmartSocketList.add(u);//添加插座类型。。
 			}
 			if(u.getDevType()==2){
 				cameraList.add(u.getDevMac());
+				camaraAcount.put(u.getDevMac(), u.getCameraPwd());//@@5.3
 			}//@@
 	    }
 		getCameraState();//@@
@@ -854,6 +862,8 @@ public class MyDeviceFragment extends Fragment implements OnClickListener{
 				String[] contactIds = new String[cameraList.size()];//摄像头mac数组
 				for(int i=0;i<cameraList.size();i++){
 					contactIds[i] = cameraList.get(i);
+					P2PHandler.getInstance().getDefenceStates(
+							contactIds[i],camaraAcount.get(contactIds[i]));//@@获取摄像机布防状态5.3
 				}
 				MainThread.setByte(0,contactIds);//发送获取设备状态命令
 				MainThread.refreash();
