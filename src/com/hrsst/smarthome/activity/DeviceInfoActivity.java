@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hrsst.smarthome.R;
 import com.hrsst.smarthome.adapter.CameraListAdapter;
+import com.hrsst.smarthome.adapter.PullToRefreshGridViewAdapter;
 import com.hrsst.smarthome.global.Constants;
 import com.hrsst.smarthome.net.SocketUDP;
 import com.hrsst.smarthome.order.SendServerOrder;
@@ -258,6 +259,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					ocState = 0;
 					devStatus =getResources().getString(R.string.on);
 					mTextView.setText(devName+" "+devStatus);
+					PullToRefreshGridViewAdapter.updateSocketState(mac, 1);//@@6.2
 				}
 				if ("open".equals(receiveFlag)) {
 					Bitmap mBitmap = BitmapCache.getInstance().getBitmap(R.drawable.bj_off,mContext);
@@ -268,6 +270,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					ocState = 1;
 					devStatus = getResources().getString(R.string.off);
 					mTextView.setText(devName+" "+devStatus);
+					PullToRefreshGridViewAdapter.updateSocketState(mac, 0);//@@6.2
 				}
 				mSocketUDPClient.sendMsg(SendServerOrder.ClientACKOrder(mac,seq));//»Ø¸´ACK@@
 			}
@@ -285,6 +288,7 @@ public class DeviceInfoActivity extends Activity implements OnClickListener {
 					case "success":
 						devName = modifyName;
 						mTextView.setText(devName+" "+devStatus);
+						PullToRefreshGridViewAdapter.updateDevList(mac, devName);//@@5.23
 						Toast.makeText(mContext, R.string.modify_success, 1).show();
 						break;
 					case "failed":

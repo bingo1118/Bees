@@ -1359,7 +1359,13 @@ public class SettingListener implements ISetting {
 	public void ACK_vRetSetRemoteDefence(String contactId, int msgId, int result) {
 		// TODO Auto-generated method stub
 		Log.e(TAG, "ACK_vRetSetRemoteDefence:" + result);
-		if (result == Constants.P2P_SET.ACK_RESULT.ACK_NET_ERROR) {
+		if(result == Constants.P2P_SET.ACK_RESULT.ACK_SUCCESS){//@@5.22
+			Intent defence = new Intent();
+			defence.setAction(Constants.P2P.RET_SET_REMOTE_DEFENCE);
+			defence.putExtra("state", 0);
+			defence.putExtra("contactId", contactId);
+			MyApp.app.sendBroadcast(defence);
+		}else if (result == Constants.P2P_SET.ACK_RESULT.ACK_NET_ERROR) {
 		
 			Intent i = new Intent();
 			i.putExtra("state",
@@ -1449,11 +1455,11 @@ public class SettingListener implements ISetting {
 	@Override
 	public void vRetSetRemoteDefenceResult(String contactId, int result) {
 		// TODO Auto-generated method stub
-		Intent defence = new Intent();
-		defence.setAction(Constants.P2P.RET_SET_REMOTE_DEFENCE);
-		defence.putExtra("state", result);
-		defence.putExtra("contactId", contactId);
-		MyApp.app.sendBroadcast(defence);
+//		Intent defence = new Intent();
+//		defence.setAction(Constants.P2P.RET_SET_REMOTE_DEFENCE);
+//		defence.putExtra("state", result);
+//		defence.putExtra("contactId", contactId);
+//		MyApp.app.sendBroadcast(defence);
 	}
 
 	@Override

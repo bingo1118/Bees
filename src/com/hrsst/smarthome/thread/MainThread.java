@@ -208,7 +208,7 @@ public class MainThread {
 					}
 					if(last_check_update_time==-1&&serverCode<=getlocalVersion()){
 						Intent i = new Intent("Constants.Action.ACTION_UPDATE_NO");
-						i.putExtra("message", "已是最新版本");
+						i.putExtra("message", "已是最新版本"+"(版本号："+mUpdateInfo.versionName+")");//@@5.8
 						MyApp.app.sendBroadcast(i);
 					}
 				}

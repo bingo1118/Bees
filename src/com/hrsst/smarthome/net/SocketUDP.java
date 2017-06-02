@@ -103,9 +103,9 @@ public class SocketUDP {
 				        int num;
 				        if((pk[4]&0xff)==39){
 				        	num = (pk[7]&0xff)+(pk[8]&0xff)*256+13;
-//						}
-//				        else if((pk[4]&0xff)==72){
-//							num = (pk[7]&0xff)+(pk[8]&0xff)*256+13;
+						}
+				        else if((pk[4]&0xff)==72){//@@5.31
+							num = (pk[7]&0xff)+(pk[8]&0xff)*256+13;
 						}else{
 							num = (pk[7]&0xff)+13;
 						}

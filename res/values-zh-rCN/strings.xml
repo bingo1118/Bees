@@ -819,4 +819,5 @@
      <string name="no_more_then_ten_words">设备名称不能超过8个字符</string>
     <string name="psw_have_to_be_num">密码必须为6到15位</string>
     <string name="close_alarm_voice">关闭声音</string>
+    <string name="setting_wait">设置中，请稍等</string>
 </resources>

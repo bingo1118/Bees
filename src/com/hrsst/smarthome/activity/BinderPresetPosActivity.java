@@ -194,24 +194,24 @@ public class BinderPresetPosActivity extends Activity implements OnClickListener
 							case "ÑÌ¸ĞÌ½²âÆ÷":
 								presetType = 1;
 								break;
-							case "Smoke Detection Alarm":
+							case "Smoke Detection":
 								presetType = 1;
 								break;
 							case "ÃÅ´ÅÌ½²âÆ÷":
 								presetType = 2;
-							case "Wireless Doorsensor":
+							case "Doorsensor":
 								presetType = 2;
 								break;
 							case "È¼ÆøÌ½²âÆ÷":
 								presetType = 4;
 								break;
-							case "Wireless Gas Detection Alarm":
+							case "Gas Detection":
 								presetType = 4;
 								break;
 							case "ºìÍâÌ½²âÆ÷":
 								presetType = 3;
 								break;
-							case "Wireless Infrared Detection Alarm":
+							case "Infrared Detection":
 								presetType = 3;
 								break;
 							case "Ë®½û":
